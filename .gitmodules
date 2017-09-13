@@ -1,0 +1,6 @@
+[submodule "app/core"]
+	path = app/core
+	url = git@github.com:dodohack/spa-core.git
+[submodule "spa-core"]
+	path = spa-core
+	url = git@github.com:dodohack/spa-core.git

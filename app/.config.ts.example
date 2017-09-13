@@ -1,0 +1,13 @@
+/**
+ * Copy this file to .config.ts and modify the following constant to fit you
+ * Environment.
+ */
+
+// Current domain key, can be any supported domains
+export const KEY = 'bangli_uk';
+
+// App api servers
+export const APIS = {
+    bangli_uk: 'http://localhost:5001',
+    bangli_us: 'http://localhost:5002',
+};
