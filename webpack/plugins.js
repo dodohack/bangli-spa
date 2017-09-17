@@ -1,9 +1,9 @@
 'use strict';
 
-let webpack = require('webpack');
-let CopyWebpackPlugin = require('copy-webpack-plugin');
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = [

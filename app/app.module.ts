@@ -4,6 +4,7 @@ import { StoreModule }       from '@ngrx/store';
 import { EffectsModule }     from '@ngrx/effects';
 import { AppMaterialModule } from './app-material.module';
 
+import { BangliSpa }         from './app';
 
 @NgModule({
     imports: [
