@@ -3,6 +3,8 @@ import { OnInit, OnDestroy } from '@angular/core';
 import { Router }            from '@angular/router';
 import { Store }             from '@ngrx/store';
 
+import { AppState }          from './core/reducers';
+
 
 @Component({
     selector: 'bangli-spa',
