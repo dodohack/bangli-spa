@@ -1,3 +1,68 @@
 /**
  * Offer channel specific style
  */
+
+.offer-card-wrapper {
+  margin-right: $margin;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #e2e2e2;
+
+  .header-image {
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .media {
+    padding: 24px 16px 8px 24px;
+    display: block;
+
+    .media-img {
+      top: 118px;
+      left: 16px;
+      right: auto;
+      width: 64px;
+      height: 64px;
+      position: absolute;
+      margin-right: 0;
+      border: 1px solid #e2e2e2;
+      border-radius: 4px;
+      float: left;
+    }
+
+    .media-body {
+      height: auto;
+      display: table-cell;
+      vertical-align: top;
+
+      .merchant-name {
+        font-size: 12px;
+        color: #666666;
+        text-transform: uppercase;
+        overflow: hidden;
+        display: block;
+        line-height: 21px;
+        height: 21px;
+      }
+
+      .offer-details {
+        font-size: 18px;
+        height: 2.6rem;
+        line-height: 24px;
+        color: #222222;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -moz-line-clamp: 2;
+
+        text-overflow: ellipsis;
+        width: 100%;
+      }
+
+      .feature-flag {
+        color: #ec564a;
+      }
+
+    }
+  }
+}
