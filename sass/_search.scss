@@ -1,0 +1,28 @@
+/**
+ * Search modal stylesheet
+ */
+
+.search-container-wrapper {
+  .search-container {
+    padding: $padding;
+    width: 100%;
+    top: 0;
+    margin-right: 0;
+    right: 0;
+    background-color: #fff;
+    -webkit-transform: translateX(0) translateY(0) translateZ(0);
+    -moz-transform: translateX(0) translateY(0) translateZ(0);
+    -ms-transform: translateX(0) translateY(0) translateZ(0);
+    -o-transform: translateX(0) translateY(0) translateZ(0);
+    transform: translateX(0) translateY(0) translateZ(0);
+    z-index: 999;
+    max-width: 99999px;
+    min-height: 42px;
+    position: absolute;
+  }
+
+  .search-form {
+    padding: 2rem 0.5rem 2.5rem;
+    background-color: transparent;
+  }
+}

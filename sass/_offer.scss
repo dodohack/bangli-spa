@@ -2,16 +2,22 @@
  * Offer channel specific style
  */
 
+.offer-card-widget {
+  margin-bottom: $margin;
+}
+
 .offer-card-wrapper {
-  margin-right: $margin;
+  position: relative; // This makes the absolution position of 'logo' works
   border-radius: 4px;
   background-color: #fff;
   border: 1px solid #e2e2e2;
+  display: block;
 
   .header-image {
     border-radius: 0;
     position: relative;
     overflow: hidden;
+    img { width: 100%; }
   }
 
   .media {

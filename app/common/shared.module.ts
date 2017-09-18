@@ -6,8 +6,9 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
-import { SiteHeader } from './site.header';
-import { SiteFooter } from './site.footer';
+import { SiteHeader }  from './site.header';
+import { SiteFooter }  from './site.footer';
+//import { SearchModal } from './search';
 
 @NgModule({
     imports: [
@@ -16,12 +17,14 @@ import { SiteFooter } from './site.footer';
     declarations: [
         SiteHeader,
         SiteFooter,
+        //SearchModal,
     ],
     exports: [
         CommonModule,
 
         SiteHeader,
         SiteFooter,
+        //SearchModal,
     ],
     providers: [
 
