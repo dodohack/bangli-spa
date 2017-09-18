@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component }   from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
 })
 export class OfferIndex
 {
-
+    offerFormControl = new FormControl('', []);
 }
