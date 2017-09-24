@@ -15,12 +15,10 @@ export class OfferTopic implements OnInit
     topic$: Observable<Entity>;
 
     constructor(private store: Store<fromEntities.AppState>) {
-        console.log("OfferTopic::constructor()");
         this.topic$ = store.select(fromEntities.getCurTopic);
     }
 
     ngOnInit() {
-        console.log("OfferTopic::ngOnInit()");
         let payload = {etype: 'topic', data: 'lookfantastic-uk'};
         this.store.dispatch(new entity.LoadEntity(payload));
     }
