@@ -1,8 +1,9 @@
 import { NgModule }       from '@angular/core';
+import { CommonModule }   from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MdFormFieldModule } from '@angular/material';
-import { OfferRoutes }    from './routes';
 
+import { OfferRoutes }    from './routes';
 import { OfferTopic }   from './offer.topic';
 import { OfferIndex }   from './offer.index';
 import { OfferCard }    from "./widgets/card";
@@ -14,7 +15,13 @@ export const COMPONENTS = [
 ];
 
 @NgModule({
-    imports: [FormsModule, ReactiveFormsModule, MdFormFieldModule, OfferRoutes],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MdFormFieldModule,
+        OfferRoutes,
+    ],
     declarations: COMPONENTS,
     exports: COMPONENTS,
 })
