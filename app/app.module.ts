@@ -23,6 +23,7 @@ import { SharedModule }      from './common/shared.module';
 import { OfferModule }       from './offer/offer.module';
 
 import { AppRoutes }            from './routes';
+import { DefaultRouterStateSerializer } from '@ngrx/router-store';
 import { CustomRouterStateSerializer } from "./core/utils";
 
 @NgModule({
@@ -54,7 +55,8 @@ import { CustomRouterStateSerializer } from "./core/utils";
          * the 'RouterStateSnapshot' provided by '@ngrx/router-store' to
          * include only the desired pieces of the snapshot.
          */
-        { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
+        //{ provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
+        //{ provide: RouterStateSerializer, useClass: DefaultRouterStateSerializer },
     ],
     bootstrap: [ BangliSpa ]
 })

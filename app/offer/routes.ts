@@ -5,7 +5,7 @@ import { OfferIndex }           from './offer.index';
 
 const routes: Routes = [
     { path: 'deal',        component: OfferIndex },
-    { path: 'deal/:guid',  component: OfferTopic }
+    { path: 'deal/:guid',  component: OfferTopic },
 ];
 
 export const OfferRoutes = RouterModule.forChild(routes);
