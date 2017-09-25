@@ -8,4 +8,4 @@ const routes: Routes = [
     { path: 'deal/:guid',  component: OfferTopic },
 ];
 
-export const OfferRoutes = RouterModule.forChild(routes);
+export const routing = RouterModule.forChild(routes);

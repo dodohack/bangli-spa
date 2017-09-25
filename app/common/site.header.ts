@@ -1,32 +1,30 @@
 /**
- * This is site wide common component, it shows different logos and banners
- * for different channels.
- * NOTE: it is named <site-header> to avoid name conflict with <header>
+ * This is the header(below global channel menu), it shows different logo and
+ * banners for different channels
+ * NOTE: We name it site-header to avoid naming conflict with <header>
  */
 
-import {
-    Component,
-    OnInit,
-    OnDestroy,
-    Input,
-    Output,
-    SimpleChanges,
-    OnChanges,
-    ChangeDetectorRef,
-    ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component }               from '@angular/core';
+import { Input, Output }           from '@angular/core';
+import { OnInit, OnDestroy }       from '@angular/core';
+import { SimpleChanges, OnChanges }from '@angular/core';
+import { ActivatedRoute }          from '@angular/router';
+import { Router }                  from '@angular/router';
+import { NavigationEnd }           from '@angular/router';
+import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef }       from '@angular/core';
+import { Store }                   from '@ngrx/store';
+import { Observable }              from 'rxjs/Observable';
 
 import {
-    Router,
-    ActivatedRoute
-} from '@angular/router';
-
-import { Store } from '@ngrx/store';
-
-import {
-    AppState
-} from '../core/reducers';
-
+    AppState,
+    getTopMenus,
+    getMainMenus,
+    getSubMenus,
+    getSubMenuGids,
+    getMainMenuRootId,
+    getRootMenuIds,
+    getMenus }     from '../core/reducers';
 
 @Component({
     selector: 'site-header',
@@ -35,15 +33,42 @@ import {
 })
 export class SiteHeader implements OnInit, OnDestroy
 {
+    // Variables used in template only
+    menuidx: number;
+
+    // Menu data retrieved from API server
+    topMenus$:    Observable<any>;
+    mainMenus$:   Observable<any>;
+
+    rootMenuIds$: Observable<number[]>;
+    menus$:       Observable<any>;
+
+    subRootMenuIds: any;
+    subMenuIds: any;
+    subTypes: any;
+    subMenus: any;
+    subMenuUpdate: any;
+
     constructor(private route: ActivatedRoute,
                 private store: Store<AppState>,
                 private cd: ChangeDetectorRef) {}
 
     ngOnInit() {
-
+        this.topMenus$    = this.store.let(getTopMenus());
+        this.mainMenus$   = this.store.let(getMainMenus());
+        this.rootMenuIds$ = this.store.let(getRootMenuIds());
+        this.menus$       = this.store.let(getMenus());
     }
 
     ngOnDestroy() {
+        //this.subMenuUpdate.unsubscribe();
+    }
 
+    subMenus$(pid: number): Observable<any> {
+        return this.store.let(getSubMenus(pid));
+    }
+
+    subMenuGids$(pid: number): Observable<number[]> {
+        return this.store.let(getSubMenuGids(pid));
     }
 }

@@ -1,0 +1,18 @@
+<div class="row topic-page shopping-topic">
+
+    <div class="col-lg-12">
+        <breadcrumb [channel]="channel$ | async"
+                    [categories]="categories$ | async"></breadcrumb>
+    </div>
+
+    <article class="col-lg-12" role="article" itemscope="" itemtype="http://schema.org/Article">
+
+        <!-- topic title, metadata, sns info etc -->
+        <topic-head [topic]="entity$ | async"></topic-head>
+
+        <div class="row">
+            <div class="col-lg-8"></div>
+        </div>
+
+    </article>
+</div>

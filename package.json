@@ -30,6 +30,7 @@
     "@ngrx/entity": "~4.0.2",
     "@ngrx/router-store": "~4.0.3",
     "@ngrx/store": "~4.0.3",
+    "bootstrap": "^4.0.0-beta",
     "core-js": "^2.4.1",
     "flexboxgrid-sass": "^8.0.5",
     "font-awesome": "^4.7.0",
