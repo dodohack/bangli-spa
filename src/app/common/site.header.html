@@ -45,6 +45,7 @@ E.g: Only show locations for home, travel, local etc.
     </div>
 
     <!-- Main menus -->
+    <!--
     <div class="row">
         <div class="col-lg-12">
             <md-tab-group [selectedIndex]="menuidx || 0">
@@ -54,7 +55,6 @@ E.g: Only show locations for home, travel, local etc.
                        [routerLink]="[m.url]" routerLinkActive="active">{{ m.name }}</a>
 
                     <template md-tab-content>
-                        <!-- subMenus$(m.id) returns object not array -->
                         <div *ngFor="let gid of (subMenuGids$(m.id) | async)" class="multirow col4">
                             <a *ngFor="let item of (subMenus$(m.id) | async)[gid]"
                                [routerLink]="[item.url]">{{ item.name }}</a>
@@ -65,5 +65,5 @@ E.g: Only show locations for home, travel, local etc.
             </md-tab-group>
         </div>
     </div>
-
+-->
 </div>

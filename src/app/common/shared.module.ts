@@ -4,13 +4,15 @@
 
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule }      from '@angular/router';
 
 import { SiteHeader }  from './site.header';
 import { SiteFooter }  from './site.footer';
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        RouterModule,
     ],
     declarations: [
         SiteHeader,
@@ -18,6 +20,7 @@ import { SiteFooter }  from './site.footer';
     ],
     exports: [
         CommonModule,
+        RouterModule,
 
         SiteHeader,
         SiteFooter,

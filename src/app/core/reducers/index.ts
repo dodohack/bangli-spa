@@ -11,6 +11,7 @@ import {
 } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
 import { Observable }  from 'rxjs/Rx';
+import { environment } from '../../../environments/environment';
 
 // Debug tools
 import { storeLogger } from 'ngrx-store-logger';
@@ -55,7 +56,7 @@ export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState
  * the root meta-reducer. To add more meta-reducers, provide an array of
  * meta-reducers that will be composed to from the root meta-reducer.
  */
-export const metaReducers: MetaReducer<AppState>[] = process.env.ENV != 'production'
+export const metaReducers: MetaReducer<AppState>[] = !environment.production
     ? [logger, storeFreeze]
     : [];
 

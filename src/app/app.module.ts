@@ -10,7 +10,6 @@ import {
     StoreRouterConnectingModule,
     RouterStateSerializer,
 } from '@ngrx/router-store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { reducers, metaReducers } from './core/reducers';
 import { EntityEffects } from './core/effects';
@@ -20,7 +19,7 @@ import { BangliSpa }         from './app';
 import { Page404 }           from './404.page';
 import { HomeModule }        from './home/home.module';
 import { SharedModule }      from './common/shared.module';
-import { OfferModule }       from './shopping/offer.module';
+import { ShoppingModule }    from './shopping/shopping.module';
 
 import { AppRoutes }            from './routes';
 import { DefaultRouterStateSerializer } from '@ngrx/router-store';
@@ -37,8 +36,8 @@ import { CustomRouterStateSerializer } from "./core/utils";
 
         SharedModule,
         HomeModule,
-        OfferModule,
-
+        ShoppingModule,
+        
         StoreModule.forRoot(reducers, { metaReducers }),
         StoreRouterConnectingModule,
 

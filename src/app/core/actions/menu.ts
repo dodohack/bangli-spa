@@ -12,15 +12,18 @@ export const REFRESH_MENU = "[Menu] Refresh";
 
 export class LoadMenu implements Action {
     readonly type = LOAD_MENU;
+    // FIXME: Build error if we have some actions do not have payload
+    constructor(public payload: any) {}
 }
 
 export class LoadMenuSuccess implements Action {
     readonly type = LOAD_MENU_SUCCESS;
-    constructor(public payload: Menu[]) {}
+    constructor(public payload: Menu[] | any) {}
 }
 
 export class LoadMenuFail implements Action {
     readonly type = LOAD_MENU_FAIL;
+    constructor(public payload: any) {}
 }
 
 // When a page is loaded, it emits an action to update the menu displayed
@@ -31,7 +34,7 @@ export class LoadMenuFail implements Action {
 export class RefreshMenu implements Action {
     readonly type = REFRESH_MENU;
     // FIXME: Revisit payload
-    constructor(public payload: {menu_type: 'HOME', menu_name: 'main'}){};
+    constructor(public payload: {menu_type: 'HOME', menu_name: 'main'} | any){};
 }
 
 export type Actions = LoadMenu

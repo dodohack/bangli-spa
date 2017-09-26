@@ -14,10 +14,10 @@ export class MenuEffects {
     constructor(private actions$: Actions,
                 private http: Http) { }
 
-    @Effect() loadAll$ = this.actions$.ofType(menu.LoadMenu)
+    @Effect() loadAll$ = this.actions$.ofType(menu.LOAD_MENU)
         .switchMap(() => this.getAll()
             .map(menus => new menu.LoadMenuSuccess(menus))
-            .catch(() => Observable.of(new menu.LoadMenuFail))
+            .catch(() => Observable.of(new menu.LoadMenuFail(null)))
         );
 
     //////////////////////////////////////////////////////////////////////////

@@ -17,14 +17,14 @@ import { Store }                   from '@ngrx/store';
 import { Observable }              from 'rxjs/Observable';
 
 import {
-    AppState,
+    AppState,/*
     getTopMenus,
     getMainMenus,
     getSubMenus,
     getSubMenuGids,
     getMainMenuRootId,
     getRootMenuIds,
-    getMenus }     from '../core/reducers';
+    getMenus */}     from '../core/reducers';
 
 @Component({
     selector: 'site-header',
@@ -53,22 +53,25 @@ export class SiteHeader implements OnInit, OnDestroy
                 private store: Store<AppState>,
                 private cd: ChangeDetectorRef) {}
 
-    ngOnInit() {
+    ngOnInit() {/*
         this.topMenus$    = this.store.let(getTopMenus());
         this.mainMenus$   = this.store.let(getMainMenus());
         this.rootMenuIds$ = this.store.let(getRootMenuIds());
-        this.menus$       = this.store.let(getMenus());
+        this.menus$       = this.store.let(getMenus());*/
     }
 
     ngOnDestroy() {
         //this.subMenuUpdate.unsubscribe();
     }
 
+    /*
     subMenus$(pid: number): Observable<any> {
         return this.store.let(getSubMenus(pid));
+
     }
 
     subMenuGids$(pid: number): Observable<number[]> {
         return this.store.let(getSubMenuGids(pid));
     }
+    */
 }

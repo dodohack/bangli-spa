@@ -42,7 +42,7 @@ export function reducer(state = initialState,
     {
         // TODO: This reduce costs several ms to dozens of ms if number of menus
         // TODO: are huge, we should always cache menu into localStorage.
-        case menu.LoadMenuSuccess: {
+        case menu.LOAD_MENU_SUCCESS: {
             const menusAry: Menu[] = action.payload;
             const rootMenusAry = menusAry.filter(m => m.parent_id === 0);
             const rootIds      = rootMenusAry.map(menu => menu.id);
@@ -93,7 +93,7 @@ export function reducer(state = initialState,
         }
 
         // Refresh current menu state
-        case menu.RefreshMenu: {
+        case menu.REFRESH_MENU: {
             // Menu type for main menu, 'topbar' and 'footer' menu
             const menuType = action.payload.menu_type;
             // Main menu name, we have name fixed 'topbar' and 'footer' menu
@@ -160,10 +160,12 @@ export const getFootMenus =
  * Return group index of submenus object
  * FIXME: Parameters?
  */
+/*
 export function getSubMenuGids(pid: number) {
     return (state$: Observable<MenusState>) => state$
         .select(m => m.menuGids[pid]);
 }
+*/
 
 /**
  * Return current topbar menu root id
