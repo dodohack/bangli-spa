@@ -16,7 +16,7 @@ import { EntityBase }    from '../core/entity.base';
     selector: '',
     templateUrl: './offer.topic.html'
 })
-class _OfferTopic extends EntityBase // implements OnInit
+export class _OfferTopic extends EntityBase // implements OnInit
 {
     constructor(protected route: ActivatedRoute,
                 protected store: Store<fromEntities.AppState>) {
@@ -28,7 +28,7 @@ class _OfferTopic extends EntityBase // implements OnInit
     selector: '',
     templateUrl: './offer.topic.m.html'
 })
-class _OfferTopicM extends EntityBase // implements OnInit
+export class _OfferTopicMobile extends EntityBase // implements OnInit
 {
     constructor(protected route: ActivatedRoute,
                 protected store: Store<fromEntities.AppState>) {
@@ -36,4 +36,4 @@ class _OfferTopicM extends EntityBase // implements OnInit
     }
 }
 
-export const OfferTopic = environment.mobile ? _OfferTopicM : _OfferTopic;
+export const OfferTopic = environment.mobile ? _OfferTopicMobile : _OfferTopic;

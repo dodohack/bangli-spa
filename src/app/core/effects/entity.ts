@@ -146,7 +146,6 @@ export class EntityEffects {
      * Request a entity from API server
      */
     protected getEntity(etype: string, id: string): Observable<any> {
-        console.log("SIDE EFFECT: getEntity()");
         let api = this.getApi(etype, false) + '/' + id + '?etype=' + etype;
         return this.http.get(api).map(res => res.json());
     }

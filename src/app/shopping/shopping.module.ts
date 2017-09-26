@@ -12,8 +12,6 @@ import { OfferIndex }   from './offer.index';
 import { MerchantTopic } from './merchant.topic';
 import { MerchantIndex } from './merchant.index';
 
-import { OfferTopicM }   from './offer.topic.m';
-
 export const COMPONENTS =
         [
             // FIXME: Actually We could use MerchantTopic as OfferTopic!!
