@@ -21,7 +21,7 @@ import { HomeModule }        from './home/home.module';
 import { SharedModule }      from './common/shared.module';
 import { ShoppingModule }    from './shopping/shopping.module';
 
-import { AppRoutes }            from './routes';
+import { AppRoutes }         from './routes';
 import { DefaultRouterStateSerializer } from '@ngrx/router-store';
 import { CustomRouterStateSerializer } from "./core/utils";
 
