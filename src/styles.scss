@@ -1,8 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "./sass/vendors/normalize.css";
-//@import "../node_modules/flexboxgrid-sass/flexboxgrid";
-
 @import "./sass/variable";
-@import "./sass/theme";
-@import "./sass/offer";
+//@import "./sass/vendors/fontawesome5/scss/fontawesome-pro-core";
+@import "./sass/vendors/fontawesome5/scss/fontawesome-pro-light";
+//@import "./sass/vendors/fontawesome5/scss/fontawesome-pro-brands";
+
+@import "./sass/vendors/normalize.css";
+@import "../node_modules/flexboxgrid-sass/flexboxgrid";
+
+@media screen and (min-width: $desktop-min-width) {
+  @import "./sass/theme";
+  @import "./sass/offer";
+}
+
+//
+// Mobile only style
+//
+@media screen and (max-width: $mobile-max-width) {
+
+  @import "./sass/mobile/navbar";
+  @import "./sass/mobile/body";
+}

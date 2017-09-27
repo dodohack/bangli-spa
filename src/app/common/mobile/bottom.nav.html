@@ -1,0 +1,29 @@
+<div class="navbar navbar-bottom" [ngSwitch]="navType">
+    <ng-template ngSwitchCase="'shopping'">
+        <a routerLink="/">Home</a>
+        <a routerLink="/">BBS</a>
+        <a routerLink="/" class="round">发帖</a>
+        <a routerLink="/">Link3</a>
+        <a routerLink="/">Link4</a>
+    </ng-template>
+
+    <ng-template ngSwitchCase="'bbs'">
+        <a routerLink="/">Home</a>
+        <a routerLink="/">BBS</a>
+        <a routerLink="/" class="round">发帖</a>
+        <a routerLink="/">Link3</a>
+        <a routerLink="/">Link4</a>
+    </ng-template>
+
+    <!-- Support more different navbar -->
+
+
+    <!-- Default menu -->
+    <ng-template ngSwitchDefault>
+        <a routerLink="/">Home<i class="fa fa-home"></i></a>
+        <a routerLink="/">BBS</a>
+        <a routerLink="/" class="round"><i class="fa fa-weixin"></i>发帖</a>
+        <a routerLink="/">Link3</a>
+        <a routerLink="/">Link4</a>
+    </ng-template>
+</div>

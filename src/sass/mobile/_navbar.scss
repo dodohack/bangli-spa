@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  width: 100%;
+  position: fixed;
+  max-height: 48px;
+
+  a, span {
+    float: left;
+    display: block;
+    color: #333333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+}
+
+.navbar-top {
+  background-color: #22CC22;
+  top: 0;
+}
+
+.navbar-bottom {
+  background-color: #f6f6f6;
+  bottom: 0;
+
+}

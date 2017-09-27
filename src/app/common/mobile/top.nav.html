@@ -1,0 +1,22 @@
+<div class="navbar navbar-top" [ngSwitch]="navType">
+
+    <ng-template ngSwitchCase="'shopping'">
+        <a routerLink="/">Home</a>
+        <a routerLink="/">Link4</a>
+    </ng-template>
+
+    <ng-template ngSwitchCase="'bbs'">
+        <a routerLink="/">Home</a>
+        <a routerLink="/">Link4</a>
+    </ng-template>
+
+    <!-- Support more different navbar -->
+
+    <!-- Default navbar -->
+    <ng-template ngSwitchDefault>
+        <a routerLink="/"><i class="fa fa-ellipsis-h"></i></a>
+        <span>Logo Here</span>
+        <a routerLink="/">Search</a>
+    </ng-template>
+
+</div>

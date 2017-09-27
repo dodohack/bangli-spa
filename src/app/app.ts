@@ -3,6 +3,7 @@ import { OnInit, OnDestroy } from '@angular/core';
 import { Router }            from '@angular/router';
 import { Store }             from '@ngrx/store';
 
+import { environment }       from '../environments/environment';
 import { AppState }          from './core/reducers';
 
 
@@ -10,7 +11,7 @@ import { AppState }          from './core/reducers';
     selector: 'bangli-spa',
     templateUrl: './app.html'
 })
-export class BangliSpa implements OnInit, OnDestroy
+export class _BangliSpa implements OnInit, OnDestroy
 {
     constructor(private router: Router,
                 private store: Store<AppState>) {}
@@ -23,3 +24,28 @@ export class BangliSpa implements OnInit, OnDestroy
 
     }
 }
+
+
+//
+// Mobile version
+//
+@Component({
+    selector: 'bangli-spa',
+    templateUrl: './app.m.html'
+})
+export class _BangliSpaMobile implements OnInit, OnDestroy
+{
+    constructor(private router: Router,
+                private store: Store<AppState>) {}
+
+    ngOnInit() {
+
+    }
+
+    ngOnDestroy() {
+
+    }
+}
+
+
+export const BangliSpa = environment.mobile ? _BangliSpaMobile : _BangliSpa;

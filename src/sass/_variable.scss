@@ -1,3 +1,9 @@
+// Overwrite default font-awesome variable
+// We will copy fa fonts into public folder
+$fa-font-path: "/assets/webfonts";
+
+$mobile-max-width: 736px; // Iphone 6 plus: 414 x 736;
+$desktop-min-width: 737px;
 
 $columns: 12;
 $gutter: 1rem;
