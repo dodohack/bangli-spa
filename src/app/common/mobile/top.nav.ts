@@ -5,6 +5,8 @@
 import {
     Component,
     Input,
+    Output,
+    EventEmitter,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
 } from '@angular/core';
@@ -20,6 +22,9 @@ export class TopNav
 {
     // The type of navbar to show on different pages.
     @Input() navType: string;
+    @Output() barToggle = new EventEmitter<boolean>();
 
     constructor(private cd: ChangeDetectorRef) {}
+
+    barOpen() { this.barToggle.emit(true); }
 }

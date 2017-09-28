@@ -1,6 +1,9 @@
 // Overwrite default font-awesome variable
 // We will copy fa fonts into public folder
-$fa-font-path: "/assets/webfonts";
+
+// FIXME: fontawesome 5 does work, 4.7 works.
+//$fa-font-path: "/assets/webfonts";
+$fa-font-path: "../node_modules/font-awesome/fonts";
 
 $mobile-max-width: 736px; // Iphone 6 plus: 414 x 736;
 $desktop-min-width: 737px;

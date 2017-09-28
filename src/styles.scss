@@ -2,14 +2,16 @@
 
 @import "./sass/variable";
 //@import "./sass/vendors/fontawesome5/scss/fontawesome-pro-core";
-@import "./sass/vendors/fontawesome5/scss/fontawesome-pro-light";
+//@import "./sass/vendors/fontawesome5/scss/fontawesome-pro-light";
 //@import "./sass/vendors/fontawesome5/scss/fontawesome-pro-brands";
+@import "../node_modules/font-awesome/scss/font-awesome";
 
 @import "./sass/vendors/normalize.css";
 @import "../node_modules/flexboxgrid-sass/flexboxgrid";
 
+@import "./sass/theme";
+
 @media screen and (min-width: $desktop-min-width) {
-  @import "./sass/theme";
   @import "./sass/offer";
 }
 

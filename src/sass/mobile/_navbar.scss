@@ -2,18 +2,24 @@
   display: flex;
   justify-content: space-between;
   overflow: hidden;
+  z-index: 999;
   width: 100%;
   position: fixed;
-  max-height: 48px;
+  height: 48px;
 
   a, span {
-    float: left;
-    display: block;
     color: #333333;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    // Vertical align middle
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 0 16px;
+
+    em {
+      font-style: normal;
+      font-size: 12px;
+    }
   }
 }
 
@@ -25,5 +31,4 @@
 .navbar-bottom {
   background-color: #f6f6f6;
   bottom: 0;
-
 }

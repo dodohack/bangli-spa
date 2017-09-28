@@ -4,28 +4,21 @@
  */
 
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import {
-    MdInputModule,
-    MdButtonModule,
-    MdSelectModule,
-    MdToolbarModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSidenavModule,
 } from '@angular/material';
 
+export const MODULES = [
+    MatInputModule,
+    MatButtonModule,
+    MatSidenavModule
+];
+
 @NgModule({
-    imports: [
-        CommonModule,
-        MdInputModule,
-        MdButtonModule,
-        MdSelectModule,
-        MdToolbarModule,
-    ],
-    exports: [
-        MdInputModule,
-        MdButtonModule,
-        MdSelectModule,
-        MdToolbarModule,
-    ]
+    imports: MODULES,
+    exports: MODULES
 })
 export class AppMaterialModule { }

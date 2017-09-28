@@ -3,6 +3,7 @@ import { CommonModule }      from '@angular/common';
 import { BrowserModule }     from '@angular/platform-browser';
 import { HttpModule }        from '@angular/http';
 import { RouterModule }      from '@angular/router';
+import { BrowserAnimationsModule }     from '@angular/platform-browser/animations';
 
 import { StoreModule }       from '@ngrx/store';
 import { EffectsModule }     from '@ngrx/effects';
@@ -32,6 +33,7 @@ import { CustomRouterStateSerializer } from "./core/utils";
         BrowserModule,
         RouterModule,
         HttpModule,
+        BrowserAnimationsModule,
         AppMaterialModule,
 
         SharedModule,

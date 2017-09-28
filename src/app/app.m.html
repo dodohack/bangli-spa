@@ -1,6 +1,10 @@
-<top-nav></top-nav>
-<div class="container with-fixed-nav">
+<top-nav (barToggle)="sidenav.open()"></top-nav>
+
+<md-sidenav-container>
+
     <router-outlet></router-outlet>
-    <!--<md-sidenav></md-sidenav>-->
-</div>
+
+    <md-sidenav #sidenav mode="push" opened="true" style="width: 75%;">Sidebar content</md-sidenav>
+
+</md-sidenav-container>
 <bottom-nav></bottom-nav>
