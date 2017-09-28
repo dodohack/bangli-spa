@@ -26,4 +26,6 @@ export class TopicHead
     @Input() ttype: string;
 
     constructor(private cd: ChangeDetectorRef) {}
+
+    dealCount = [ 1, 2, 3, 4, 5];
 }

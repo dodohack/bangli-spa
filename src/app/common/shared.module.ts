@@ -5,8 +5,15 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { RouterModule }  from '@angular/router';
-import { MatTabsModule } from '@angular/material';
 import { environment }   from '../../environments/environment';
+
+import {
+    MatTabsModule,
+    MatButtonModule,
+    MatCardModule
+} from '@angular/material';
+
+
 
 import { TopNav }      from './mobile/top.nav';
 import { BottomNav }   from './mobile/bottom.nav';
@@ -14,6 +21,12 @@ import { TopicHead }   from './mobile/topic.head';
 
 import { SiteHeader }  from './site.header';
 import { SiteFooter }  from './site.footer';
+
+export const MD_MODULES = [
+    MatTabsModule,
+    MatButtonModule,
+    MatCardModule
+];
 
 export const COMPONENTS = environment.mobile ?
     [
@@ -32,7 +45,7 @@ export const COMPONENTS = environment.mobile ?
     imports: [
         CommonModule,
         RouterModule,
-        MatTabsModule,
+        MD_MODULES,
     ],
     declarations: [
         COMPONENTS
@@ -40,7 +53,7 @@ export const COMPONENTS = environment.mobile ?
     exports: [
         CommonModule,
         RouterModule,
-        MatTabsModule,
+        MD_MODULES,
         COMPONENTS
     ],
     providers: [

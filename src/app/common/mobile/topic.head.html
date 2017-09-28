@@ -3,15 +3,20 @@
     <!-- row 1 -->
     <!-- topic logo, title, number of deal/post, tracking_url, subscribe -->
     <div class="topic-top">
-        <div>
-            <img src="http://placehold.it/80x80?text=logo">
+        <!-- FIXME: Need to set the maximum width of topic-left -->
+        <!-- FIXME: Need to cut down long topic title -->
+        <div class="topic-left">
+            <div class="topic-img">
+                <img src="http://placehold.it/64x64?text=logo">
+            </div>
+            <div class="topic-caption">
+                <h2>专题标题</h2>
+                <p>最新xx品牌优惠信息，热门攻略</p>
+            </div>
         </div>
-        <div>
-            <h2>专题标题</h2>
-            <span>8个优惠/20篇文章/5000+阅读</span>
-        </div>
-        <div>
-            <button>订阅</button>
+        <div class="topic-action">
+            <button md-raised-button>订阅</button><br>
+            <button md-raised-button>访问官网</button>
         </div>
     </div>
 
@@ -27,6 +32,23 @@
         <md-tab label="优惠">
             <div>
                 List of deals of this topic, default tab for merchant topic.
+                <div *ngFor="let c of dealCount">
+                    <div class="topic-top">
+                        <!-- FIXME: Need to set the maximum width of topic-left -->
+                        <!-- FIXME: Need to cut down long topic title -->
+                        <div class="topic-left">
+                            <div class="topic-img">
+                                <img src="http://placehold.it/64x64?text=logo">
+                            </div>
+                            <div class="topic-caption">
+                                <p>优惠码介绍，大概50字左右,优惠码介绍，大概50字左右,优惠码介绍，大概50字左右</p>
+                            </div>
+                            <div class="deal-footer">
+                                <p>过期时间: 2017-09-31</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </md-tab>
         <md-tab label="文章">
