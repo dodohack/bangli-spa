@@ -1,29 +1,22 @@
 // General style for mobile pages
 
-// Leave space for content which can be hidden by fixed top/bottom-nav
-.with-fixed-nav {
+html {
+  //height: 100%;
+}
+
+body {
+  //min-height: 100%;
   //margin-top: 48px;
   //margin-bottom: 48px;
 }
 
-.container {
-  // Prevent horizontal scroll when text line is too long
-  overflow: hidden;
-}
-
-html {
+// FIXME: Rename these 2 classes
+.content-wrapper {
+  overflow: auto;
   height: 100%;
 }
 
-body {
-  min-height: 100%;
-  margin-top: 48px;
-  margin-bottom: 48px;
+.inner-content {
+  margin: $mobile-body-margin;
+  word-break: break-all;
 }
-
-/*
-.mat-sidenav-content,
-.mat-sidenav-container,
-.mat-drawer-content {
-  transform: none !important;
-}*/

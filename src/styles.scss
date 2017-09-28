@@ -19,7 +19,8 @@
 // Mobile only style
 //
 @media screen and (max-width: $mobile-max-width) {
-
   @import "./sass/mobile/navbar";
+  @import "./sass/mobile/topic";
   @import "./sass/mobile/body";
 }
+

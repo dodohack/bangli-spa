@@ -1,0 +1,11 @@
+/**
+ * Topic related style for mobile
+ */
+
+.topic-head {
+  .topic-top {
+    display: flex;
+    justify-content: space-between;
+    div { display: inline-block; }
+  }
+}

@@ -12,6 +12,9 @@ import { OfferIndex }   from './offer.index';
 import { MerchantTopic } from './merchant.topic';
 import { MerchantIndex } from './merchant.index';
 
+import { SharedModule }  from '../common/shared.module';
+import { MatTabsModule }           from '@angular/material';
+
 export const COMPONENTS =
         [
             // FIXME: Actually We could use MerchantTopic as OfferTopic!!
@@ -26,7 +29,8 @@ export const COMPONENTS =
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        //MdFormFieldModule,
+        SharedModule,
+        MatTabsModule,
         routing,
     ],
     declarations: COMPONENTS,

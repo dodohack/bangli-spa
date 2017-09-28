@@ -2,10 +2,10 @@
   display: flex;
   justify-content: space-between;
   overflow: hidden;
-  z-index: 999;
+  z-index: 99;
   width: 100%;
   position: fixed;
-  height: 48px;
+  height: $mobile-toolbar-height;
 
   a, span {
     color: #333333;
@@ -24,11 +24,15 @@
 }
 
 .navbar-top {
-  background-color: #22CC22;
+  background-color: #339933;
   top: 0;
+  a,span {
+    color: white;
+  }
 }
 
 .navbar-bottom {
+  border-top: 1px solid #cccccc;
   background-color: #f6f6f6;
   bottom: 0;
 }

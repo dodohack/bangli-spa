@@ -17,3 +17,11 @@ $padding: 1rem;
 $flexboxgrid-grid-columns: $columns;
 $flexboxgrid-gutter-width: $gutter;
 $flexboxgrid-outer-margin: $margin;
+
+
+//
+// Mobile only variable
+//
+
+$mobile-toolbar-height: 48px;
+$mobile-body-margin: $mobile-toolbar-height 0;

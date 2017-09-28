@@ -6,15 +6,19 @@
 import { NgModule } from '@angular/core';
 
 import {
+    MatTabsModule,
     MatInputModule,
     MatButtonModule,
     MatSidenavModule,
+    MatSnackBarModule
 } from '@angular/material';
 
 export const MODULES = [
+    MatTabsModule,
     MatInputModule,
     MatButtonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule
 ];
 
 @NgModule({

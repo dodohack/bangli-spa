@@ -1,10 +1,17 @@
-<top-nav (barToggle)="sidenav.open()"></top-nav>
+<md-sidenav-container fullscreen>
 
-<md-sidenav-container>
+    <top-nav (barToggle)="sidenav.open()"></top-nav>
+    <md-sidenav #sidenav mode="push" opened="true" style="width: 75%;">
+        Sidebar content<br>
+        we will create a separate component to display user name/avator,
+        nested menu with 2 level nav.
+    </md-sidenav>
+    <bottom-nav></bottom-nav>
 
-    <router-outlet></router-outlet>
-
-    <md-sidenav #sidenav mode="push" opened="true" style="width: 75%;">Sidebar content</md-sidenav>
+    <div class="content-wrapper">
+        <div class="inner-content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 
 </md-sidenav-container>
-<bottom-nav></bottom-nav>
