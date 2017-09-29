@@ -9,6 +9,8 @@ import {
     ChangeDetectionStrategy,
 } from '@angular/core';
 
+import { MatRipple } from '@angular/material';
+
 import { NgSwitch } from '@angular/common';
 
 @Component({

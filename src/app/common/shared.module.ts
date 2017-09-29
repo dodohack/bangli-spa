@@ -10,7 +10,8 @@ import { environment }   from '../../environments/environment';
 import {
     MatTabsModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatRippleModule
 } from '@angular/material';
 
 
@@ -25,7 +26,8 @@ import { SiteFooter }  from './site.footer';
 export const MD_MODULES = [
     MatTabsModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatRippleModule,
 ];
 
 export const COMPONENTS = environment.mobile ?

@@ -2,13 +2,24 @@
  * Topic related style for mobile
  */
 
-.topic-head {
+.topic-page {
 
-  .topic-top {
+  .topic-img img, .deal-img img {
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    max-width: 64px;
+    max-height: 64px;
+  }
+
+  .topic-head {
+
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
-    div { display: inline-block; }
+
+    div {
+      display: inline-block;
+    }
 
     .topic-left {
       width: 70%;
@@ -22,13 +33,6 @@
 
       .topic-caption {
         padding-left: 0.5rem;
-      }
-
-      img {
-        border-radius: 10px;
-        border: 1px solid lightgrey;
-        max-width: 64px;
-        max-height: 64px;
       }
 
       h2 {
@@ -48,10 +52,32 @@
         line-height: 30px;
       }
     }
-
   }
 
-  md-tab-group {
-    border-top: 1px solid #dddddd;
+  .topic-body {
+
+    .mat-tab-body-wrapper {
+      margin: 1rem;
+    }
+
+    md-tab-group {
+      border-top: 1px solid #dddddd;
+    }
+
+    // A single deal in the topic deal list
+    .topic-deal {
+      .deal-detail {
+        display: flex;
+        div {
+          display: inline-block;
+        }
+      }
+
+      .deal-footer {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
   }
+
 }
