@@ -1,22 +1,33 @@
 <div class="navbar navbar-top" [ngSwitch]="navType">
 
     <ng-template ngSwitchCase="'shopping'">
-        <a routerLink="/">Home</a>
-        <a routerLink="/">Link4</a>
+        <nav md-tab-nav-bar>
+            <a md-tab-link routerLink="/">Home</a>
+            <a md-tab-link routerLink="/">Link4</a>
+        </nav>
     </ng-template>
 
     <ng-template ngSwitchCase="'bbs'">
-        <a routerLink="/">Home</a>
-        <a routerLink="/">Link4</a>
+        <nav md-tab-nav-bar>
+            <a md-tab-link routerLink="/">Home</a>
+            <a md-tab-link routerLink="/">Link4</a>
+        </nav>
     </ng-template>
 
     <!-- Support more different navbar -->
 
     <!-- Default navbar -->
     <ng-template ngSwitchDefault>
+        <!--
         <span (click)="barOpen()" md-ripple><i class="fa fa-lg fa-bars"></i></span>
         <span>Logo Here</span>
         <span md-ripple><i class="fa fa-lg fa-search"></i></span>
+        -->
+        <nav md-tab-nav-bar>
+            <span md-tab-link (click)="barOpen()"><i class="fa fa-lg fa-bars"></i></span>
+            <span md-tab-link>Logo Picture Here</span>
+            <span md-tab-link><i class="fa fa-lg fa-search"></i></span>
+        </nav>
     </ng-template>
 
 </div>

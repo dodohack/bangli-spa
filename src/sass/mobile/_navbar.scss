@@ -1,40 +1,41 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
   overflow: hidden;
   z-index: 99;
   width: 100%;
   position: fixed;
   height: $mobile-toolbar-height;
 
-  a, span {
-    color: #333333;
-    text-align: center;
-    text-decoration: none;
-    // Vertical align middle
-    margin-top: auto;
-    margin-bottom: auto;
-    padding: 0 16px;
-    // Make mat-ripple correctly works
-    position: relative;
-
-    em {
-      font-style: normal;
-      font-size: 12px;
-    }
+  .mat-tab-links {
+    display: flex;
+    justify-content: space-between;
   }
 }
+
 
 .navbar-top {
   background-color: #339933;
   top: 0;
-  a,span {
+
+  a, span {
     color: white;
   }
 }
 
 .navbar-bottom {
-  border-top: 1px solid #cccccc;
+
+  border-top: 1px solid #dddddd;
   background-color: #f6f6f6;
   bottom: 0;
+
+  .mat-tab-link {
+    min-width: 0 !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  em {
+    padding-top: 4px;
+    font-style: normal;
+    font-size: 12px;
+  }
 }
