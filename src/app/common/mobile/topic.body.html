@@ -1,0 +1,45 @@
+
+<div class="topic-body">
+    <md-tab-group>
+        <md-tab label="介绍">
+            <div>
+                Topic content here, a comprehensive intro of the topic.
+                <button md-button>TEST BUTTON</button>
+                <button md-button md-ripple>TEST BUTTON 2</button>
+            </div>
+        </md-tab>
+        <md-tab label="优惠">
+            <div>
+                List of deals of this topic, default tab for merchant topic.
+                <md-card *ngFor="let c of dealCount">
+                    <!-- FIXME: Need to set the maximum width of topic-left -->
+                    <!-- FIXME: Need to cut down long topic title -->
+                    <img md-card-image src="http://placehold.it/64x64?text=logo">
+                    <md-card-title>优惠码介绍，大概50字左右,优惠码介绍，大概50字左右,优惠码介绍，大概50字左右</md-card-title>
+                    <md-card-actions>
+                        <span>过期时间: 2017-09-31</span>
+                        <button md-raised-button>购买链接</button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </md-tab>
+        <md-tab label="文章">
+            <div>
+                List of posts of this topic, we should support order by
+                count of views and publish date.
+            </div>
+        </md-tab>
+        <md-tab label="相关产品">
+            <div>
+                If this is a merchant topic, we will list topics of hot products
+                related to this merchant.
+            </div>
+        </md-tab>
+        <md-tab label="相关专题">
+            <div>
+                List of related topics
+            </div>
+        </md-tab>
+    </md-tab-group>
+
+</div>

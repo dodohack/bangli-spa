@@ -2,6 +2,25 @@
  * Topic related style for mobile
  */
 
+.topic-body {
+  md-card {
+    margin: 8px 4px;
+    
+    img {
+      width: 64px;
+      height: auto;
+    }
+    .mat-card-title {
+      font-size: 14px;
+    }
+  }
+
+  md-card-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .topic-page {
 
   .topic-img img, .deal-img img {
@@ -79,5 +98,4 @@
       }
     }
   }
-
 }

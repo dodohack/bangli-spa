@@ -19,6 +19,8 @@ import {
 import { TopNav }      from './mobile/top.nav';
 import { BottomNav }   from './mobile/bottom.nav';
 import { TopicHead }   from './mobile/topic.head';
+import { TopicBody }   from './mobile/topic.body';
+import { Card }        from './mobile/card';
 
 import { SiteHeader }  from './site.header';
 import { SiteFooter }  from './site.footer';
@@ -35,6 +37,8 @@ export const COMPONENTS = environment.mobile ?
         TopNav,
         BottomNav,
         TopicHead,
+        TopicBody,
+        Card,
     ] :
     [
         // FIXME: Actually We could use MerchantTopic as OfferTopic!!

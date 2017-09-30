@@ -24,58 +24,6 @@
     <!-- row 2 -->
     <!-- tabs of topic intro, deals, hot posts, new posts, related topics, etc -->
 
-    <div class="topic-body">
-        <md-tab-group>
-            <md-tab label="介绍">
-                <div>
-                    Topic content here, a comprehensive intro of the topic.
-                    <button md-button>TEST BUTTON</button>
-                    <button md-button md-ripple>TEST BUTTON 2</button>
-                </div>
-            </md-tab>
-            <md-tab label="优惠">
-                <div>
-                    List of deals of this topic, default tab for merchant topic.
-                    <div *ngFor="let c of dealCount">
-                        <div class="topic-deal">
-                            <!-- FIXME: Need to set the maximum width of topic-left -->
-                            <!-- FIXME: Need to cut down long topic title -->
-                            <div class="deal-detail">
-                                <div class="deal-img">
-                                    <img src="http://placehold.it/64x64?text=logo">
-                                </div>
-                                <div class="deal-caption">
-                                    <p>优惠码介绍，大概50字左右,优惠码介绍，大概50字左右,优惠码介绍，大概50字左右</p>
-                                </div>
-                            </div>
-                            <div class="deal-footer">
-                                <p>过期时间: 2017-09-31</p>
-                                <button md-raised-button>购买链接</button>
-                            </div>
-                         </div>
-                    </div>
-                </div>
-            </md-tab>
-            <md-tab label="文章">
-                <div>
-                    List of posts of this topic, we should support order by
-                    count of views and publish date.
-                </div>
-            </md-tab>
-            <md-tab label="相关产品">
-                <div>
-                    If this is a merchant topic, we will list topics of hot products
-                    related to this merchant.
-                </div>
-            </md-tab>
-            <md-tab label="相关专题">
-                <div>
-                    List of related topics
-                </div>
-            </md-tab>
-        </md-tab-group>
-
-    </div>
     <!-- Then we have corresponding content listed below -->
 
     <!-- bottom navbar -->

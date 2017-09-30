@@ -1,12 +1,14 @@
-<topic-head></topic-head>
+<div class="topic-page">
+    <topic-head></topic-head>
+    <topic-body></topic-body>
+    <div class="teststyle">
+        <a routerLink="/deal/lookfantastic-uk">Lookfantastic UK</a><br>
+        <a routerLink="/deal/allsole">Allsole</a><br>
+        <a routerLink="/deal/allsaints">Allsaints</a><br>
+        <a routerLink="/deal/asos-uk">ASOS UK</a><br><br><br>
+    </div>
+    <div>
+        {{ entity$ | async | json }}
+    </div>
 
-<div class="teststyle">
-    <a routerLink="/deal/lookfantastic-uk">Lookfantastic UK</a><br>
-    <a routerLink="/deal/allsole">Allsole</a><br>
-    <a routerLink="/deal/allsaints">Allsaints</a><br>
-    <a routerLink="/deal/asos-uk">ASOS UK</a><br><br><br>
 </div>
-<div>
-    {{ entity$ | async | json }}
-</div>
-
