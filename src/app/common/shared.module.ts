@@ -5,7 +5,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { RouterModule }  from '@angular/router';
-import { environment }   from '../../environments/environment';
 
 import {
     MatTabsModule,
@@ -14,13 +13,15 @@ import {
     MatRippleModule
 } from '@angular/material';
 
-
+import { environment }   from '../../environments/environment';
 
 import { TopNav }      from './mobile/top.nav';
 import { BottomNav }   from './mobile/bottom.nav';
 import { TopicHead }   from './mobile/topic.head';
 import { TopicBody }   from './mobile/topic.body';
 import { Card }        from './mobile/card';
+import { Carousel }    from './carousel/carousel';
+import { Slide }       from './carousel/slide';
 
 import { SiteHeader }  from './site.header';
 import { SiteFooter }  from './site.footer';
@@ -39,11 +40,15 @@ export const COMPONENTS = environment.mobile ?
         TopicHead,
         TopicBody,
         Card,
+        Carousel,
+        Slide
     ] :
     [
         // FIXME: Actually We could use MerchantTopic as OfferTopic!!
         SiteHeader,
         SiteFooter,
+        Carousel,
+        Slide
     ];
 
 

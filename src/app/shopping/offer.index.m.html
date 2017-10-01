@@ -1,0 +1,14 @@
+<!-- Offers home page for mobile, this is different from merchants home page -->
+<div class="offers-index">
+    Offer home page for mobile
+
+    <carousel [interval]="5000" [noWrap]="false">
+        <slide *ngFor="let offer of (featuredOffers$ | async); let idx=index">
+            <img src="http://placehold.it/800x300?text=Carousel-{{idx}}">
+            <div class="carousel-caption">
+                <h4>{{ offer.title }}</h4>
+            </div>
+        </slide>
+    </carousel>
+
+</div>

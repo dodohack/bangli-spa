@@ -9,7 +9,12 @@
 @import "./sass/vendors/normalize.css";
 @import "../node_modules/flexboxgrid-sass/flexboxgrid";
 
+@import "./sass/mixins/gradients";
+
+// Customized theme based on material 2
 @import "./sass/theme";
+
+@import "./sass/carousel";
 
 @media screen and (min-width: $desktop-min-width) {
   @import "./sass/offer";
