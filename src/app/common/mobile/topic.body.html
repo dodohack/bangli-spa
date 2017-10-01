@@ -11,13 +11,15 @@
         <md-tab label="优惠">
             <div>
                 List of deals of this topic, default tab for merchant topic.
-                <md-card *ngFor="let c of dealCount">
+                <md-card *ngFor="let c of dealCount" class="deal-card">
                     <!-- FIXME: Need to set the maximum width of topic-left -->
                     <!-- FIXME: Need to cut down long topic title -->
-                    <img md-card-image src="http://placehold.it/64x64?text=logo">
-                    <md-card-title>优惠码介绍，大概50字左右,优惠码介绍，大概50字左右,优惠码介绍，大概50字左右</md-card-title>
+                    <div class="deal-card-content">
+                        <img md-card-image src="http://placehold.it/64x64?text=logo">
+                        <md-card-title>优惠码介绍，大概50字左右,优惠码介绍，大概50字左右,优惠码介绍，大概50字左右</md-card-title>
+                    </div>
                     <md-card-actions>
-                        <span>过期时间: 2017-09-31</span>
+                        <span class="deal-metadata">过期时间: 2017-09-31</span>
                         <button md-raised-button>购买链接</button>
                     </md-card-actions>
                 </md-card>
