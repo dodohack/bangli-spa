@@ -10,13 +10,15 @@ import {
     MatTabsModule,
     MatButtonModule,
     MatCardModule,
-    MatRippleModule
+    MatRippleModule,
+    MatExpansionModule
 } from '@angular/material';
 
 import { environment }   from '../../environments/environment';
 
 import { TopNav }      from './mobile/top.nav';
 import { BottomNav }   from './mobile/bottom.nav';
+import { SideNav }     from './mobile/side.nav';
 import { TopicHead }   from './mobile/topic.head';
 import { TopicBody }   from './mobile/topic.body';
 import { Card }        from './mobile/card';
@@ -31,12 +33,14 @@ export const MD_MODULES = [
     MatButtonModule,
     MatCardModule,
     MatRippleModule,
+    MatExpansionModule
 ];
 
 export const COMPONENTS = environment.mobile ?
     [
         TopNav,
         BottomNav,
+        SideNav,
         TopicHead,
         TopicBody,
         Card,

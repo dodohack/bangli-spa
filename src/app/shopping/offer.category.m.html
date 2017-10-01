@@ -1,5 +1,6 @@
 <!-- Offers home page for mobile, this is different from merchants home page -->
 <div class="offers-index">
+    <h2>美妆优惠频道,类似于优惠频道首页</h2>
     <carousel [interval]="3000" [noWrap]="false">
         <slide *ngFor="let offer of (featuredOffers$ | async); let idx=index">
             <img src="http://placehold.it/800x300?text=TopOffer-{{idx}}">
@@ -9,12 +10,18 @@
         </slide>
     </carousel>
 
-    <h3>FIXME: Wrap branded-card into common directive instead of hardcoded here</h3>
+    <!-- Show hot offer topic brand logo of this category -->
+    <!--
+    <div class="">
+
+    </div>
+    -->
+
     <!-- Deal card with brand logo -->
     <div class="cards-wrapper">
         <div class="cards-title">
-            推荐美妆优惠
-            <a class="more" routerLink="/deal/cat/beauty"><i class="fa fa-lg fa-ellipsis-h"></i></a>
+            Lookfantastic热门优惠
+            <a class="more" routerLink="/"><i class="fa fa-lg fa-ellipsis-h"></i></a>
         </div>
 
         <div class="cards-container">
@@ -36,7 +43,7 @@
     <!-- Deal card with brand logo -->
     <div class="cards-wrapper">
         <div class="cards-title">
-            推荐保健优惠
+            Unineed热门优惠
             <a class="more" routerLink="/"><i class="fa fa-lg fa-ellipsis-h"></i></a>
         </div>
 

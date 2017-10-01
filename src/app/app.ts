@@ -1,11 +1,11 @@
 import { Component }         from '@angular/core';
 import { OnInit, OnDestroy } from '@angular/core';
+import { ViewChild }         from '@angular/core';
 import { Router }            from '@angular/router';
 import { Store }             from '@ngrx/store';
 
 import { environment }       from '../environments/environment';
 import { AppState }          from './core/reducers';
-
 
 @Component({
     selector: 'bangli-spa',

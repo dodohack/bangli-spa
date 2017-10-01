@@ -1,11 +1,13 @@
 <md-sidenav-container fullscreen>
 
-    <top-nav (barToggle)="sidenav.open()"></top-nav>
+
+    <top-nav (barToggle)="sidenav.toggle()"></top-nav>
+
     <md-sidenav #sidenav mode="push" style="width: 75%;">
-        Sidebar content<br>
-        we will create a separate component to display user name/avator,
-        nested menu with 2 level nav.
+        <side-nav></side-nav>
     </md-sidenav>
+
+
     <bottom-nav></bottom-nav>
 
     <div class="content-wrapper">

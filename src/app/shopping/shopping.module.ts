@@ -10,6 +10,7 @@ import { routing }      from './routes';
 
 import { OfferTopic }   from './offer.topic';
 import { OfferIndex }   from './offer.index';
+import { OfferCategory } from './offer.category';
 import { MerchantTopic } from './merchant.topic';
 import { MerchantIndex } from './merchant.index';
 
@@ -21,6 +22,7 @@ export const COMPONENTS =
             // FIXME: Actually We could use MerchantTopic as OfferTopic!!
             OfferTopic,
             OfferIndex,
+            OfferCategory,
             MerchantTopic,
             MerchantIndex,
         ];
