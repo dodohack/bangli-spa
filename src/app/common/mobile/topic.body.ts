@@ -27,6 +27,7 @@ export class TopicBody
     // The type of topic, some topic has slightly different head
     @Input() ttype: string;
 
+    @Input() tabIdx: string;  // String index of default showing tab
     @Input() content: string; // Topic detailed introduction
     @Input() posts: Post[];   // Posts of this topic
     @Input() offers: Offer[]; // Offers of this topic
@@ -39,5 +40,15 @@ export class TopicBody
         let num = this.offers && this.offers.length;
         if (num) return '(' + num + ')';
         return;
+    }
+
+    // Display different tab for different page anchor
+    get selectedTab() {
+        switch (this.tabIdx) {
+            case 'deal':
+                return 1;
+            default:
+                return 0;
+        }
     }
 }

@@ -18,10 +18,15 @@ export abstract class EntityBase implements OnInit, OnDestroy
     // TODO: Should we provide a specific type 'Topic[]' or just 'Entity[]'?
     topics$:     Observable<Entity[]>;
     entity$:     Observable<Entity>;
+    // In page navigation, hash anchor
+    fragment$:   Observable<string>;
 
     constructor(protected etype: string,
                 protected route: ActivatedRoute,
                 protected store: Store<fromEntities.AppState>) {
+
+        this.fragment$ = this.route.fragment;
+
         switch (etype) {
             case ENTITY.TOPIC:
                 this.entity$ = store.select(fromEntities.getCurTopic);

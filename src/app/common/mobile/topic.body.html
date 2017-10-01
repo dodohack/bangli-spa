@@ -1,6 +1,6 @@
 
 <div class="topic-body">
-    <md-tab-group>
+    <md-tab-group [selectedIndex]="selectedTab">
         <md-tab label="介绍">
             <!-- FIXME: Need to support dynamic content -->
             <div [innerHtml]="content">
