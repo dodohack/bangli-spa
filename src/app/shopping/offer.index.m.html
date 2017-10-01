@@ -1,7 +1,5 @@
 <!-- Offers home page for mobile, this is different from merchants home page -->
 <div class="offers-index">
-    Offer home page for mobile
-
     <carousel [interval]="3000" [noWrap]="false">
         <slide *ngFor="let offer of (featuredOffers$ | async); let idx=index">
             <img src="http://placehold.it/800x300?text=TopOffer-{{idx}}">
@@ -12,18 +10,25 @@
     </carousel>
 
     <!-- Deal card with brand logo -->
-    <div class="card-container">
-          <md-card *ngFor="let offer of (featuredOffers$ | async)" class="branded-deal-card">
-              <a [routerLink]="['/merchant', offer.brand_slug]" [fragment]="'deal'" class="brand-link">
-                  <div class="image">
-                      <img class="logo" src="http://placehold.it/64x64?text=Logo">
-                      <img class="main" src="http://placehold.it/400x300?text=BeautyOffer">
-                  </div>
-                  <md-card-content>
-                      <div class="brand-name">{{ offer.brand }}</div>
-                      <div class="offer-title">{{ offer.title }}</div>
-                  </md-card-content>
-              </a>
-        </md-card>
+    <div class="cards-wrapper">
+        <div class="cards-title">
+            推荐美妆优惠
+            <a class="more" routerLink="/"><i class="fa fa-lg fa-ellipsis-h"></i></a>
+        </div>
+
+        <div class="cards-container">
+            <md-card *ngFor="let offer of (featuredOffers$ | async)" class="branded-deal-card">
+                <a [routerLink]="['/merchant', offer.brand_slug]" [fragment]="'deal'" class="brand-link">
+                    <div class="image">
+                        <img class="logo" src="http://placehold.it/64x64?text=Logo">
+                        <img class="main" src="http://placehold.it/400x260?text=BeautyOffer">
+                    </div>
+                    <md-card-content>
+                        <div class="brand-name">{{ offer.brand }}</div>
+                        <div class="offer-title">{{ offer.title }}</div>
+                    </md-card-content>
+                </a>
+            </md-card>
+        </div>
     </div>
 </div>

@@ -2,7 +2,25 @@
  * Various card styles for different pages
  */
 
-.card-container {
+.cards-wrapper {
+  background: #eeeeee;
+  margin-top: 16px;
+}
+
+.cards-title {
+  font-size: 16px;
+  padding: 10px;
+  border-bottom: 1px solid #dcdcdc;
+
+  a.more {
+    text-decoration: none;
+    color: darkgray;
+    float: right;
+    margin-right: 5px;
+  }
+}
+
+.cards-container {
   display: flex;
   flex-wrap: wrap;
   padding: 15px 10px 0 10px;
@@ -65,10 +83,13 @@ md-card.branded-deal-card {
     position: absolute;
     right: 10px;
     bottom: -10px;
+    // TODO: limit the size to 48px on small screen
+    width: 48px;
+    height: auto;
   }
 
   md-card-content {
-    padding: 10px;
+    padding: 15px 10px 10px 10px;
   }
 
   .brand-name {
