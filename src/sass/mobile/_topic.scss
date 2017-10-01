@@ -2,36 +2,6 @@
  * Topic related style for mobile
  */
 
-/* A deal card style inherited from material card */
-md-card.deal-card {
-  margin: 0 4px 15px 4px;
-
-  .deal-card-content {
-    display: flex;
-  }
-
-  img {
-    width: 64px;
-    height: auto;
-    margin: -10px 10px 10px 0 !important;
-  }
-  .mat-card-title {
-    font-size: 14px;
-  }
-
-  // TODO: Rework
-  md-card-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .deal-metadata {
-      font-size: 12px;
-      color: grey;
-      padding: 14px;
-    }
-  }
-}
 
 .topic-page {
 

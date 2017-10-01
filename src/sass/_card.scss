@@ -1,0 +1,79 @@
+/**
+ * Various card styles for different pages
+ */
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px 10px 0 10px;
+  justify-content:space-between;
+}
+
+/* deal-card style used in list of offers in topic page */
+md-card.deal-card {
+  margin: 0 4px 15px 4px;
+
+  .deal-card-content {
+    display: flex;
+  }
+
+  img {
+    width: 64px;
+    height: auto;
+    margin: -10px 10px 10px 0 !important;
+  }
+  .mat-card-title {
+    font-size: 14px;
+  }
+
+  // TODO: Rework
+  md-card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .deal-metadata {
+      font-size: 12px;
+      color: grey;
+      padding: 14px;
+    }
+  }
+}
+
+/* branded-deal-card used in offer home page */
+md-card.branded-deal-card {
+  width: 48%;
+  margin-bottom: 15px;
+  padding: 0;
+
+  .brand-link {
+    text-decoration: none;
+    color: black;
+  }
+
+  .image {
+    position: relative;
+  }
+
+  img.main {
+    width: 100%;
+  }
+
+  img.logo {
+    border: 1px solid darkblue;
+    border-radius: 5px;
+    position: absolute;
+    right: 10px;
+    bottom: -10px;
+  }
+
+  md-card-content {
+    padding: 10px;
+  }
+
+  .brand-name {
+    font-size: 12px;
+    color: lightgrey;
+    margin-bottom: 10px;
+  }
+}

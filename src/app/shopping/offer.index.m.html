@@ -2,13 +2,28 @@
 <div class="offers-index">
     Offer home page for mobile
 
-    <carousel [interval]="5000" [noWrap]="false">
+    <carousel [interval]="3000" [noWrap]="false">
         <slide *ngFor="let offer of (featuredOffers$ | async); let idx=index">
-            <img src="http://placehold.it/800x300?text=Carousel-{{idx}}">
+            <img src="http://placehold.it/800x300?text=TopOffer-{{idx}}">
             <div class="carousel-caption">
                 <h4>{{ offer.title }}</h4>
             </div>
         </slide>
     </carousel>
 
+    <!-- Deal card with brand logo -->
+    <div class="card-container">
+          <md-card *ngFor="let offer of (featuredOffers$ | async)" class="branded-deal-card">
+              <a [routerLink]="['/merchant', offer.brand_slug]" [fragment]="'deal'" class="brand-link">
+                  <div class="image">
+                      <img class="logo" src="http://placehold.it/64x64?text=Logo">
+                      <img class="main" src="http://placehold.it/400x300?text=BeautyOffer">
+                  </div>
+                  <md-card-content>
+                      <div class="brand-name">{{ offer.brand }}</div>
+                      <div class="offer-title">{{ offer.title }}</div>
+                  </md-card-content>
+              </a>
+        </md-card>
+    </div>
 </div>
