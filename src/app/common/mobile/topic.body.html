@@ -2,27 +2,25 @@
 <div class="topic-body">
     <md-tab-group>
         <md-tab label="介绍">
-            <div>
-                Topic content here, a comprehensive intro of the topic.
-                <button md-button>TEST BUTTON</button>
-                <button md-button md-ripple>TEST BUTTON 2</button>
+            <!-- FIXME: Need to support dynamic content -->
+            <div [innerHtml]="content">
             </div>
         </md-tab>
-        <md-tab label="优惠">
-            <div>
-                List of deals of this topic, default tab for merchant topic.
-                <md-card *ngFor="let c of dealCount" class="deal-card">
-                    <!-- FIXME: Need to set the maximum width of topic-left -->
-                    <!-- FIXME: Need to cut down long topic title -->
+        <md-tab label="优惠{{ numOffers }}">
+            <div *ngIf="hasOffer">
+                <md-card *ngFor="let offer of offers" class="deal-card">
                     <div class="deal-card-content">
                         <img md-card-image src="http://placehold.it/64x64?text=logo">
-                        <md-card-title>优惠码介绍，大概50字左右,优惠码介绍，大概50字左右,优惠码介绍，大概50字左右</md-card-title>
+                        <md-card-title>{{ offer.title }}</md-card-title>
                     </div>
                     <md-card-actions>
-                        <span class="deal-metadata">过期时间: 2017-09-31</span>
-                        <button md-raised-button>购买链接</button>
+                        <span class="deal-metadata">过期时间: {{ offer.ends }}</span>
+                        <a md-raised-button target="_blank" href="{{offer.tracking_url}}">购买链接</a>
                     </md-card-actions>
                 </md-card>
+            </div>
+            <div *ngIf="!hasOffer">
+                亲，暂时还没有发现优惠哦...
             </div>
         </md-tab>
         <md-tab label="文章">

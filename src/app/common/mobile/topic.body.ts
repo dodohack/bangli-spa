@@ -15,6 +15,8 @@ import { MdTab } from '@angular/material';
 
 import { NgSwitch } from '@angular/common';
 
+import { Offer, Post } from '../../core/models';
+
 @Component({
     selector: 'topic-body',
     templateUrl: './topic.body.html',
@@ -25,7 +27,17 @@ export class TopicBody
     // The type of topic, some topic has slightly different head
     @Input() ttype: string;
 
+    @Input() content: string; // Topic detailed introduction
+    @Input() posts: Post[];   // Posts of this topic
+    @Input() offers: Offer[]; // Offers of this topic
+
     constructor(private cd: ChangeDetectorRef) {}
 
-    dealCount = [ 1, 2, 3, 4, 5];
+    get hasOffer() { return this.offers && this.offers.length > 0; }
+
+    get numOffers() {
+        let num = this.offers && this.offers.length;
+        if (num) return '(' + num + ')';
+        return;
+    }
 }

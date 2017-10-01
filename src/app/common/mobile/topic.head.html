@@ -1,25 +1,21 @@
-<div class="topic-page">
-    <!-- Ref design: http://bbs.bangli.uk/forum.php?mod=forumdisplay&fid=38&filter=typeid&typeid=25&mobile=2-->
-
-    <!-- row 1 -->
-    <!-- topic logo, title, number of deal/post, tracking_url, subscribe -->
-    <div class="topic-head">
-        <!-- FIXME: Need to set the maximum width of topic-left -->
-        <!-- FIXME: Need to cut down long topic title -->
-        <div class="topic-left">
-            <div class="topic-img">
-                <img src="http://placehold.it/64x64?text=logo">
-            </div>
-            <div class="topic-caption">
-                <h2>专题标题</h2>
-                <p>最新xx品牌优惠信息，热门攻略</p>
-            </div>
+<!-- topic logo, title, number of deal/post, tracking_url, subscribe -->
+<div class="topic-head" *ngIf="topic">
+    <!-- FIXME: Need to set the maximum width of topic-left -->
+    <!-- FIXME: Need to cut down long topic title -->
+    <div class="topic-left">
+        <div class="topic-img">
+            <img src="http://placehold.it/64x64?text=logo">
         </div>
-        <div class="topic-action">
-            <button md-raised-button>订阅</button><br>
-            <button md-raised-button>访问官网</button>
+        <div class="topic-caption">
+            <h2>{{ topic.title }}</h2>
+            <p [innerHtml]="topic.description"></p>
         </div>
     </div>
+    <div class="topic-action">
+        <button md-raised-button>订阅</button><br>
+        <a md-raised-button target="_blank" href="{{ topic.tracking_url }}">访问官网</a>
+    </div>
+</div>
 
     <!-- row 2 -->
     <!-- tabs of topic intro, deals, hot posts, new posts, related topics, etc -->
@@ -28,4 +24,3 @@
 
     <!-- bottom navbar -->
     <!-- Comment, thumb-up, etc-->
-</div>
