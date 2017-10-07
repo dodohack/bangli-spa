@@ -10,6 +10,7 @@ import {
     MatTabsModule,
     MatButtonModule,
     MatCardModule,
+    MatListModule,
     MatRippleModule,
     MatExpansionModule
 } from '@angular/material';
@@ -32,6 +33,7 @@ export const MD_MODULES = [
     MatTabsModule,
     MatButtonModule,
     MatCardModule,
+    MatListModule,
     MatRippleModule,
     MatExpansionModule
 ];

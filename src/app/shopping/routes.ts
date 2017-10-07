@@ -10,6 +10,8 @@ const routes: Routes = [
     // FIXME: Actually We could use MerchantTopic as OfferTopic!!
     { path: 'merchant',       component: MerchantIndex },
     { path: 'merchant/:guid', component: MerchantTopic },
+    // Phase 1 route: We only have deal in phase 1
+    { path: '',               component: OfferIndex },
     { path: 'deal',           component: OfferIndex },
     { path: 'deal/cat/:guid', component: OfferCategory },
     //{ path: 'deal/:guid',     component: OfferTopic },

@@ -1,4 +1,7 @@
 <div class="navbar navbar-bottom" [ngSwitch]="navType">
+
+    <!-- SECOND PHASE ! -->
+    <!--
     <ng-template ngSwitchCase="'shopping'">
         <a md-tab-link routerLink="/">Home</a>
         <a md-tab-link routerLink="/">BBS</a>
@@ -14,6 +17,7 @@
         <a md-tab-link routerLink="/">Link3</a>
         <a md-tab-link routerLink="/">Link4</a>
     </ng-template>
+    -->
 
     <!-- Support more different navbar -->
 
@@ -21,11 +25,11 @@
     <!-- Default menu -->
     <ng-template ngSwitchDefault>
         <nav md-tab-nav-bar>
-            <a md-tab-link routerLink="/"><i class="fa fa-lg fa-home"></i><em>首页</em></a>
-            <a md-tab-link routerLink="/deal"><i class="fa fa-lg fa-home"></i><em>优惠</em></a>
-            <a md-tab-link routerLink="/merchant/lookfantastic-uk" fragment="deal"><i class="fa fa-lg fa-shopping-cart"></i><em>LFUK</em></a>
-            <a md-tab-link routerLink="/merchant/allsole" fragment="deal"><i class="fa fa-lg fa-weixin"></i><em>ALLSOLE</em></a>
-            <a md-tab-link routerLink="/merchant/asos-uk"><i class="fa fa-lg fa-home"></i><em>ASOS</em></a>
+            <a md-tab-link (click)="openMenu()"><i class="fa fa-lg fa-bars"></i><em>目录</em></a>
+            <a md-tab-link routerLink="/"><i class="fa fa-lg fa-tags"></i><em>优惠</em></a>
+            <a md-tab-link routerLink="/deal/cat/beauty"><i class="fa fa-lg fa-shopping-cart"></i><em>美妆</em></a>
+            <a md-tab-link routerLink="/deal/cat/healthcare"><i class="fa fa-lg fa-heartbeat"></i><em>保健</em></a>
+            <a md-tab-link routerLink="/"><i class="fa fa-lg fa-sort-alpha-asc"></i><em>品牌</em></a>
         </nav>
     </ng-template>
 </div>

@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 
 import {
     MatTabsModule,
+    MatListModule,
     MatInputModule,
     MatButtonModule,
     MatSidenavModule,
@@ -16,6 +17,7 @@ import {
 
 export const MODULES = [
     MatTabsModule,
+    MatListModule,
     MatInputModule,
     MatButtonModule,
     MatSidenavModule,

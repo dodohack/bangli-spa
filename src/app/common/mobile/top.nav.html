@@ -1,5 +1,8 @@
-<div class="navbar navbar-top" [ngSwitch]="navType">
+<!-- Topbar will not be fixed in the first release -->
+<div class="navbar navbar-top p1-navbar" [ngSwitch]="navType">
 
+    <!-- NOTE: SECOND PHASE! -->
+    <!--
     <ng-template ngSwitchCase="'shopping'">
         <nav md-tab-nav-bar>
             <a md-tab-link routerLink="/">Home</a>
@@ -13,15 +16,20 @@
             <a md-tab-link routerLink="/">Link4</a>
         </nav>
     </ng-template>
+    -->
 
     <!-- Support more different navbar -->
 
     <!-- Default navbar -->
     <ng-template ngSwitchDefault>
         <nav md-tab-nav-bar>
-            <span md-tab-link (click)="barOpen()"><i class="fa fa-lg fa-bars"></i></span>
-            <span md-tab-link>Logo Picture Here</span>
+            <!--
+            <span md-tab-link (click)="openMenu()"><i class="fa fa-lg fa-bars"></i></span>
+            -->
+            <span md-tab-link>英国邦利优惠频道</span>
+            <!--
             <span md-tab-link><i class="fa fa-lg fa-search"></i></span>
+            -->
         </nav>
     </ng-template>
 

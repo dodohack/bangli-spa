@@ -20,3 +20,8 @@ body {
   margin: $mobile-body-margin;
   word-break: break-all;
 }
+
+// Phase 1 style
+.p1-inner-content {
+  margin: 0 0 $mobile-body-margin !important;
+}

@@ -1,3 +1,12 @@
+/* Phase 1 style */
+.p1-navbar {
+  position: relative !important;
+  top: auto !important;
+  .mat-tab-links {
+    justify-content: center !important;
+  }
+}
+
 .navbar {
   overflow: hidden;
   z-index: 99;
