@@ -76,6 +76,19 @@ export function postReducer(state = initState,
 }
 
 /**
+ * Page reducer
+ */
+export function pageReducer(state = initState,
+                            action: entity.Actions): EntitiesState {
+    if (!action.payload) return state;
+
+    if (action.payload.etype === ENTITY.PAGE)
+        return entitiesReducer(action.payload.etype, state, action);
+
+    return state;
+}
+
+/**
  * Offer reducer
  */
 export function offerReducer(state = initState,
@@ -212,4 +225,8 @@ export const getCurID = (state: EntitiesState) => state.activeId;
 export const getCurEntity =
     (state: EntitiesState) => state.activeId && state.entities[state.activeId];
 
+export const getKeys = (state: EntitiesState) => state.keys;
+export const getFilters = (state: EntitiesState) => state.efilters;
+export const getIds = (state: EntitiesState) => state.ids;
 export const getEntities = (state: EntitiesState) => state.entities;
+

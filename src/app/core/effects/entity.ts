@@ -11,7 +11,7 @@ import { ROUTER_NAVIGATION, RouterNavigationAction } from '@ngrx/router-store';
 
 import { API }                   from '../api';
 import { ENTITY, EntityParams }  from '../models';
-import * as Entity               from '../actions/entity';
+import * as EntityActions        from '../actions/entity';
 
 @Injectable()
 export class EntityEffects {
@@ -31,37 +31,56 @@ export class EntityEffects {
      * Load group of entities with same entity type
      */
     @Effect() loadEntities$: Observable<Action> =
-        this.actions$.ofType(Entity.LOAD_ENTITIES)
-            .switchMap((action: Entity.LoadEntities) =>
+        this.actions$.ofType(EntityActions.LOAD_ENTITIES)
+            .switchMap((action: EntityActions.LoadEntities) =>
                     this.getEntities(action.payload.etype, action.payload.data)
                     .mergeMap(ret => {
                         let actions: Action[] = [];
-                        actions[0] = new Entity.LoadEntitiesSuccess({etype: ret.etype, data: ret});
+                        actions[0] = new EntityActions.LoadEntitiesSuccess({etype: ret.etype, data: ret});
                         //actions[1] = AlertActions.loadCompleted();
                         return Observable.from(actions);
                     })
-                    .catch(() => Observable.of(new Entity.LoadEntitiesFail()))
+                    .catch(() => Observable.of(new EntityActions.LoadEntitiesFail()))
             );
+
+
+    /**
+     * Load multiple group of entities, dispatch N actions for N groups when success.
+     */
+    @Effect() loadGroupEntities$ = this.actions$.ofType(EntityActions.LOAD_GROUP_ENTITIES)
+        .switchMap((action: EntityActions.LoadGroupEntities) =>
+            this.getGroupEntities(action.payload)
+            .mergeMap(ret => {
+                let actions: Action[] = [];
+                let i = 0;
+                for(i; i < ret.length; i++)
+                    actions[i] = new EntityActions.LoadEntitiesSuccess({etype: ret[i].etype, data: ret[i]});
+                // This last action is just an indicator of the finish state
+                //actions[i] = AlertActions.loadCompleted();
+                return Observable.from(actions);
+            })
+            .catch(() => Observable.of(new EntityActions.LoadEntitiesFail()))
+        );
 
     /**
      * Load single entity
      */
     @Effect() loadEntity$: Observable<Action> =
-        this.actions$.ofType(Entity.LOAD_ENTITY)
-            .switchMap((action: Entity.LoadEntity) =>
+        this.actions$.ofType(EntityActions.LOAD_ENTITY)
+            .switchMap((action: EntityActions.LoadEntity) =>
             this.getEntity(action.payload.etype, action.payload.data)
                 .filter(ret => ret.entity != null)
-                .map(ret => new Entity.LoadEntitySuccess({etype: ret.etype, data: ret.entity}))
+                .map(ret => new EntityActions.LoadEntitySuccess({etype: ret.etype, data: ret.entity}))
                 /*
                 .mergeMap(ret => {
                     let actions: Action[] = [];
-                    actions[0] = new Entity.LoadEntitySuccess({etype: ret.etype, data: ret.entity});
+                    actions[0] = new EntityActions.LoadEntitySuccess({etype: ret.etype, data: ret.entity});
                     // The second action is just an indicator of the finish status
                     //action[1] = AlertActions.loadCompleted();
                     return Observable.from(actions);
                 })
                 */
-                .catch(() => Observable.of(new Entity.LoadEntityFail()))
+                .catch(() => Observable.of(new EntityActions.LoadEntityFail()))
             );
 
 
@@ -73,7 +92,7 @@ export class EntityEffects {
             //.filter(s => s.urlseg[0].path == 'deal')
             .map(s => {
                 console.log("PAYLOAD OF ROUTER_NAVIGATION: ", s);
-                return new Entity.LoadEntity({etype: 'topic', data: 'vitabiotics' });
+                return new EntityActions.LoadEntity({etype: 'topic', data: 'vitabiotics' });
             });
     */
 

@@ -20,11 +20,12 @@ import { storeFreeze } from 'ngrx-store-freeze';
 import { RouterStateUrl } from '../utils';
 import * as fromEntities  from './entities';
 import { EntitiesState }  from './entities';
-import {ENTITY_INFO}      from "../models/entity";
+import {ENTITY_INFO, ENTITY}      from "../models/entity";
 
 import {
     topicReducer,
     postReducer,
+    pageReducer,
     offerReducer,
 } from './entities';
 
@@ -34,6 +35,7 @@ export interface AppState {
     topics: EntitiesState;
     posts:  EntitiesState;
     offers: EntitiesState;
+    pages: EntitiesState;
     routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
 };
 
@@ -41,6 +43,7 @@ export const reducers: ActionReducerMap<AppState> = {
     topics: topicReducer,
     posts:  postReducer,
     offers: offerReducer,
+    pages: pageReducer,
     routerReducer: fromRouter.routerReducer,
 };
 
@@ -72,6 +75,7 @@ export const metaReducers: MetaReducer<AppState>[] = !environment.production
 export const getTopicsState = (state: AppState) => state.topics;
 export const getOffersState = (state: AppState) => state.offers;
 export const getPostsState  = (state: AppState) => state.posts;
+export const getPagesState  = (state: AppState) => state.pages;
 
 export const getCurTopicId = createSelector(
     getTopicsState,
@@ -88,20 +92,53 @@ export const getCurPostId = createSelector(
     fromEntities.getCurID
 );
 
-export const getTopicEntities = createSelector(
-    getTopicsState,
-    fromEntities.getEntities
-);
 
-export const getOfferEntities = createSelector(
-    getOffersState,
-    fromEntities.getEntities
-);
 
-export const getPostEntities = createSelector(
-    getPostsState,
-    fromEntities.getEntities
-);
+export const getTopicIds = createSelector(getTopicsState, fromEntities.getIds);
+export const getOfferIds = createSelector(getOffersState, fromEntities.getIds);
+export const getPostIds = createSelector(getPostsState, fromEntities.getIds);
+export const getPageIds = createSelector(getPagesState, fromEntities.getIds);
+
+export const getTopicFilters = createSelector(getTopicsState, fromEntities.getFilters);
+export const getOfferFilters = createSelector(getOffersState, fromEntities.getFilters);
+export const getPostFilters = createSelector(getPostsState, fromEntities.getFilters);
+export const getPageFilters = createSelector(getPagesState, fromEntities.getFilters);
+
+export const getTopicEntities = createSelector(getTopicsState, fromEntities.getEntities);
+export const getOfferEntities = createSelector(getOffersState, fromEntities.getEntities);
+export const getPostEntities = createSelector(getPostsState, fromEntities.getEntities);
+export const getPageEntities = createSelector(getPagesState, fromEntities.getEntities);
+
+export const getOffersByKey = (key: string) => createSelector(createFeatureSelector(key), getOfferEntities, getOfferFilters);
+
+export function getEntitiesByKey(etype: string, key: string) {
+    let ids: any;
+    let entities: any;
+    switch(etype) {
+        case ENTITY.TOPIC:
+            ids = getTopicFilters[key];
+            entities = getTopicEntities;
+            break;
+        case ENTITY.OFFER:
+            ids = getOfferFilters[key];
+            entities = getOfferEntities;
+            break;
+        case ENTITY.POST:
+            ids = getPostFilters[key];
+            entities = getOfferEntities;
+            break;
+        case ENTITY.PAGE:
+            ids = getPageFilters[key];
+            entities = getPageEntities;
+            break;
+        default:
+            console.error("REDUCER EXCEPTION!");
+    }
+
+    // FIXME: This factory should return a selector!!!
+    return ids.map(id => entities[id]);
+}
+
 
 export const getCurTopic = createSelector(
     getTopicEntities,
