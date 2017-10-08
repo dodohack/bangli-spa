@@ -1,58 +1,26 @@
+<!--{{ offers$ | async | json }}-->
+
 <!-- Offers home page for mobile, this is different from merchants home page -->
 <div class="offers-index">
     <carousel [interval]="3000" [noWrap]="false">
-        <slide *ngFor="let offer of (featuredOffers$ | async); let idx=index">
-            <img src="http://placehold.it/800x300?text=TopOffer-{{idx}}">
-            <div class="carousel-caption">
-                <h4>{{ offer.title }}</h4>
-            </div>
+        <slide *ngFor="let offer of (offers$ | async)[groupKeys.FEATURED_OFFER]; let idx=index">
+            <a [routerLink]="['/merchant', offer.topics[0].guid]" [fragment]="'deal'">
+                <img src="http://placehold.it/800x300?text=TopOffer-{{idx}}">
+                <div class="carousel-caption">
+                    <h4>{{ offer.title }}</h4>
+                </div>
+            </a>
         </slide>
     </carousel>
 
-    <h3>FIXME: Wrap branded-card into common directive instead of hardcoded here</h3>
-    <!-- Deal card with brand logo -->
-    <div class="cards-wrapper">
-        <div class="cards-title">
-            推荐美妆优惠
-            <a class="more" routerLink="/deal/cat/beauty"><i class="fa fa-lg fa-ellipsis-h"></i></a>
-        </div>
+    <!-- TODO: Get title/category from groupParams instead of hardcoded here -->
+    <offer-card-group [offers]="(offers$ | async)[groupKeys.FEATURED_BEAUTY_OFFER]"
+                      [title]="'美妆优惠'"
+                      [category]="'beauty'">
+    </offer-card-group>
 
-        <div class="cards-container">
-            <md-card *ngFor="let offer of (featuredOffers$ | async)" class="branded-deal-card">
-                <a [routerLink]="['/merchant', offer.brand_slug]" [fragment]="'deal'" class="brand-link">
-                    <div class="image">
-                        <img class="logo" src="http://placehold.it/64x64?text=Logo">
-                        <img class="main" src="http://placehold.it/400x260?text=BeautyOffer">
-                    </div>
-                    <md-card-content>
-                        <div class="brand-name">{{ offer.brand }}</div>
-                        <div class="offer-title">{{ offer.title }}</div>
-                    </md-card-content>
-                </a>
-            </md-card>
-        </div>
-    </div>
-
-    <!-- Deal card with brand logo -->
-    <div class="cards-wrapper">
-        <div class="cards-title">
-            推荐保健优惠
-            <a class="more" routerLink="/"><i class="fa fa-lg fa-ellipsis-h"></i></a>
-        </div>
-
-        <div class="cards-container">
-            <md-card *ngFor="let offer of (featuredOffers$ | async)" class="branded-deal-card">
-                <a [routerLink]="['/merchant', offer.brand_slug]" [fragment]="'deal'" class="brand-link">
-                    <div class="image">
-                        <img class="logo" src="http://placehold.it/64x64?text=Logo">
-                        <img class="main" src="http://placehold.it/400x260?text=BeautyOffer">
-                    </div>
-                    <md-card-content>
-                        <div class="brand-name">{{ offer.brand }}</div>
-                        <div class="offer-title">{{ offer.title }}</div>
-                    </md-card-content>
-                </a>
-            </md-card>
-        </div>
-    </div>
+    <offer-card-group [offers]="(offers$ | async)[groupKeys.FEATURED_HEALTHCARE_OFFER]"
+                      [title]="'保健优惠'"
+                      [category]="'healthcare'">
+    </offer-card-group>
 </div>

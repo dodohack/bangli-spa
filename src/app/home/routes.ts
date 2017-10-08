@@ -9,8 +9,8 @@ const routes: Routes = [
     // afterward, it will cause error "Cannot read property 'routeConfig' or undefined".
     // Probably it is caused by some component not initializing Router??
     //
-    {path: '', component: HomePage}
-    //{path: '', redirectTo: '/deal', pathMatch: 'full'}
+    //{path: '', component: HomePage}
+    {path: '', redirectTo: '/deal', pathMatch: 'full'}
 ];
 
 export const HomeRoutes = RouterModule.forChild(routes);

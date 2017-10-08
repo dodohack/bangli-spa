@@ -10,6 +10,8 @@ import * as fromEntities     from './reducers';
 
 import * as EntityActions    from '../core/actions/entity';
 
+import { getEntities }      from './reducers';
+
 export abstract class EntitiesBase implements OnInit, OnDestroy
 {
     sub1: any;
@@ -18,13 +20,20 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
     //fragment$:   Observable<string>;
     // Group entity load status
     //isComplete$: Observable<boolean>;
+    offers$: Observable<any>;
+    topics$: Observable<any>;
+    posts$: Observable<any>;
 
     constructor(protected route: ActivatedRoute,
                 protected store: Store<fromEntities.AppState>,
                 protected router: Router,
+                protected groupKeys: any,
                 protected groupParams: any) {
         //this.fragment$ = this.route.fragment;
         this.batchLoadEntities();
+        this.offers$ = this.store.select(getEntities(ENTITY.OFFER));
+        this.topics$ = this.store.select(getEntities(ENTITY.TOPIC));
+        this.posts$ = this.store.select(getEntities(ENTITY.POST));
     }
 
     ngOnInit() {
@@ -32,7 +41,7 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
     }
 
     ngOnDestroy() {
-        this.sub1.unsubscribe();
+        //this.sub1.unsubscribe();
     }
 
     batchLoadEntities() {

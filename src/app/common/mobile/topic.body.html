@@ -14,7 +14,7 @@
                         <md-card-title>{{ offer.title }}</md-card-title>
                     </div>
                     <md-card-actions>
-                        <span class="deal-metadata">过期时间: {{ offer.ends }}</span>
+                        <span class="deal-metadata">{{ expires(offer.ends) }}</span>
                         <a md-raised-button target="_blank" href="{{offer.tracking_url}}">购买链接</a>
                     </md-card-actions>
                 </md-card>

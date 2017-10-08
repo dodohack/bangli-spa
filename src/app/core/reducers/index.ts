@@ -28,6 +28,7 @@ import {
     pageReducer,
     offerReducer,
 } from './entities';
+import {getIds} from "./entities";
 
 
 
@@ -92,51 +93,53 @@ export const getCurPostId = createSelector(
     fromEntities.getCurID
 );
 
-
-
 export const getTopicIds = createSelector(getTopicsState, fromEntities.getIds);
 export const getOfferIds = createSelector(getOffersState, fromEntities.getIds);
 export const getPostIds = createSelector(getPostsState, fromEntities.getIds);
 export const getPageIds = createSelector(getPagesState, fromEntities.getIds);
-
-export const getTopicFilters = createSelector(getTopicsState, fromEntities.getFilters);
-export const getOfferFilters = createSelector(getOffersState, fromEntities.getFilters);
-export const getPostFilters = createSelector(getPostsState, fromEntities.getFilters);
-export const getPageFilters = createSelector(getPagesState, fromEntities.getFilters);
 
 export const getTopicEntities = createSelector(getTopicsState, fromEntities.getEntities);
 export const getOfferEntities = createSelector(getOffersState, fromEntities.getEntities);
 export const getPostEntities = createSelector(getPostsState, fromEntities.getEntities);
 export const getPageEntities = createSelector(getPagesState, fromEntities.getEntities);
 
-export const getOffersByKey = (key: string) => createSelector(createFeatureSelector(key), getOfferEntities, getOfferFilters);
+export const getTopicKeys = createSelector(getTopicsState, fromEntities.getKeys);
+export const getOfferKeys = createSelector(getOffersState, fromEntities.getKeys);
+export const getPostKeys = createSelector(getPostsState, fromEntities.getKeys);
+export const getPageKeys = createSelector(getPagesState, fromEntities.getKeys);
 
-export function getEntitiesByKey(etype: string, key: string) {
-    let ids: any;
-    let entities: any;
+// Helper projector which product object: {[key:string]: Entity[]}
+export const entitiesProjector = (entities, ids, keys) =>
+    keys.map(key => {return {[key]: ids[key].map(id => entities[id])};})
+        .reduce((entities, entity) => {
+            let key = Object.keys(entity)[0];
+            entities[key] = entity[key];
+            return entities;
+        }, {/* Empty object as initial value */});
+
+export const getTopics = createSelector(
+    getTopicEntities, getTopicIds, getTopicKeys, entitiesProjector);
+export const getOffers = createSelector(
+    getOfferEntities, getOfferIds, getOfferKeys, entitiesProjector);
+export const getPosts = createSelector(
+    getPostEntities, getPostIds, getPostKeys, entitiesProjector);
+export const getPages = createSelector(
+    getPageEntities, getPageIds, getPageKeys, entitiesProjector);
+
+// getEntities factory method
+export function getEntities(etype: string) {
     switch(etype) {
         case ENTITY.TOPIC:
-            ids = getTopicFilters[key];
-            entities = getTopicEntities;
-            break;
+            return getTopics;
         case ENTITY.OFFER:
-            ids = getOfferFilters[key];
-            entities = getOfferEntities;
-            break;
+            return getOffers;
         case ENTITY.POST:
-            ids = getPostFilters[key];
-            entities = getOfferEntities;
-            break;
+            return getPosts;
         case ENTITY.PAGE:
-            ids = getPageFilters[key];
-            entities = getPageEntities;
-            break;
+            return getPages;
         default:
             console.error("REDUCER EXCEPTION!");
     }
-
-    // FIXME: This factory should return a selector!!!
-    return ids.map(id => entities[id]);
 }
 
 

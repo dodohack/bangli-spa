@@ -34,12 +34,7 @@ export class EntityEffects {
         this.actions$.ofType(EntityActions.LOAD_ENTITIES)
             .switchMap((action: EntityActions.LoadEntities) =>
                     this.getEntities(action.payload.etype, action.payload.data)
-                    .mergeMap(ret => {
-                        let actions: Action[] = [];
-                        actions[0] = new EntityActions.LoadEntitiesSuccess({etype: ret.etype, data: ret});
-                        //actions[1] = AlertActions.loadCompleted();
-                        return Observable.from(actions);
-                    })
+                    .map(ret => new EntityActions.LoadEntitiesSuccess({etype: ret.etype, data: ret}))
                     .catch(() => Observable.of(new EntityActions.LoadEntitiesFail()))
             );
 
@@ -57,7 +52,7 @@ export class EntityEffects {
                     actions[i] = new EntityActions.LoadEntitiesSuccess({etype: ret[i].etype, data: ret[i]});
                 // This last action is just an indicator of the finish state
                 //actions[i] = AlertActions.loadCompleted();
-                return Observable.from(actions);
+                return actions;
             })
             .catch(() => Observable.of(new EntityActions.LoadEntitiesFail()))
         );

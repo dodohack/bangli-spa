@@ -56,6 +56,8 @@ export class EntityParams {
     etype: string;  // Entity type
     per_page:  number;
     cur_page?: number;
+    category: string;
+    relations: string; // Relationship with current entity
     // TODO: more attributes
 
     static toQueryString(e: EntityParams): string {
@@ -70,6 +72,8 @@ export class EntityParams {
         let s = 'key=' + e.key + delimiter + 'etype=' + e.etype;
         if (e.per_page) s += delimiter + 'per_page=' + e.per_page;
         if (e.cur_page) s += delimiter + 'cur_page=' + e.cur_page;
+        if (e.category) s += delimiter + 'category=' + e.category;
+        if (e.relations) s += delimiter + 'relations=' + e.relations;
         // TODO:
         return s;
     }

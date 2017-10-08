@@ -10,6 +10,11 @@ import { ENTITY }        from '../models';
 import { Paginator }     from '../models';
 import * as entity       from '../actions/entity';
 
+//
+// FIXME: We need to simplify EntitiesState!
+// 1. Put key
+//
+
 
 export interface EntityFilter {
     key: string;
@@ -18,8 +23,8 @@ export interface EntityFilter {
     ids: string[];
 }
 
-// TODO: Enable @ngrx/entity when everything works
-export interface EntitiesState /*extends EntityState<Entity>*/ {
+/*
+export interface EntitiesState {
     keys: string[];
     efilters: { [key: string]: EntityFilter };
 
@@ -29,6 +34,30 @@ export interface EntitiesState /*extends EntityState<Entity>*/ {
     // Current active entity id
     activeId: string | null;
 }
+*/
+
+export interface EntitiesState {
+    // Every entities query comes with a key
+    keys: string[];
+
+    //filters: {[key: string]: EntityFilter};
+
+    params: {[key: string]: {pkey: string, pvalue: string}};
+
+    // Ids with key as index
+    ids: {[key: string]: string[]};
+
+    paginators: {[key: string]: Paginator};
+
+    // Ids with no key as index
+    plainIds: string[];
+
+    entities: {[id: string]: Entity};
+
+    // Current active entity id
+    activeId: string | null;
+}
+
 
 /*
 export const adapter: EntityAdapter<Entity> = createEntityAdapter<Entity>({
@@ -42,8 +71,10 @@ export const adapter: EntityAdapter<Entity> = createEntityAdapter<Entity>({
  */
 const initState: EntitiesState = { //adapter.getInitialState({
     keys: [],
-    efilters: {},
-    ids: [],
+    params: {},
+    ids: {},
+    paginators: {},
+    plainIds: [],
     entities: {},
     activeId: null
 }; //);
@@ -121,6 +152,17 @@ function entitiesReducer(etype: string,
 
     switch (action.type)
     {
+        case entity.LOAD_ENTITIES: {
+            // TODO: Store key and query parameters
+            console.log("TODO: Cache entities query paramerters with key");
+            return state;
+        }
+        case entity.LOAD_GROUP_ENTITIES: {
+            // TODO: Store key and query parameters
+            console.log("TODO: Cache entities query paramerters with key");
+            return state;
+        }
+
         case entity.LOAD_ENTITIES_SUCCESS:
         {
             let key     = action.payload.data.key;
@@ -131,41 +173,32 @@ function entitiesReducer(etype: string,
 
             // Extract entity ids and form new group of entities
             let ids         = entities.map(e => e[idx]);
-            // FIXME: Object.assign mutates 'entities'!!
+
+            // Create an object of entities indexed by their id
             let newEntities = entities.reduce((entities, entity) =>
                 Object.assign(entities, {[entity[idx]]: entity}), {});
 
-            // Update the filter created when the load action dispatched
-            let efilter: any;
-            if (key in state.efilters) {
-                // Cache hit
-                efilter = {
-                    key: key,
-                    params: state.efilters[key].params,
-                    paginator: pager,
-                    ids: ids
-                }
-            } else {
-                // Cache miss
-                efilter = {
-                    key: key,
-                    params: null,
-                    paginator: pager,
-                    ids: ids
-                }
-            }
-
-            // Get deduplicated keys and ids
+            // Add new 'key' to keys
             let newKeys = state.keys.indexOf(key) == -1 ?
                 [...state.keys, key] : state.keys;
-            let newIds = [...state.ids, ...ids].filter(
+
+            // Add new 'ids' to key indexed ids
+            let newIds = ids;
+            if (typeof state.ids[key] !== 'undefined')
+                newIds = [...state.ids[key], ...ids].filter(
+                    (elem, idx, self) => idx == self.indexOf(elem));
+
+            // Add new 'ids' to plainIds
+            let newPlainIds = [...state.plainIds, ...ids].filter(
                 (elem, idx, self) => idx == self.indexOf(elem));
 
-            // Merge the key, filter, ids and entities
+            // Create a new state
             return Object.assign({}, state, {
                 keys: newKeys,
-                efilters: Object.assign({}, state.efilters, {[key]: efilter}),
-                ids: newIds,
+                params: state.params,
+                ids: Object.assign({}, state.ids, {[key]: newIds}),
+                paginators: Object.assign({}, state.paginators, {[key]: pager}),
+                plainIds: newPlainIds,
                 entities: Object.assign({}, state.entities, newEntities)
             });
         }
@@ -178,11 +211,11 @@ function entitiesReducer(etype: string,
 
             // Merge loaded entity into the top level id array
             // FIXME: We can't use state.ids.indexOf(id) due to TSC build error
-            let newIds = [...state.ids, id].filter(
+            let newIds = [...state.plainIds, id].filter(
                 (elem, idx, self) => idx == self.indexOf(elem));
 
             return Object.assign({}, state, {
-                ids: newIds,
+                plainIds: newIds,
                 entities: Object.assign({}, state.entities,
                     {[id]: action.payload.data}),
                 activeId: id,
@@ -226,7 +259,9 @@ export const getCurEntity =
     (state: EntitiesState) => state.activeId && state.entities[state.activeId];
 
 export const getKeys = (state: EntitiesState) => state.keys;
-export const getFilters = (state: EntitiesState) => state.efilters;
 export const getIds = (state: EntitiesState) => state.ids;
+export const getParams = (state: EntitiesState) => state.params;
+export const getPaginators = (state: EntitiesState) => state.paginators;
+export const getPlainIds = (state: EntitiesState) => state.plainIds;
 export const getEntities = (state: EntitiesState) => state.entities;
 

@@ -22,9 +22,9 @@ import { BottomNav }   from './mobile/bottom.nav';
 import { SideNav }     from './mobile/side.nav';
 import { TopicHead }   from './mobile/topic.head';
 import { TopicBody }   from './mobile/topic.body';
-import { Card }        from './mobile/card';
 import { Carousel }    from './carousel/carousel';
 import { Slide }       from './carousel/slide';
+import { OfferCardGroup }  from './mobile/offer-card-group';
 
 import { SiteHeader }  from './site.header';
 import { SiteFooter }  from './site.footer';
@@ -45,9 +45,9 @@ export const COMPONENTS = environment.mobile ?
         SideNav,
         TopicHead,
         TopicBody,
-        Card,
         Carousel,
-        Slide
+        Slide,
+        OfferCardGroup
     ] :
     [
         // FIXME: Actually We could use MerchantTopic as OfferTopic!!
