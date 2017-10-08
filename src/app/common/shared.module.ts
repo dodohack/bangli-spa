@@ -21,7 +21,7 @@ import { TopNav }      from './mobile/top.nav';
 import { BottomNav }   from './mobile/bottom.nav';
 import { SideNav }     from './mobile/side.nav';
 import { TopicHead }   from './mobile/topic.head';
-import { TopicBody }   from './mobile/topic.body';
+import { TopicBody, VoucherCodeDialog }   from './mobile/topic.body';
 import { Carousel }    from './carousel/carousel';
 import { Slide }       from './carousel/slide';
 import { OfferCardGroup }  from './mobile/offer-card-group';
@@ -47,7 +47,8 @@ export const COMPONENTS = environment.mobile ?
         TopicBody,
         Carousel,
         Slide,
-        OfferCardGroup
+        OfferCardGroup,
+        VoucherCodeDialog
     ] :
     [
         // FIXME: Actually We could use MerchantTopic as OfferTopic!!
@@ -66,6 +67,9 @@ export const COMPONENTS = environment.mobile ?
     ],
     declarations: [
         COMPONENTS
+    ],
+    entryComponents: [
+        VoucherCodeDialog
     ],
     exports: [
         CommonModule,

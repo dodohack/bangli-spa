@@ -4,6 +4,7 @@
 
 import {
     Component,
+    Inject,
     Input,
     Output,
     EventEmitter,
@@ -11,11 +12,25 @@ import {
     ChangeDetectionStrategy,
 } from '@angular/core';
 
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import { MdTab } from '@angular/material';
-
 import { NgSwitch } from '@angular/common';
 
 import { Offer, Post } from '../../core/models';
+
+@Component({
+    selector: 'voucher-code-dialog',
+    template: `
+    <p>优惠码</p>
+    <p>{{ data.vouchers }}</p>
+    <a md-raised-button color="primary" href="{{data.tracking_url}}" target="_blank">购买链接</a>
+    <button md-raised-button (click)="dialog.close()">关闭</button>    
+    `
+})
+export class VoucherCodeDialog {
+    constructor(public dialog: MdDialogRef<VoucherCodeDialog>,
+    @Inject(MD_DIALOG_DATA) public data: any) {}
+}
 
 @Component({
     selector: 'topic-body',
@@ -34,13 +49,13 @@ export class TopicBody
 
     today = new Date();
 
-    constructor(private cd: ChangeDetectorRef) {}
+    constructor(public dialog: MdDialog) {}
 
     get hasOffer() { return this.offers && this.offers.length > 0; }
 
     get numOffers() {
         let num = this.offers && this.offers.length;
-        if (num) return '(' + num + ')';
+        if (num) return ' (' + num + ')';
         return;
     }
 
@@ -69,5 +84,10 @@ export class TopicBody
             else
                 return '有效期：随时失效';
         }
+    }
+
+    openVoucherDialog(vouchers: string, tracking_url: string) {
+        this.dialog.open(VoucherCodeDialog,
+            {data: {vouchers: vouchers, tracking_url: tracking_url}});
     }
 }

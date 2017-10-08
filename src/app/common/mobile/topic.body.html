@@ -15,7 +15,11 @@
                     </div>
                     <md-card-actions>
                         <span class="deal-metadata">{{ expires(offer.ends) }}</span>
-                        <a md-raised-button target="_blank" href="{{offer.tracking_url}}">购买链接</a>
+                        <a md-raised-button target="_blank" href="{{offer.tracking_url}}"
+                           *ngIf="offer.vouchers == ''">购买链接</a>
+                        <button md-raised-button color="primary"
+                                (click)="openVoucherDialog(offer.vouchers, offer.tracking_url)"
+                                *ngIf="offer.vouchers">查看优惠码</button>
                     </md-card-actions>
                 </md-card>
             </div>
