@@ -11,14 +11,22 @@
                 <md-card *ngFor="let offer of offers" class="deal-card">
                     <div class="deal-card-content">
                         <img md-card-image src="http://placehold.it/64x64?text=logo">
-                        <md-card-title>{{ offer.title }}</md-card-title>
+                        <md-card-title>
+                            <span *ngIf="offer.title.length < 80">
+                                {{ offer.title }}
+                            </span>
+                            <a *ngIf="offer.title.length > 80"
+                               (click)="openVoucherDialog(offer.title, null, offer.tracking_url)">
+                                {{ offer.title.substr(0,79) }}... 展开 <i class="fa fa-caret-down"></i>
+                            </a>
+                        </md-card-title>
                     </div>
                     <md-card-actions>
                         <span class="deal-metadata">{{ expires(offer.ends) }}</span>
                         <a md-raised-button target="_blank" href="{{offer.tracking_url}}"
                            *ngIf="offer.vouchers == ''">购买链接</a>
                         <button md-raised-button color="primary"
-                                (click)="openVoucherDialog(offer.vouchers, offer.tracking_url)"
+                                (click)="openVoucherDialog(null, offer.vouchers, offer.tracking_url)"
                                 *ngIf="offer.vouchers">查看优惠码</button>
                     </md-card-actions>
                 </md-card>

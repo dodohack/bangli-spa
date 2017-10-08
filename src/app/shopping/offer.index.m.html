@@ -7,7 +7,7 @@
             <a [routerLink]="['/merchant', offer.topics[0].guid]" [fragment]="'deal'">
                 <img src="http://placehold.it/800x300?text=TopOffer-{{idx}}">
                 <div class="carousel-caption">
-                    <h4>{{ offer.title }}</h4>
+                    <h4>[{{ offer.topics[0].title }}] {{ offer.title }}</h4>
                 </div>
             </a>
         </slide>
@@ -22,5 +22,10 @@
     <offer-card-group [offers]="(offers$ | async)[groupKeys.FEATURED_HEALTHCARE_OFFER]"
                       [title]="'保健优惠'"
                       [category]="'healthcare'">
+    </offer-card-group>
+
+    <offer-card-group [offers]="(offers$ | async)[groupKeys.FEATURED_FASHION_OFFER]"
+                      [title]="'服饰箱包'"
+                      [category]="'clothes-bag'">
     </offer-card-group>
 </div>

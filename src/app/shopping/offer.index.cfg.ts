@@ -8,6 +8,7 @@ export const GROUP_KEYS = {
     FEATURED_OFFER: 'ch_offer_featured_offers',
     FEATURED_BEAUTY_OFFER: 'ch_offer_beauty_featured_offers',
     FEATURED_HEALTHCARE_OFFER: 'ch_offer_healthcare_featured_offers',
+    FEATURED_FASHION_OFFER: 'ch_offer_fashion_featured_offers',
 };
 
 export const GROUP_PARAMS = [
@@ -42,6 +43,18 @@ export const GROUP_PARAMS = [
             key: GROUP_KEYS.FEATURED_HEALTHCARE_OFFER,
             name: '保健优惠',
             category: 'healthcare',
+            style: '',
+            etype: ENTITY.OFFER,
+            per_page: 6,
+            order_by: 'published_at',
+            order: 'desc',
+            relations: ENTITY.TOPIC
+        },
+        // 6 featured offers of fashion category
+        {
+            key: GROUP_KEYS.FEATURED_FASHION_OFFER,
+            name: '服饰箱包',
+            category: 'clothes-bag',
             style: '',
             etype: ENTITY.OFFER,
             per_page: 6,

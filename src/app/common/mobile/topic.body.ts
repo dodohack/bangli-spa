@@ -21,8 +21,8 @@ import { Offer, Post } from '../../core/models';
 @Component({
     selector: 'voucher-code-dialog',
     template: `
-    <p>优惠码</p>
-    <p>{{ data.vouchers }}</p>
+    <p *ngIf="data.vouchers">优惠码: {{ data.vouchers }}</p>
+    <p *ngIf="data.title">{{ data.title }}</p>
     <a md-raised-button color="primary" href="{{data.tracking_url}}" target="_blank">购买链接</a>
     <button md-raised-button (click)="dialog.close()">关闭</button>    
     `
@@ -86,8 +86,9 @@ export class TopicBody
         }
     }
 
-    openVoucherDialog(vouchers: string, tracking_url: string) {
+    openVoucherDialog(title: string = null, vouchers: string = null,
+                      tracking_url: string = null) {
         this.dialog.open(VoucherCodeDialog,
-            {data: {vouchers: vouchers, tracking_url: tracking_url}});
+            {data: {title: title, vouchers: vouchers, tracking_url: tracking_url}});
     }
 }
