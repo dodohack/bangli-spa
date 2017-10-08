@@ -16,6 +16,6 @@ export class OfferCardGroup
 {
     @Input() offers: Entity[];
     @Input() title: string;
-    @Input() category: string;
-
+    @Input() category: string; // Category slug
+    @Input() topic: string;    // Topic guid
 }

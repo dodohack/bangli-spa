@@ -1,12 +1,13 @@
 <!-- Offers home page for mobile, this is different from merchants home page -->
 <div class="offers-index">
-    <h2>美妆优惠频道,类似于优惠频道首页</h2>
     <carousel [interval]="3000" [noWrap]="false">
-        <slide *ngFor="let offer of (featuredOffers$ | async); let idx=index">
-            <img src="http://placehold.it/800x300?text=TopOffer-{{idx}}">
-            <div class="carousel-caption">
-                <h4>{{ offer.title }}</h4>
-            </div>
+        <slide *ngFor="let offer of (offers$ | async)[groupKeys.FEATURED_BEAUTY_OFFER]; let idx=index">
+            <a [routerLink]="['/merchant', offer.topics[0].guid]" [fragment]="'deal'">
+                <img src="http://placehold.it/800x300?text=TopOffer-{{idx}}">
+                <div class="carousel-caption">
+                    <h4>[{{ offer.topics[0].title }}] {{ offer.title }}</h4>
+                </div>
+            </a>
         </slide>
     </carousel>
 
@@ -18,48 +19,8 @@
     -->
 
     <!-- Deal card with brand logo -->
-    <div class="cards-wrapper">
-        <div class="cards-title">
-            Lookfantastic热门优惠
-            <a class="more" routerLink="/"><i class="fa fa-lg fa-ellipsis-h"></i></a>
-        </div>
-
-        <div class="cards-container">
-            <md-card *ngFor="let offer of (featuredOffers$ | async)" class="branded-deal-card">
-                <a [routerLink]="['/merchant', offer.brand_slug]" [fragment]="'deal'" class="brand-link">
-                    <div class="image">
-                        <img class="logo" src="http://placehold.it/64x64?text=Logo">
-                        <img class="main" src="http://placehold.it/400x260?text=BeautyOffer">
-                    </div>
-                    <md-card-content>
-                        <div class="brand-name">{{ offer.brand }}</div>
-                        <div class="offer-title">{{ offer.title }}</div>
-                    </md-card-content>
-                </a>
-            </md-card>
-        </div>
-    </div>
-
-    <!-- Deal card with brand logo -->
-    <div class="cards-wrapper">
-        <div class="cards-title">
-            Unineed热门优惠
-            <a class="more" routerLink="/"><i class="fa fa-lg fa-ellipsis-h"></i></a>
-        </div>
-
-        <div class="cards-container">
-            <md-card *ngFor="let offer of (featuredOffers$ | async)" class="branded-deal-card">
-                <a [routerLink]="['/merchant', offer.brand_slug]" [fragment]="'deal'" class="brand-link">
-                    <div class="image">
-                        <img class="logo" src="http://placehold.it/64x64?text=Logo">
-                        <img class="main" src="http://placehold.it/400x260?text=BeautyOffer">
-                    </div>
-                    <md-card-content>
-                        <div class="brand-name">{{ offer.brand }}</div>
-                        <div class="offer-title">{{ offer.title }}</div>
-                    </md-card-content>
-                </a>
-            </md-card>
-        </div>
-    </div>
+    <offer-card-group [offers]="(offers$ | async)[groupKeys.FEATURED_BRAND_LF_OFFER]"
+                      [title]="'Lookfantastic优惠'"
+                      [topic]="'lookfantastic'">
+    </offer-card-group>
 </div>

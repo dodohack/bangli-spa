@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component }         from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
 import { Store }             from '@ngrx/store';
-import { Observable }        from 'rxjs/Observable';
 
 import { environment }   from '../../environments/environment';
 import * as fromEntities from '../core/reducers';
@@ -16,7 +15,7 @@ import { EntityBase }    from '../core/entity.base';
     selector: '',
     templateUrl: './offer.topic.html'
 })
-export class _OfferTopic extends EntityBase // implements OnInit
+export class _OfferTopic extends EntityBase
 {
     constructor(protected route: ActivatedRoute,
                 protected store: Store<fromEntities.AppState>) {
@@ -28,7 +27,7 @@ export class _OfferTopic extends EntityBase // implements OnInit
     selector: '',
     templateUrl: './offer.topic.m.html'
 })
-export class _OfferTopicMobile extends EntityBase // implements OnInit
+export class _OfferTopicMobile extends EntityBase
 {
     constructor(protected route: ActivatedRoute,
                 protected store: Store<fromEntities.AppState>) {

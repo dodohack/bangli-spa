@@ -1,7 +1,11 @@
 <div class="cards-wrapper">
     <div class="cards-title">
         {{ title }}
-        <a class="more" [routerLink]="['/deal/cat', category]">
+        <a class="more" [routerLink]="['/deal/cat', category]" *ngIf="category">
+            <i class="fa fa-lg fa-ellipsis-h"></i>
+        </a>
+
+        <a class="more" [routerLink]="['/merchant/', topic]" [fragment]="'deal'" *ngIf="topic">
             <i class="fa fa-lg fa-ellipsis-h"></i>
         </a>
     </div>

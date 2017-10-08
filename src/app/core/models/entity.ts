@@ -57,6 +57,7 @@ export class EntityParams {
     per_page:  number;
     cur_page?: number;
     category: string;
+    topic: string;
     relations: string; // Relationship with current entity
     // TODO: more attributes
 
@@ -73,6 +74,7 @@ export class EntityParams {
         if (e.per_page) s += delimiter + 'per_page=' + e.per_page;
         if (e.cur_page) s += delimiter + 'cur_page=' + e.cur_page;
         if (e.category) s += delimiter + 'category=' + e.category;
+        if (e.topic) s += delimiter + 'topic=' + e.topic;
         if (e.relations) s += delimiter + 'relations=' + e.relations;
         // TODO:
         return s;

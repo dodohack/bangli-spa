@@ -2,47 +2,38 @@
  * Offer category page
  */
 
-import { Component }   from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable }  from 'rxjs/Observable';
+import { Component }         from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store }             from '@ngrx/store';
 
 import { environment } from '../../environments/environment';
-import { Offer } from '../core/models';
+import { AppState } from "../core/reducers";
+import { EntitiesBase } from '../core/entities.page';
+import { GROUP_KEYS, GROUP_PARAMS } from './offer.category.cfg';
 
 @Component({
     selector: '',
     templateUrl: './offer.category.html'
 })
-export class _OfferCategory
+export class _OfferCategory extends EntitiesBase
 {
-    offerFormControl = new FormControl('', []);
+    constructor(protected route: ActivatedRoute,
+                protected store: Store<AppState>,
+                protected router: Router) {
+        super(route, store, router, GROUP_KEYS, GROUP_PARAMS);
+    }
 }
 
 @Component({
     selector: '',
     templateUrl: './offer.category.m.html'
 })
-export class _OfferCategoryMobile
+export class _OfferCategoryMobile extends EntitiesBase
 {
-    featuredOffers$: Observable<Offer[]>;
-
-    constructor() {
-        // Create a dummy data
-        let testOffers: any[] = [
-            {title: '测试优惠1',
-                brand: 'Holland & Barrett', brand_slug: 'holland-barrett'},
-            {title: '测试优惠标题一句话介绍，长度在50字左右，太长的文字需要需要截断,不然就回导致排版很难看',
-                brand: 'ASOS', brand_slug: 'asos-uk'},
-            {title: '测试优惠3',
-                brand: 'Lookfantastic', brand_slug: 'lookfantastic-uk'},
-            {title: '测试优惠标题一句话介绍，长度在50字左右，太长的文字需要需要截断,不然就回导致排版很难看',
-                brand: 'Allsole', brand_slug: 'allsole'},
-            {title: '测试优惠标题一句话介绍，长度在50字左右',
-                brand: 'Allsaints', brand_slug: 'allsaints'},
-            {title: '测试优惠标题一句话介绍，长度在50字左右，太长的文字需要需要截断',
-                brand: 'ASOS', brand_slug: 'asos'},
-        ];
-        this.featuredOffers$ = Observable.of(testOffers);
+    constructor(protected route: ActivatedRoute,
+                protected store: Store<AppState>,
+                protected router: Router) {
+        super(route, store, router, GROUP_KEYS, GROUP_PARAMS);
     }
 }
 

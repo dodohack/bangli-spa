@@ -1,17 +1,10 @@
 import { Component }   from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { FormControl } from '@angular/forms';
-import { Observable }  from 'rxjs/Observable';
 import { Store } from "@ngrx/store";
 
 import { environment } from '../../environments/environment';
-import { Offer }    from '../core/models';
 import { AppState } from "../core/reducers";
-import { ENTITY }   from "../core/models";
 import { EntitiesBase } from '../core/entities.page';
-
-import { getOffers } from '../core/reducers';
-
 import { GROUP_KEYS, GROUP_PARAMS } from './offer.index.cfg';
 
 
