@@ -11,3 +11,14 @@
 <ul>
     <li>List of merchant topics with offers</li>
 </ul>
+
+<md-nav-list>
+    <ng-template ngFor let-entity [ngForOf]="(entities$ | async)[key]">
+        <!--<h3 md-subheader>A-Z分类标记</h3>-->
+        <a md-list-item [routerLink]="['/merchant', entity.guid]" [fragment]="'deal'">
+            <h4 md-line>{{ entity.title }}</h4>
+            <span style="width: 30px; background: #ccc; border-radius: 5px; text-align: center;">{{ entity.offers_count }}</span>
+        </a>
+    </ng-template>
+</md-nav-list>
+

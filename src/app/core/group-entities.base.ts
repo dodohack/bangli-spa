@@ -11,17 +11,15 @@ import { Store }             from '@ngrx/store';
 //import { Channel }           from './models';
 //import { Category }          from './models';
 import { ENTITY, Entity }    from './models';
-import * as fromEntities     from './reducers';
 
 import * as EntityActions    from '../core/actions/entity';
 
-import { getEntities }      from './reducers';
+import { AppState, getEntities }      from './reducers';
 
 export abstract class GroupEntitiesBase implements OnInit, OnDestroy
 {
     sub1: any;
 
-    isLoading$: Observable<boolean>;
     // In page navigation, hash anchor
     //fragment$:   Observable<string>;
     // Group entity load status
@@ -31,7 +29,7 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
     posts$: Observable<any>;
 
     constructor(protected route: ActivatedRoute,
-                protected store: Store<fromEntities.AppState>,
+                protected store: Store<AppState>,
                 protected router: Router,
                 protected groupKeys: any = null,
                 protected groupParams: any = null,
@@ -42,8 +40,6 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
         this.offers$ = this.store.select(getEntities(ENTITY.OFFER));
         this.topics$ = this.store.select(getEntities(ENTITY.TOPIC));
         this.posts$  = this.store.select(getEntities(ENTITY.POST));
-
-        this.isLoading$ =
 
         // Kick the batch load
         this.batchLoadEntities();

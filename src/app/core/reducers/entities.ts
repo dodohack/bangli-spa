@@ -162,8 +162,9 @@ function entitiesReducer(etype: string,
                     });
 
                 // Merge idsCurPage with previously loaded ones
-                idsCurPage = [...state.idsCurPage[key], ...idsCurPage].filter(
-                    (elem, idx, self) => idx == self.indexOf(elem));
+                if (typeof state.idsCurPage[key] !== 'undefined')
+                    idsCurPage = [...state.idsCurPage[key], ...idsCurPage].filter(
+                        (elem, idx, self) => idx == self.indexOf(elem));
             } else {
                 if (!idsCurPage.length)
                     return Object.assign({}, state, {
@@ -258,8 +259,9 @@ export const getCurEntity =
 
 export const getKeys = (state: EntitiesState) => state.keys;
 export const getIds = (state: EntitiesState) => state.ids;
+export const getIdsCurPage = (state: EntitiesState) => state.idsCurPage;
 export const getParams = (state: EntitiesState) => state.params;
 export const getPaginators = (state: EntitiesState) => state.paginators;
 export const getPlainIds = (state: EntitiesState) => state.plainIds;
 export const getEntities = (state: EntitiesState) => state.entities;
-
+export const getIsLoading = (state: EntitiesState) => state.isLoading;

@@ -38,6 +38,17 @@ export class EntityEffects {
                     .catch(() => Observable.of(new EntityActions.LoadEntitiesFail()))
             );
 
+    /**
+     * Load group of entities with same entity type with pageless style
+     */
+    @Effect() loadEntitiesScroll$: Observable<Action> =
+        this.actions$.ofType(EntityActions.LOAD_ENTITIES_ON_SCROLL)
+            .switchMap((action: EntityActions.LoadEntitiesOnScroll) =>
+                this.getEntities(action.payload.etype, action.payload.data)
+                    .map(ret => new EntityActions.LoadEntitiesOnScrollSuccess({etype: ret.etype, data: ret}))
+                    .catch(() => Observable.of(new EntityActions.LoadEntitiesOnScrollFail()))
+            );
+
 
     /**
      * Load multiple group of entities, dispatch N actions for N groups when success.
@@ -124,20 +135,6 @@ export class EntityEffects {
     }
 
     /**
-     * Convert an array of entity filters into a url string.
-     * Single group entity version
-     */
-    private buildSingleGroupFilters(filters: any): string {
-        let ret = '&key' + filters.key;
-
-        for(let f of filters) {
-            ret + '&' + f.key + '=' + f.value;
-        }
-
-        return ret;
-    }
-
-    /**
      * Convert an array of entities filters into a url string.
      * Multi group entity version
      */
@@ -169,7 +166,7 @@ export class EntityEffects {
      */
     protected getEntities(etype: string, filters: any): Observable<any> {
         let api = this.getApi(etype, false)
-            + '?etype=' + etype + this.buildSingleGroupFilters(filters);
+            + '?etype=' + etype + '&' + EntityParams.toQueryString(filters);
 
         return this.http.get(api).map(res => res.json());
     }

@@ -11,18 +11,13 @@ import { ActivatedRoute, Router }    from '@angular/router';
 import { Observable }      from 'rxjs/Rx';
 import { Store }           from '@ngrx/store';
 
-import {
-    ENTITY,
-    Entity,
-    ENTITY_INFO,
-    EntityParams
-}  from './models';
+import { EntityParams }  from './models';
 
-import * as fromEntities   from './reducers';
+import { AppState } from '../core/reducers';
+
 import * as EntityActions  from '../core/actions/entity';
 
 import { getIsLoading, getEntitiesCurPage } from './reducers';
-
 
 export abstract class EntitiesBase implements OnInit, OnDestroy
 {
@@ -43,18 +38,19 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
     isLoading$: Observable<boolean>;
     isLoading: boolean;
 
-    entities: Observable<Entity[]>;
+    // Object of entities indexed by key
+    entities$: Observable<any>;
 
     constructor(protected etype: string,
                 protected route: ActivatedRoute,
                 protected router: Router,
                 protected baseUrl: string,
-                protected store: Store<fromEntities.AppState>,
+                protected store: Store<AppState>,
                 protected pageless: boolean = false) { }
 
     ngOnInit() {
         this.isLoading$ = this.store.select(getIsLoading(this.etype));
-        this.entities   = this.store.select(getEntitiesCurPage(this.etype));
+        this.entities$  = this.store.select(getEntitiesCurPage(this.etype));
 
         this.subLoad   = this.isLoading$.subscribe(i => this.isLoading = i);
 
