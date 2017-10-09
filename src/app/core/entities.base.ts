@@ -88,8 +88,9 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
      * Pageless loading
      * Load next page of entities when scroll to page bottom
      */
-    @HostListener('window:scroll')
+    @HostListener('window:scroll', [])
     loadEntitiesOnScroll() {
+        console.error("Window scrolled");
         if (this.pageless && !this.isLoading &&
             (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             setTimeout(() => {
