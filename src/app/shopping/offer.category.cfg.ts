@@ -27,8 +27,8 @@ export const GROUP_PARAMS = [
         // 6 featured offers from LF UK
         {
             key: GROUP_KEYS.FEATURED_BRAND_LF_OFFER,
-            name: '保健优惠',
-            topic: 'lookfantanstic',
+            name: 'Lookfantastic优惠',
+            topic: 'lookfantastic',
             style: '',
             etype: ENTITY.OFFER,
             per_page: 6,

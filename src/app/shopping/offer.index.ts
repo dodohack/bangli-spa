@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 
 import { environment } from '../../environments/environment';
 import { AppState } from "../core/reducers";
-import { EntitiesBase } from '../core/entities.page';
+import { GroupEntitiesBase } from '../core/group-entities.base';
 import { GROUP_KEYS, GROUP_PARAMS } from './offer.index.cfg';
 
 
@@ -12,7 +12,7 @@ import { GROUP_KEYS, GROUP_PARAMS } from './offer.index.cfg';
     selector: '',
     templateUrl: './offer.index.html'
 })
-export class _OfferIndex extends EntitiesBase
+export class _OfferIndex extends GroupEntitiesBase
 {
     constructor(protected route: ActivatedRoute,
                 protected store: Store<AppState>,
@@ -25,7 +25,7 @@ export class _OfferIndex extends EntitiesBase
     selector: '',
     templateUrl: './offer.index.m.html'
 })
-export class _OfferIndexMobile extends EntitiesBase
+export class _OfferIndexMobile extends GroupEntitiesBase
 {
     constructor(protected route: ActivatedRoute,
                 protected store: Store<AppState>,

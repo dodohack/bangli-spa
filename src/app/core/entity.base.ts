@@ -3,12 +3,10 @@ import { ActivatedRoute }    from '@angular/router';
 import { Observable }        from 'rxjs/Rx';
 import { Store }             from '@ngrx/store';
 
-//import { Channel }           from './models';
-//import { Category }          from './models';
 import { ENTITY, Entity }    from './models';
 import * as fromEntities     from './reducers';
 
-import * as entity from '../core/actions/entity';
+import * as EntityActions from '../core/actions/entity';
 
 export abstract class EntityBase implements OnInit, OnDestroy
 {
@@ -62,7 +60,7 @@ export abstract class EntityBase implements OnInit, OnDestroy
             .subscribe(params => {
                 let id = params['id'] || params['guid'];
                 let payload = { etype: this.etype, data: id };
-                this.store.dispatch(new entity.LoadEntity(payload));
+                this.store.dispatch(new EntityActions.LoadEntity(payload));
             });
     }
 }

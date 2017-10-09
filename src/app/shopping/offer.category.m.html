@@ -18,9 +18,13 @@
     </div>
     -->
 
+    <h2>We are going list all offers of this category when user scrolls down</h2>
+    <h2>Sort all the offers by their topic and order by featured topics to non featured ones</h2>
+
     <!-- Deal card with brand logo -->
     <offer-card-group [offers]="(offers$ | async)[groupKeys.FEATURED_BRAND_LF_OFFER]"
                       [title]="'Lookfantastic优惠'"
                       [topic]="'lookfantastic'">
     </offer-card-group>
+
 </div>

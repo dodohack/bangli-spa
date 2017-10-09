@@ -8,14 +8,14 @@ import { Store }             from '@ngrx/store';
 
 import { environment } from '../../environments/environment';
 import { AppState } from "../core/reducers";
-import { EntitiesBase } from '../core/entities.page';
+import { GroupEntitiesBase } from '../core/group-entities.base';
 import { GROUP_KEYS, GROUP_PARAMS } from './offer.category.cfg';
 
 @Component({
     selector: '',
     templateUrl: './offer.category.html'
 })
-export class _OfferCategory extends EntitiesBase
+export class _OfferCategory extends GroupEntitiesBase
 {
     constructor(protected route: ActivatedRoute,
                 protected store: Store<AppState>,
@@ -28,7 +28,7 @@ export class _OfferCategory extends EntitiesBase
     selector: '',
     templateUrl: './offer.category.m.html'
 })
-export class _OfferCategoryMobile extends EntitiesBase
+export class _OfferCategoryMobile extends GroupEntitiesBase
 {
     constructor(protected route: ActivatedRoute,
                 protected store: Store<AppState>,

@@ -2,82 +2,51 @@
  * Entity reducer
  */
 
-//import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Observable } from 'rxjs/Observable';
-
 import { Entity }        from '../models';
 import { ENTITY }        from '../models';
 import { Paginator }     from '../models';
 import * as entity       from '../actions/entity';
 
-//
-// FIXME: We need to simplify EntitiesState!
-// 1. Put key
-//
-
-
-export interface EntityFilter {
-    key: string;
-    params: [{key: string, value: string}];
-    paginator: Paginator;
-    ids: string[];
-}
-
-/*
-export interface EntitiesState {
-    keys: string[];
-    efilters: { [key: string]: EntityFilter };
-
-    ids: string[];
-    entities: {[id: string]: Entity };
-
-    // Current active entity id
-    activeId: string | null;
-}
-*/
-
 export interface EntitiesState {
     // Every entities query comes with a key
     keys: string[];
 
-    //filters: {[key: string]: EntityFilter};
-
     params: {[key: string]: {pkey: string, pvalue: string}};
 
-    // Ids with key as index
+    // IDs with key as index
     ids: {[key: string]: string[]};
+
+    // IDs of current page entities
+    idsCurPage: {[key: string]: string[]};
 
     paginators: {[key: string]: Paginator};
 
-    // Ids with no key as index
+    // all IDs with no key as index
     plainIds: string[];
 
     entities: {[id: string]: Entity};
 
     // Current active entity id
     activeId: string | null;
+
+    // If the entity/entities is currently loading from server
+    isLoading: boolean;
 }
-
-
-/*
-export const adapter: EntityAdapter<Entity> = createEntityAdapter<Entity>({
-    selectId: (entity: Entity) => entity.id,
-    sortComparer: false
-});
-*/
 
 /**
  * Initial state
  */
-const initState: EntitiesState = { //adapter.getInitialState({
+const initState: EntitiesState = {
     keys: [],
     params: {},
     ids: {},
+    idsCurPage: {},
     paginators: {},
     plainIds: [],
     entities: {},
-    activeId: null
-}; //);
+    activeId: null,
+    isLoading: false,
+};
 
 
 /**
@@ -152,18 +121,24 @@ function entitiesReducer(etype: string,
 
     switch (action.type)
     {
-        case entity.LOAD_ENTITIES: {
+        case entity.LOAD_ENTITY:
+        case entity.LOAD_ENTITIES:
+        case entity.LOAD_ENTITIES_ON_SCROLL: {
             // TODO: Store key and query parameters
             console.log("TODO: Cache entities query paramerters with key");
-            return state;
-        }
-        case entity.LOAD_GROUP_ENTITIES: {
-            // TODO: Store key and query parameters
-            console.log("TODO: Cache entities query paramerters with key");
-            return state;
+            return Object.assign({}, state, {isLoading: true});
         }
 
+        // NOTE: This case will never be triggered.
+        /*
+        case entity.LOAD_GROUP_ENTITIES: {
+            console.log("TODO: Cache entities query paramerters with key");
+            return Object.assign({}, state, {isLoading: true});
+        }
+        */
+
         case entity.LOAD_ENTITIES_SUCCESS:
+        case entity.LOAD_ENTITIES_ON_SCROLL_SUCCESS:
         {
             let key     = action.payload.data.key;
             let pager   = action.payload.data.paginator;
@@ -173,14 +148,35 @@ function entitiesReducer(etype: string,
 
             // Extract entity ids and form new group of entities
             let ids         = entities.map(e => e[idx]);
-
-            // Create an object of entities indexed by their id
-            let newEntities = entities.reduce((entities, entity) =>
-                Object.assign(entities, {[entity[idx]]: entity}), {});
+            let idsCurPage  = ids;
 
             // Add new 'key' to keys
             let newKeys = state.keys.indexOf(key) == -1 ?
                 [...state.keys, key] : state.keys;
+
+            if (action.type == entity.LOAD_ENTITIES_ON_SCROLL_SUCCESS) {
+                if (!idsCurPage.length)
+                    return Object.assign({}, state, {
+                        keys: newKeys,
+                        isLoading: false
+                    });
+
+                // Merge idsCurPage with previously loaded ones
+                idsCurPage = [...state.idsCurPage[key], ...idsCurPage].filter(
+                    (elem, idx, self) => idx == self.indexOf(elem));
+            } else {
+                if (!idsCurPage.length)
+                    return Object.assign({}, state, {
+                        keys: newKeys,
+                        idsCurPage: Object.assign({}, state.idsCurPage, {[key]: []}),
+                        paginators: Object.assign({}, state.paginators, {[key]: pager}),
+                        isLoading: false
+                    });
+            }
+
+            // Create an object of entities indexed by their id
+            let newEntities = entities.reduce((entities, entity) =>
+                Object.assign(entities, {[entity[idx]]: entity}), {});
 
             // Add new 'ids' to key indexed ids
             let newIds = ids;
@@ -197,9 +193,11 @@ function entitiesReducer(etype: string,
                 keys: newKeys,
                 params: state.params,
                 ids: Object.assign({}, state.ids, {[key]: newIds}),
+                idsCurPage: Object.assign({}, state.idsCurPage, {[key]: idsCurPage}),
                 paginators: Object.assign({}, state.paginators, {[key]: pager}),
                 plainIds: newPlainIds,
-                entities: Object.assign({}, state.entities, newEntities)
+                entities: Object.assign({}, state.entities, newEntities),
+                isLoading: false
             });
         }
 

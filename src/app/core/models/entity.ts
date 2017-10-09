@@ -51,15 +51,18 @@ export class Entity {
 }
 
 
+/**
+ *TODO: add more attributes
+ */
 export class EntityParams {
-    key: string;    // Ngrx reducer key
-    etype: string;  // Entity type
-    per_page:  number;
-    cur_page?: number;
-    category: string;
-    topic: string;
-    relations: string; // Relationship with current entity
-    // TODO: more attributes
+    constructor(public key: string = 'default',  // key to idx EntitiesState
+                public etype: string = null,     // Entity type
+                public per_page: number = 20,
+                public cur_page: number = 1,
+                public category: string = null,  // Category this entity belongs
+                public topic: string = null,     // Topic this entity belongs
+                public relations: string = null  // Relationships to be queried together
+    ) {}
 
     static toQueryString(e: EntityParams): string {
         return this._toString(e, '&');
