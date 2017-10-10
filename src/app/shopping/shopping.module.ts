@@ -1,6 +1,7 @@
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
 import { routing }      from './routes';
 
@@ -33,6 +34,10 @@ export const COMPONENTS =
         SharedModule,
         routing,
     ],
+    providers: [{
+        provide: HAMMER_GESTURE_CONFIG,
+        useClass: HammerGestureConfig
+    }],
     declarations: COMPONENTS,
     exports: COMPONENTS,
 })

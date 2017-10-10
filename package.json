@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --extract-css --env=dev-mobile",
+    "start": "ng serve --host 0.0.0.0 --disableHostCheck true --extract-css --env=dev-mobile",
     "start-pc": "ng serve --extract-css --env=dev",
     "build-dev": "ng build --extract-css --env=dev-mobile",
     "build-dev-pc": "ng build --extract-css --env=dev",

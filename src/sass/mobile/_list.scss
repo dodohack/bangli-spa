@@ -2,6 +2,42 @@
  * Style used in list
  */
 
+/*
+.brand-a-z {
+  .mat-tab-label {
+    min-width: 32px !important;
+    padding: 0 8px;
+  }
+
+  .mat-tab-header-pagination {
+    display: none !important;
+  }
+}
+*/
+
+.brand-a-z {
+  width: 100%;
+
+  // This hide the scroll bar on google chrome.
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mat-tab-nav-bar {
+    overflow-x: scroll;
+  }
+
+  .mat-tab-links {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mat-tab-link {
+    min-width: 32px !important;
+    padding: 0 8px;
+  }
+}
+
 .topic-list-item {
   border-bottom: 1px solid #eee;
 }

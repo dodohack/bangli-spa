@@ -1,22 +1,31 @@
-<p>
-    TODO: Try to use NAVIGATION action to trigger the load of entities,
-    so we can simplify the logic of entity component.
-</p>
+<!--
+<mat-tab-group class="brand-a-z" [selectedIndex]="selectedIdx"
+               (swipeleft)="swipe($event.type)" (swiperight)="swipe($event.type)">
+    <ng-template ngFor let-a [ngForOf]="alphabets">
+        <mat-tab [label]="a" (click)="loadEntitiesStartWith(a)">
+            <div>
+                This is the content for tab {{ a }}
+            </div>
+        </mat-tab>
+    </ng-template>
+</mat-tab-group>
+-->
 
-<p>
-    We only show 1 lists
-</p>
+<div class="brand-a-z">
+    <nav mat-tab-nav-bar>
+        <ng-template ngFor let-a [ngForOf]="alphabets">
+            <a mat-tab-link [routerLink]="" [fragment]="a">{{ a }}</a>
+        </ng-template>
+    </nav>
+</div>
 
-
-<ul>
-    <li>List of merchant topics with offers</li>
-</ul>
 
 <mat-nav-list>
-    <ng-template ngFor let-entity [ngForOf]="(entities$ | async)[key]">
-        <!--<h3 mat-subheader>A-Z分类标记</h3>-->
-        <a mat-list-item [routerLink]="['/merchant', entity.guid]" [fragment]="'deal'"
-        class="topic-list-item">
+    <ng-template ngFor let-entity [ngForOf]="(entities$ | async)[key]" let-i="index">
+        <h3 mat-subheader
+            *ngIf="isGroupStart(i, (entities$ | async)[key][i > 0 ? i - 1 : 0].guid, entity.guid)">{{ entity.guid.substring(0,1) | uppercase}}</h3>
+        <a mat-list-item [routerLink]="['/merchant', entity.guid]"
+           [fragment]="'deal'" class="topic-list-item">
             <h4 mat-line>{{ entity.title }}</h4>
             <span class="offer-count-badge">{{ entity.offers_count }}</span>
         </a>

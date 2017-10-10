@@ -42,7 +42,7 @@ export class Entity {
     locations: any; //GeoLocation[]; // This array only contains 0 or 1 element
     title: string;
     // FIXME
-    categoreis: any; //Category[];
+    categories: any; //Category[];
     // FIXME
     topics: any; //Topic[];
     content: string;
@@ -59,6 +59,7 @@ export class EntityParams {
                 public etype: string,            // Entity type
                 public topic_type: string = null, // Topic type only if when querying topics
                 public topic_has_offer: boolean = false, // If the topic has offer associated
+                public topic_guid_starts: string = null, // topic guid starts with character
                 public per_page: number = 20,    // How many entities per page
                 public page: number = 1,         // Which page going to be load
                 public category: string = null,  // Category this entity belongs
@@ -80,6 +81,7 @@ export class EntityParams {
         let s = 'key=' + e.key + delimiter + 'etype=' + e.etype;
         if (e.topic_type) s += delimiter + 'topic_type=' + e.topic_type;
         if (e.topic_has_offer) s += delimiter + 'topic_has_offer=' + e.topic_has_offer;
+        if (e.topic_guid_starts) s += delimiter + 'topic_guid_starts=' + e.topic_guid_starts;
         if (e.per_page) s += delimiter + 'per_page=' + e.per_page;
         if (e.page) s += delimiter + 'page=' + e.page;
         if (e.category) s += delimiter + 'category=' + e.category;

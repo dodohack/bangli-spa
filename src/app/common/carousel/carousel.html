@@ -1,14 +1,14 @@
-<!--
-TODO: (ng-swipe-right)="prev()" (ng-swipe_left)="next()"
--->
-<div (mouseenter)="pause()" (mouseleave)="play()" class="carousel slide">
+<div (mouseenter)="pause()" (mouseleave)="play()"
+     (swipeleft)="next()" (swiperight)="prev()" class="carousel slide">
     <ol class="carousel-indicators" *ngIf="slides.length > 1">
         <li *ngFor="let slide of slides"
             [class.active]="slide.active === true"
             (click)="select(slide)"></li>
     </ol>
 
-    <div class="carousel-inner"><ng-content></ng-content></div>
+    <div class="carousel-inner">
+        <ng-content></ng-content>
+    </div>
     <a class="left carousel-control" (click)="prev()" *ngIf="slides.length">
         <span class="icon-prev" aria-hidden="true"></span>
     </a>

@@ -74,8 +74,6 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
             // Check if elements of url params change
             if (JSON.stringify(this.params) != JSON.stringify(params)) {
                 this.updateEntityParams(params);
-                console.log("Dispatch LoadEntities action, page: ",
-                    params['page'], ", entityParams: ", this.entityParams);
 
                 if (this.pageless)
                     this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
@@ -117,6 +115,7 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
             this.PARAMS.etype,
             this.PARAMS.topic_type,
             this.PARAMS.topic_has_offer,
+            this.PARAMS.topic_guid_starts,
             this.PARAMS.per_page,
             1 /* page */,
             this.PARAMS.category,
