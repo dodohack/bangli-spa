@@ -11,10 +11,6 @@ import {
     ChangeDetectionStrategy,
 } from '@angular/core';
 
-import { MdTab } from '@angular/material';
-
-import { NgSwitch } from '@angular/common';
-
 import { Topic }  from '../../core/models';
 
 @Component({

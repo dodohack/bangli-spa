@@ -28,7 +28,7 @@
 }
 
 /* deal-card style used in list of offers in topic page */
-md-card.deal-card {
+mat-card.deal-card {
   margin: 0 4px 15px 4px;
 
   .deal-card-content {
@@ -45,7 +45,7 @@ md-card.deal-card {
   }
 
   // TODO: Rework
-  md-card-actions {
+  mat-card-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,7 +59,7 @@ md-card.deal-card {
 }
 
 /* branded-deal-card used in offer home page */
-md-card.branded-deal-card {
+mat-card.branded-deal-card {
   width: 48%;
   margin-bottom: 15px;
   padding: 0;
@@ -88,7 +88,7 @@ md-card.branded-deal-card {
     height: auto;
   }
 
-  md-card-content {
+  mat-card-content {
     padding: 15px 10px 10px 10px;
   }
 

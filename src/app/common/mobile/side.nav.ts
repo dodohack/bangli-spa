@@ -1,5 +1,5 @@
 /**
- * Side nav, wrapper of md-sidenav
+ * Side nav, wrapper of mat-sidenav
  */
 
 import {

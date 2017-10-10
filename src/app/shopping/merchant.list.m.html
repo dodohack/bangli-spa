@@ -12,13 +12,18 @@
     <li>List of merchant topics with offers</li>
 </ul>
 
-<md-nav-list>
+<mat-nav-list>
     <ng-template ngFor let-entity [ngForOf]="(entities$ | async)[key]">
-        <!--<h3 md-subheader>A-Z分类标记</h3>-->
-        <a md-list-item [routerLink]="['/merchant', entity.guid]" [fragment]="'deal'">
-            <h4 md-line>{{ entity.title }}</h4>
-            <span style="width: 30px; background: #ccc; border-radius: 5px; text-align: center;">{{ entity.offers_count }}</span>
+        <!--<h3 mat-subheader>A-Z分类标记</h3>-->
+        <a mat-list-item [routerLink]="['/merchant', entity.guid]" [fragment]="'deal'"
+        class="topic-list-item">
+            <h4 mat-line>{{ entity.title }}</h4>
+            <span class="offer-count-badge">{{ entity.offers_count }}</span>
         </a>
     </ng-template>
-</md-nav-list>
+</mat-nav-list>
 
+<div style="padding: 10px 0">
+    <a mat-raised-button class="load-more" [routerLink]="[baseUrl, nextPage]"
+       *ngIf="!isLoading && pageless">加载更多</a>
+</div>

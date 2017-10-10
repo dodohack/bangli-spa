@@ -12,9 +12,7 @@ import {
     ChangeDetectionStrategy,
 } from '@angular/core';
 
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
-import { MdTab } from '@angular/material';
-import { NgSwitch } from '@angular/common';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { Offer, Post } from '../../core/models';
 
@@ -23,13 +21,13 @@ import { Offer, Post } from '../../core/models';
     template: `
     <p *ngIf="data.vouchers">优惠码: {{ data.vouchers }}</p>
     <p *ngIf="data.title">{{ data.title }}</p>
-    <a md-raised-button color="primary" href="{{data.tracking_url}}" target="_blank">购买链接</a>
-    <button md-raised-button (click)="dialog.close()">关闭</button>    
+    <a mat-raised-button color="primary" href="{{data.tracking_url}}" target="_blank">购买链接</a>
+    <button mat-raised-button (click)="dialog.close()">关闭</button>    
     `
 })
 export class VoucherCodeDialog {
-    constructor(public dialog: MdDialogRef<VoucherCodeDialog>,
-    @Inject(MD_DIALOG_DATA) public data: any) {}
+    constructor(public dialog: MatDialogRef<VoucherCodeDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
 }
 
 @Component({
@@ -49,7 +47,7 @@ export class TopicBody
 
     today = new Date();
 
-    constructor(public dialog: MdDialog) {}
+    constructor(public dialog: MatDialog) {}
 
     get hasOffer() { return this.offers && this.offers.length > 0; }
 

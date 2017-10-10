@@ -7,7 +7,8 @@ import {
     OnInit, OnDestroy
 } from '@angular/core';
 
-import { ActivatedRoute, Router }    from '@angular/router';
+import { ActivatedRoute, Router }  from '@angular/router';
+import { DOCUMENT }        from '@angular/common';
 import { Observable }      from 'rxjs/Rx';
 import { Store }           from '@ngrx/store';
 
@@ -41,19 +42,20 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
     // Object of entities indexed by key
     entities$: Observable<any>;
 
-    constructor(protected etype: string,
-                protected route: ActivatedRoute,
+    constructor(protected route: ActivatedRoute,
                 protected router: Router,
                 protected baseUrl: string,
                 protected store: Store<AppState>,
+                protected PARAMS: EntityParams,
                 protected pageless: boolean = false) { }
 
     ngOnInit() {
-        this.isLoading$ = this.store.select(getIsLoading(this.etype));
-        this.entities$  = this.store.select(getEntitiesCurPage(this.etype));
+        this.isLoading$ = this.store.select(getIsLoading(this.PARAMS.etype));
+        this.entities$  = this.store.select(getEntitiesCurPage(this.PARAMS.etype));
 
         this.subLoad   = this.isLoading$.subscribe(i => this.isLoading = i);
 
+        this.setupEntityParams();
         this.dispatchLoadEntities();
     }
 
@@ -71,13 +73,16 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
         this.subParams = this.route.params.subscribe(params => {
             // Check if elements of url params change
             if (JSON.stringify(this.params) != JSON.stringify(params)) {
-                this.setupEntityParams(params);
+                this.updateEntityParams(params);
+                console.log("Dispatch LoadEntities action, page: ",
+                    params['page'], ", entityParams: ", this.entityParams);
+
                 if (this.pageless)
                     this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
-                        {etype: this.etype, data: this.entityParams}));
+                        {etype: this.PARAMS.etype, data: this.entityParams}));
                 else
                     this.store.dispatch(new EntityActions.LoadEntities(
-                        {etype: this.etype, data: this.entityParams}));
+                        {etype: this.PARAMS.etype, data: this.entityParams}));
             }
         });
     }
@@ -88,6 +93,7 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
      * Pageless loading
      * Load next page of entities when scroll to page bottom
      */
+    /*
     @HostListener('window:scroll', [])
     loadEntitiesOnScroll() {
         console.error("Window scrolled");
@@ -101,18 +107,32 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
             }, 10);
         }
     }
+    */
 
-    setupEntityParams(params) {
-        this.params = params;
+    get nextPage() { return +this.params['page'] + 1; }
 
+    setupEntityParams() {
         this.entityParams = new EntityParams(
-            this.key,
-            this.etype,
-            20/*per_page*/,
-            +this.params['page'],
-            this.params['category'],
-            null,
-            null
+            this.PARAMS.key,
+            this.PARAMS.etype,
+            this.PARAMS.topic_type,
+            this.PARAMS.topic_has_offer,
+            this.PARAMS.per_page,
+            1 /* page */,
+            this.PARAMS.category,
+            this.PARAMS.topic,
+            this.PARAMS.relations,
+            this.PARAMS.order_by,
+            this.PARAMS.order,
         );
+    }
+
+    updateEntityParams(params) {
+        // Keep a copy of router params
+        this.params = params;
+        // Update current page number
+        this.entityParams =
+            Object.assign({}, this.entityParams, {page: +this.params['page']});
+        // FIXME: We can't use this.entityParams.page = +this.params['page'].
     }
 }

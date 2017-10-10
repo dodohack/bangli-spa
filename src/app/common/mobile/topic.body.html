@@ -1,17 +1,17 @@
 
 <div class="topic-body">
-    <md-tab-group [selectedIndex]="selectedTab">
-        <md-tab label="介绍">
+    <mat-tab-group [selectedIndex]="selectedTab">
+        <mat-tab label="介绍">
             <!-- FIXME: Need to support dynamic content -->
             <div [innerHtml]="content">
             </div>
-        </md-tab>
-        <md-tab label="优惠{{ numOffers }}">
+        </mat-tab>
+        <mat-tab label="优惠{{ numOffers }}">
             <div *ngIf="hasOffer">
-                <md-card *ngFor="let offer of offers" class="deal-card">
+                <mat-card *ngFor="let offer of offers" class="deal-card">
                     <div class="deal-card-content">
-                        <img md-card-image src="http://placehold.it/64x64?text=logo">
-                        <md-card-title>
+                        <img mat-card-image src="http://placehold.it/64x64?text=logo">
+                        <mat-card-title>
                             <span *ngIf="offer.title.length < 80">
                                 {{ offer.title }}
                             </span>
@@ -19,39 +19,39 @@
                                (click)="openVoucherDialog(offer.title, null, offer.tracking_url)">
                                 {{ offer.title.substr(0,79) }}... 展开 <i class="fa fa-caret-down"></i>
                             </a>
-                        </md-card-title>
+                        </mat-card-title>
                     </div>
-                    <md-card-actions>
+                    <mat-card-actions>
                         <span class="deal-metadata">{{ expires(offer.ends) }}</span>
-                        <a md-raised-button target="_blank" href="{{offer.tracking_url}}"
+                        <a mat-raised-button target="_blank" href="{{offer.tracking_url}}"
                            *ngIf="offer.vouchers == ''">购买链接</a>
-                        <button md-raised-button color="primary"
+                        <button mat-raised-button color="primary"
                                 (click)="openVoucherDialog(null, offer.vouchers, offer.tracking_url)"
                                 *ngIf="offer.vouchers">查看优惠码</button>
-                    </md-card-actions>
-                </md-card>
+                    </mat-card-actions>
+                </mat-card>
             </div>
             <div *ngIf="!hasOffer">
                 亲，暂时还没有发现优惠哦...
             </div>
-        </md-tab>
-        <md-tab label="文章">
+        </mat-tab>
+        <mat-tab label="文章">
             <div>
                 List of posts of this topic, we should support order by
                 count of views and publish date.
             </div>
-        </md-tab>
-        <md-tab label="相关产品">
+        </mat-tab>
+        <mat-tab label="相关产品">
             <div>
                 If this is a merchant topic, we will list topics of hot products
                 related to this merchant.
             </div>
-        </md-tab>
-        <md-tab label="相关专题">
+        </mat-tab>
+        <mat-tab label="相关专题">
             <div>
                 List of related topics
             </div>
-        </md-tab>
-    </md-tab-group>
+        </mat-tab>
+    </mat-tab-group>
 
 </div>

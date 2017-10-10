@@ -11,18 +11,18 @@
     </div>
 
     <div class="cards-container">
-        <md-card *ngFor="let offer of offers" class="branded-deal-card">
+        <mat-card *ngFor="let offer of offers" class="branded-deal-card">
             <a [routerLink]="['/merchant', offer.topics[0].guid]" [fragment]="'deal'" class="brand-link">
                 <div class="image">
                     <!--<img class="logo" src="http://placehold.it/64x64?text=Logo">-->
                     <img class="logo" src="{{offer.topics[0].logo}}" *ngIf="offer.topics[0].logo">
                     <img class="main" src="http://placehold.it/400x260?text=BeautyOffer">
                 </div>
-                <md-card-content>
+                <mat-card-content>
                     <div class="brand-name">{{ offer.topics[0].title }}</div>
                     <div class="offer-title">{{ offer.title }}</div>
-                </md-card-content>
+                </mat-card-content>
             </a>
-        </md-card>
+        </mat-card>
     </div>
 </div>

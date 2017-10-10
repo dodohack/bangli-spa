@@ -1,8 +1,9 @@
-import { Component }         from '@angular/core';
+import { Inject, Component } from '@angular/core';
 import { OnInit, OnDestroy } from '@angular/core';
 import { ViewChild }         from '@angular/core';
 import { Router }            from '@angular/router';
 import { Store }             from '@ngrx/store';
+import { DOCUMENT }          from '@angular/common';
 
 import { environment }       from '../environments/environment';
 import { AppState }          from './core/reducers';
@@ -36,7 +37,8 @@ export class _BangliSpa implements OnInit, OnDestroy
 export class _BangliSpaMobile implements OnInit, OnDestroy
 {
     constructor(private router: Router,
-                private store: Store<AppState>) {}
+                private store: Store<AppState>,
+                @Inject(DOCUMENT) private document: any) {}
 
     ngOnInit() {
 
@@ -45,6 +47,11 @@ export class _BangliSpaMobile implements OnInit, OnDestroy
     ngOnDestroy() {
 
     }
+
+    log() {
+        console.log("SCROLL DETECTED: ", document.querySelector("#root").scrollTop);
+    }
+
 }
 
 

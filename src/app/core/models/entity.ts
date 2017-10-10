@@ -56,12 +56,16 @@ export class Entity {
  */
 export class EntityParams {
     constructor(public key: string = 'default',  // key to idx EntitiesState
-                public etype: string = null,     // Entity type
-                public per_page: number = 20,
-                public cur_page: number = 1,
+                public etype: string,            // Entity type
+                public topic_type: string = null, // Topic type only if when querying topics
+                public topic_has_offer: boolean = false, // If the topic has offer associated
+                public per_page: number = 20,    // How many entities per page
+                public page: number = 1,         // Which page going to be load
                 public category: string = null,  // Category this entity belongs
                 public topic: string = null,     // Topic this entity belongs
-                public relations: string = null  // Relationships to be queried together
+                public relations: string = null, // Relationships to be queried together
+                public order_by: string = null,  // Sort entites by which column
+                public order: string = null      // Sort order: asc or desc
     ) {}
 
     static toQueryString(e: EntityParams): string {
@@ -74,12 +78,15 @@ export class EntityParams {
 
     static _toString(e: EntityParams, delimiter: string) {
         let s = 'key=' + e.key + delimiter + 'etype=' + e.etype;
+        if (e.topic_type) s += delimiter + 'topic_type=' + e.topic_type;
+        if (e.topic_has_offer) s += delimiter + 'topic_has_offer=' + e.topic_has_offer;
         if (e.per_page) s += delimiter + 'per_page=' + e.per_page;
-        if (e.cur_page) s += delimiter + 'cur_page=' + e.cur_page;
+        if (e.page) s += delimiter + 'page=' + e.page;
         if (e.category) s += delimiter + 'category=' + e.category;
         if (e.topic) s += delimiter + 'topic=' + e.topic;
         if (e.relations) s += delimiter + 'relations=' + e.relations;
-        // TODO:
+        if (e.order_by) s += delimiter + 'order_by=' + e.order_by;
+        if (e.order) s += delimiter + 'order=' + e.order;
         return s;
     }
 }

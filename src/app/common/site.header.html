@@ -6,19 +6,19 @@ E.g: Only show locations for home, travel, local etc.
     <nav class="mega-menu-wrapper">
 
         <div class="mega-menu" *ngFor="let c of (topMenus$ | async)">
-            <a class="menu-item" md-ripple [routerLink]="[c.url]">{{ c.name }}</a>
+            <a class="menu-item" mat-ripple [routerLink]="[c.url]">{{ c.name }}</a>
 
             <div class="mega-dropdown" *ngIf="subMenus$(c.id) | async">
                 <h2><a [routerLink]="[c.url]">{{ c.name }}热门城市</a></h2>
                 <div class="dropdown-items">
                     <!-- Group 1 is hot cities -->
-                    <a md-button md-ripple *ngFor="let city of (subMenus$(c.id) | async)[1]"
+                    <a mat-button mat-ripple *ngFor="let city of (subMenus$(c.id) | async)[1]"
                        [routerLink]="[city.url]">{{ city.name }}</a>
                 </div>
                 <h2>{{ c.name }}所有城市</h2>
                 <div class="dropdown-items">
                     <!-- Group 2 is all cities -->
-                    <a md-button md-ripple *ngFor="let city of (subMenus$(c.id) | async)[2]"
+                    <a mat-button mat-ripple *ngFor="let city of (subMenus$(c.id) | async)[2]"
                        [routerLink]="[city.url]">{{ city.name }}</a>
                 </div>
             </div>
@@ -39,7 +39,7 @@ E.g: Only show locations for home, travel, local etc.
             </div>
 
             <div class="col-lg-1">
-                <a routerLink="/place/london" md-button>伦敦</a>
+                <a routerLink="/place/london" mat-button>伦敦</a>
             </div>
         </div>
     </div>
@@ -48,21 +48,21 @@ E.g: Only show locations for home, travel, local etc.
     <!--
     <div class="row">
         <div class="col-lg-12">
-            <md-tab-group [selectedIndex]="menuidx || 0">
+            <mat-tab-group [selectedIndex]="menuidx || 0">
 
-                <md-tab *ngFor="let m of (mainMenus$ | async); let i=index">
-                    <a *md-tab-label (mouseover)="menuidx = i"
+                <mat-tab *ngFor="let m of (mainMenus$ | async); let i=index">
+                    <a *mat-tab-label (mouseover)="menuidx = i"
                        [routerLink]="[m.url]" routerLinkActive="active">{{ m.name }}</a>
 
-                    <template md-tab-content>
+                    <template mat-tab-content>
                         <div *ngFor="let gid of (subMenuGids$(m.id) | async)" class="multirow col4">
                             <a *ngFor="let item of (subMenus$(m.id) | async)[gid]"
                                [routerLink]="[item.url]">{{ item.name }}</a>
                         </div>
                     </template>
-                </md-tab>
+                </mat-tab>
 
-            </md-tab-group>
+            </mat-tab-group>
         </div>
     </div>
 -->
