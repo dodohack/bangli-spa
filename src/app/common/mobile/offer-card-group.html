@@ -15,7 +15,7 @@
             <a [routerLink]="['/merchant', offer.topics[0].guid]" [fragment]="'deal'" class="brand-link">
                 <div class="image">
                     <!--<img class="logo" src="http://placehold.it/64x64?text=Logo">-->
-                    <img class="logo" src="{{offer.topics[0].logo}}" *ngIf="offer.topics[0].logo">
+                    <img class="logo" [src]="offer.topics[0].logo" *ngIf="offer.topics[0].logo">
                     <img class="main" src="http://placehold.it/400x260?text=BeautyOffer">
                 </div>
                 <mat-card-content>

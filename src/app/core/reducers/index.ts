@@ -172,6 +172,22 @@ export function getEntitiesCurPage(etype: string) {
     }
 }
 
+export function getPaginators(etype: string) {
+    switch(etype) {
+        case ENTITY.TOPIC:
+            return getTopicPaginators;
+        case ENTITY.OFFER:
+            return getOfferPaginators;
+        case ENTITY.POST:
+            return getPostPaginators;
+        case ENTITY.PAGE:
+            return getPagePaginators;
+        default:
+            console.error("REDUCER EXCEPTION!");
+    }
+}
+
+
 export function getIsLoading(etype: string) {
     switch(etype) {
         case ENTITY.TOPIC:

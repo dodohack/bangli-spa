@@ -18,7 +18,8 @@ import { AppState } from '../core/reducers';
 
 import * as EntityActions  from '../core/actions/entity';
 
-import { getIsLoading, getEntitiesCurPage } from './reducers';
+import { getIsLoading, getEntitiesCurPage, getPaginators } from './reducers';
+import {Paginator} from "./models/paginator";
 
 export abstract class EntitiesBase implements OnInit, OnDestroy
 {
@@ -39,6 +40,8 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
     isLoading$: Observable<boolean>;
     isLoading: boolean;
 
+    paginator$: Observable<any>;
+
     // Object of entities indexed by key
     entities$: Observable<any>;
 
@@ -52,6 +55,7 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
     ngOnInit() {
         this.isLoading$ = this.store.select(getIsLoading(this.PARAMS.etype));
         this.entities$  = this.store.select(getEntitiesCurPage(this.PARAMS.etype));
+        this.paginator$ = this.store.select(getPaginators(this.PARAMS.etype));
 
         this.subLoad   = this.isLoading$.subscribe(i => this.isLoading = i);
 
@@ -75,7 +79,8 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
             if (JSON.stringify(this.params) != JSON.stringify(params)) {
                 this.updateEntityParams(params);
 
-                if (this.pageless)
+                // For first page entity, always clean up the idsCurPage.
+                if (this.pageless && params['page'] > 1)
                     this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
                         {etype: this.PARAMS.etype, data: this.entityParams}));
                 else
@@ -107,7 +112,18 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
     }
     */
 
-    get nextPage() { return +this.params['page'] + 1; }
+    get nextPage() {
+        let np: number = +this.params['page'] + 1;
+        return this.baseUrl + this.params['filter'] + '/' + np;
+    }
+
+    isLastPage(paginator: Paginator) {
+        if (!paginator) return true;
+
+        if (paginator.cur_page == paginator.last_page)
+            return true;
+        return false;
+    }
 
     setupEntityParams() {
         this.entityParams = new EntityParams(
@@ -129,9 +145,21 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
     updateEntityParams(params) {
         // Keep a copy of router params
         this.params = params;
-        // Update current page number
-        this.entityParams =
-            Object.assign({}, this.entityParams, {page: +this.params['page']});
+
+        // TODO: Extract 'featured' from this.params['filter'].
         // FIXME: We can't use this.entityParams.page = +this.params['page'].
+
+        if (this.params['filter'] && this.params['filter'].length == 1)
+            // Update page number and filter
+            this.entityParams = Object.assign({}, this.entityParams, {
+                    page: +this.params['page'],
+                    topic_guid_starts: this.params['filter'].toLowerCase()
+                });
+        else
+            // Update current page number
+            this.entityParams = Object.assign({}, this.entityParams, {
+                page: +this.params['page'],
+                topic_guid_starts: null
+            });
     }
 }

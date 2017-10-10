@@ -38,13 +38,6 @@ export class _MerchantListMobile extends EntitiesBase
         super(route, router, '/deal/list/', store, SINGLE_PARAMS, true/*pageless*/);
     }
 
-    // Kick paged entities load
-    loadEntitiesStartWith(c) {
-        let ep = Object.assign({}, SINGLE_PARAMS, {page: 1});
-        this.store.dispatch(new EntityActions.LoadEntities(
-            {etype: SINGLE_PARAMS.etype, data: ep}));
-    }
-
     isGroupStart(i, c1, c2) {
         if (i == 0) return true;
         if (c1.substring(0,1) === c2.substring(0,1)) return false;
