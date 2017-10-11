@@ -40,7 +40,7 @@ export class _OfferCategoryMobile extends GroupEntitiesBase
         super(route, store, router, cfg.GROUP_KEYS, [
             cfg.FEATURED_TOPIC_PARAMS,
                 cfg.TOPIC_PARAMS
-            ], true/*pageless*/);
+            ], true);
     }
 }
 

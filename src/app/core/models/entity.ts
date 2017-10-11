@@ -56,8 +56,11 @@ export interface Entity {
  */
 export interface EntityParams {
     // Some property that does not send to api server
+    // TODO: Need to put some non query params into seperated interface.
+    /*
     name?: string;  // display name
     style?: string; // css style
+    */
 
     // Query parameters that will send to API server
     key: string;       // key to idx EntitiesState

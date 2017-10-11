@@ -1,11 +1,11 @@
 <!-- Offers home page for mobile, this is different from merchants home page -->
 <div class="offers-index">
     <carousel [interval]="3000" [noWrap]="false">
-        <slide *ngFor="let offer of (offers$ | async)[groupKeys.FEATURED_BEAUTY_OFFER]; let idx=index">
-            <a [routerLink]="['/merchant', offer.topics[0].guid]" [fragment]="'deal'">
+        <slide *ngFor="let topic of (topics$ | async)[groupKeys.CATEGORY_FEATURED_TOPIC_W_OFFER]; let idx=index">
+            <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'">
                 <img src="http://placehold.it/800x300?text=TopOffer-{{idx}}">
                 <div class="carousel-caption">
-                    <h4>[{{ offer.topics[0].title }}] {{ offer.title }}</h4>
+                    <h4>[{{ topic.title }}] {{ topic.offers[0].title }}</h4>
                 </div>
             </a>
         </slide>
@@ -22,9 +22,15 @@
     <h2>Sort all the offers by their topic and order by featured topics to non featured ones</h2>
 
     <!-- Deal card with brand logo -->
-    <offer-card-group [offers]="(offers$ | async)[groupKeys.FEATURED_BRAND_LF_OFFER]"
-                      [title]="'Lookfantastic优惠'"
-                      [topic]="'lookfantastic'">
-    </offer-card-group>
+    <ng-template ngFor let-topic [ngForOf]="(topics$ | async)[groupKeys.CATEGORY_TOPIC_W_OFFER]">
+        <offer-card-group [offers]="topic.offers"
+                          [topic]="topic">
+        </offer-card-group>
+    </ng-template>
 
+
+    <div style="padding: 20px 0" *ngIf="!isLastGroupLoading && pageless">
+        <a mat-raised-button class="load-more" [routerLink]="['/deal/cat', lastGroupCat, nextPage]"
+           *ngIf="!isLastPage((paginator$|async)[groupKeys.CATEGORY_TOPIC_W_OFFER])">加载更多</a>
+    </div>
 </div>

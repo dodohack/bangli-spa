@@ -1,18 +1,19 @@
 <!-- Offers home page for mobile, this is different from merchants home page -->
 <div class="offers-index">
     <carousel [interval]="3000" [noWrap]="false">
-        <slide *ngFor="let offer of (offers$ | async)[groupKeys.FEATURED_OFFER]; let idx=index">
-            <a [routerLink]="['/merchant', offer.topics[0].guid]" [fragment]="'deal'">
+        <slide *ngFor="let topic of (topics$ | async)[groupKeys.FEATURED_OFFER]; let idx=index">
+            <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'">
                 <img src="http://placehold.it/800x300?text=TopOffer-{{idx}}">
                 <div class="carousel-caption">
-                    <h4>[{{ offer.topics[0].title }}] {{ offer.title }}</h4>
+                    <h4>[{{ topic.title }}] {{ topic.offers[0].title }}</h4>
                 </div>
             </a>
         </slide>
     </carousel>
 
     <!-- TODO: Get title/category from groupParams instead of hardcoded here -->
-    <offer-card-group [offers]="(offers$ | async)[groupKeys.FEATURED_BEAUTY_OFFER]"
+    <!--
+    <offer-card-group [topic]="(offers$ | async)[groupKeys.FEATURED_BEAUTY_OFFER]"
                       [title]="'美妆优惠'"
                       [category]="'beauty'">
     </offer-card-group>
@@ -26,4 +27,5 @@
                       [title]="'服饰箱包'"
                       [category]="'clothes-bag'">
     </offer-card-group>
+    -->
 </div>

@@ -143,7 +143,7 @@ function entitiesReducer(etype: string,
             let key     = action.payload.data.key;
             let pager   = action.payload.data.paginator;
             let entities: Entity[] = action.payload.data.entities;
-            
+
             if (!entities || !entities.length)
                 return state;
 

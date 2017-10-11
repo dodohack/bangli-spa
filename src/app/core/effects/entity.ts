@@ -206,7 +206,6 @@ export class EntityEffects {
      * query.
      */
     protected getGroupEntities(paramGroups: EntityParams[]): Observable<any> {
-        console.error("group params: ", paramGroups);
         let api = API('batch') + '?group=' + this.buildMultiGroupFilters(paramGroups);
         return this.http.get(api).map(res => res.json());
     }

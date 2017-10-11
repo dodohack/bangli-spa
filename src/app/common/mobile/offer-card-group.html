@@ -1,25 +1,25 @@
 <div class="cards-wrapper">
     <div class="cards-title">
-        {{ title }}
+        {{ topic.title }}
         <a class="more" [routerLink]="['/deal/cat', category]" *ngIf="category">
             <i class="fa fa-lg fa-ellipsis-h"></i>
         </a>
 
-        <a class="more" [routerLink]="['/merchant/', topic]" [fragment]="'deal'" *ngIf="topic">
+        <a class="more" [routerLink]="['/merchant/', topic.guid]" [fragment]="'deal'" *ngIf="topic">
             <i class="fa fa-lg fa-ellipsis-h"></i>
         </a>
     </div>
 
     <div class="cards-container">
-        <mat-card *ngFor="let offer of offers" class="branded-deal-card">
-            <a [routerLink]="['/merchant', offer.topics[0].guid]" [fragment]="'deal'" class="brand-link">
+        <mat-card *ngFor="let offer of topic.offers" class="branded-deal-card">
+            <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'" class="brand-link">
                 <div class="image">
                     <!--<img class="logo" src="http://placehold.it/64x64?text=Logo">-->
-                    <img class="logo" [src]="offer.topics[0].logo" *ngIf="offer.topics[0].logo">
+                    <img class="logo" [src]="topic.logo" *ngIf="topic.logo">
                     <img class="main" src="http://placehold.it/400x260?text=BeautyOffer">
                 </div>
                 <mat-card-content>
-                    <div class="brand-name">{{ offer.topics[0].title }}</div>
+                    <div class="brand-name">{{ topic.title }}</div>
                     <div class="offer-title">{{ offer.title }}</div>
                 </mat-card-content>
             </a>

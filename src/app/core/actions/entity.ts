@@ -22,6 +22,7 @@ export const LOAD_ENTITIES_ON_SCROLL_FAIL = '[Entity] Load Entities On Scroll Fa
 export const LOAD_ENTITY   = '[Entity] Load Entity';
 export const LOAD_ENTITY_SUCCESS   = '[Entity] Load Entity Success';
 export const LOAD_ENTITY_FAIL = '[Entity] Load Entity Fail';
+export const CLEAN_CACHE = '[Entity] Clean Cache';
 
 export class Search implements Action {
     readonly type = SEARCH;
@@ -92,6 +93,11 @@ export class LoadEntityFail implements Action {
     constructor(public payload: any = null) {}
 }
 
+export class CleanCache implements Action {
+    readonly type = CLEAN_CACHE;
+    readonly payload?: any;
+}
+
 export type Actions = Search
     | SearchComplete
     | LoadEntities
@@ -104,4 +110,5 @@ export type Actions = Search
     | LoadEntitiesOnScrollFail
     | LoadEntity
     | LoadEntitySuccess
-    | LoadEntityFail;
+    | LoadEntityFail
+    | CleanCache;

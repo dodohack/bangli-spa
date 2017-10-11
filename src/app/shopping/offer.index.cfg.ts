@@ -14,8 +14,8 @@ export const GROUP_KEYS = {
 // 6 featured offers
 export const FEATURED_OFFER: EntityParams = {
     key: GROUP_KEYS.FEATURED_OFFER,
-    name: '推荐优惠',
-    style: '',
+    //name: '推荐优惠',
+    //style: '',
     etype: ENTITY.OFFER,
     per_page: 6,
     page: 1,
@@ -28,9 +28,9 @@ export const FEATURED_OFFER: EntityParams = {
 // 6 featured offers of beauty category
 export const FEATURED_BEAUTY_OFFER: EntityParams = {
     key: GROUP_KEYS.FEATURED_BEAUTY_OFFER,
-    name: '美妆优惠',
+    //name: '美妆优惠',
     category: 'beauty',
-    style: '',
+    //style: '',
     etype: ENTITY.OFFER,
     per_page: 6,
     page: 1,
@@ -42,9 +42,9 @@ export const FEATURED_BEAUTY_OFFER: EntityParams = {
 // 6 featured offers of health category
 export const FEATURED_HEALTHCARE_OFFER: EntityParams = {
     key: GROUP_KEYS.FEATURED_HEALTHCARE_OFFER,
-    name: '保健优惠',
+    //name: '保健优惠',
     category: 'healthcare',
-    style: '',
+    //style: '',
     etype: ENTITY.OFFER,
     per_page: 6,
     page: 1,
@@ -56,9 +56,9 @@ export const FEATURED_HEALTHCARE_OFFER: EntityParams = {
 // 6 featured offers of fashion category
 export const FEATURED_FASHION_OFFER: EntityParams = {
     key: GROUP_KEYS.FEATURED_FASHION_OFFER,
-    name: '服饰箱包',
+    //name: '服饰箱包',
     category: 'clothes-bag',
-    style: '',
+    //style: '',
     etype: ENTITY.OFFER,
     per_page: 6,
     page: 1,

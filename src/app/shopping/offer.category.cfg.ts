@@ -19,12 +19,14 @@ export const GROUP_KEYS = {
 // Featured topics with featured offers belongs to given category
 export const FEATURED_TOPIC_PARAMS: EntityParams = {
     key: GROUP_KEYS.CATEGORY_FEATURED_TOPIC_W_OFFER,
-    name: '推荐优惠',
+    //name: '推荐优惠',
     //category: 'beauty',
-    style: '',
+    //style: '',
     etype: ENTITY.TOPIC,
     featured: true, // Only query featured topic
-    topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
+    topic_type: 'merchant',
+    topic_has_offer: true,
+    //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
     per_page: 6,
     page: 1,
     order_by: 'published_at',
@@ -36,9 +38,10 @@ export const FEATURED_TOPIC_PARAMS: EntityParams = {
 // at the front.
 export const TOPIC_PARAMS: EntityParams = {
     key: GROUP_KEYS.CATEGORY_TOPIC_W_OFFER,
-    name: '更多优惠',
-    style: '',
+    //name: '更多优惠',
+    //style: '',
     etype: ENTITY.TOPIC,
+    topic_type: 'merchant',
     topic_has_offer: true, // Only query topic which at least has 1 offer
     per_page: 6,
     page: 1,
