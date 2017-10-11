@@ -54,7 +54,7 @@
  * ......
  */
 
-export class Menu {
+export interface Menu {
     id: number;
     parent_id: number; // Parent menu id, we use menu with parent_id 0 as menu
                        // selector, each type of menu has 1 menu with parent_id = 0,

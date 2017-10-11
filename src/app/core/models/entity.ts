@@ -27,7 +27,7 @@ export const ENTITY_INFO = {
 /**
  * Entity model of topic
  */
-export class Entity {
+export interface Entity {
     id: string;
     guid: string;
     channel_id: number;
@@ -54,42 +54,24 @@ export class Entity {
 /**
  *TODO: add more attributes
  */
-export class EntityParams {
-    constructor(public key: string = 'default',  // key to idx EntitiesState
-                public etype: string,            // Entity type
-                public topic_type: string = null, // Topic type only if when querying topics
-                public topic_has_offer: boolean = false, // If the topic has offer associated
-                public topic_guid_starts: string = null, // topic guid starts with character
-                public per_page: number = 20,    // How many entities per page
-                public page: number = 1,         // Which page going to be load
-                public category: string = null,  // Category this entity belongs
-                public topic: string = null,     // Topic this entity belongs
-                public relations: string = null, // Relationships to be queried together
-                public order_by: string = null,  // Sort entites by which column
-                public order: string = null      // Sort order: asc or desc
-    ) {}
+export interface EntityParams {
+    // Some property that does not send to api server
+    name?: string;  // display name
+    style?: string; // css style
 
-    static toQueryString(e: EntityParams): string {
-        return this._toString(e, '&');
-    }
-
-    static toBatchQueryString(e: EntityParams): string {
-        return this._toString(e, ';');
-    }
-
-    static _toString(e: EntityParams, delimiter: string) {
-        let s = 'key=' + e.key + delimiter + 'etype=' + e.etype;
-        if (e.topic_type) s += delimiter + 'topic_type=' + e.topic_type;
-        if (e.topic_has_offer) s += delimiter + 'topic_has_offer=' + e.topic_has_offer;
-        if (e.topic_guid_starts) s += delimiter + 'topic_guid_starts=' + e.topic_guid_starts;
-        if (e.per_page) s += delimiter + 'per_page=' + e.per_page;
-        if (e.page) s += delimiter + 'page=' + e.page;
-        if (e.category) s += delimiter + 'category=' + e.category;
-        if (e.topic) s += delimiter + 'topic=' + e.topic;
-        if (e.relations) s += delimiter + 'relations=' + e.relations;
-        if (e.order_by) s += delimiter + 'order_by=' + e.order_by;
-        if (e.order) s += delimiter + 'order=' + e.order;
-        return s;
-    }
+    // Query parameters that will send to API server
+    key: string;       // key to idx EntitiesState
+    etype: string;     // Entity type
+    per_page: number;  // How many entities per page
+    page: number;      // Which page going to be load
+    featured?: boolean; // Is featured entity
+    topic_has_featured_offer?: boolean; // Has featured offer
+    topic_type?: string; // Topic type only if when querying topics
+    topic_has_offer?: boolean; // If the topic has offer associated
+    topic_guid_starts?: string; // topic guid starts with character
+    category?: string;  // Category this entity belongs
+    topic?: string;     // Topic this entity belongs
+    relations?: string; // Relationships to be queried together
+    order_by?: string;  // Sort entites by which column
+    order?: string; // Sort order: asc or desc
 }
-

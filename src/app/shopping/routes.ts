@@ -14,7 +14,8 @@ const routes: Routes = [
     { path: 'deal',           component: OfferIndex },
     { path: 'deal/list',      redirectTo: 'deal/list/all/1'},
     { path: 'deal/list/:filter/:page', component: MerchantList },
-    { path: 'deal/cat/:guid', component: OfferCategory },
+    { path: 'deal/cat/:slug',       component: OfferCategory },
+    { path: 'deal/cat/:slug/:page', component: OfferCategory },
 
 ];
 

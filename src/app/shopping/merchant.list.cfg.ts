@@ -5,17 +5,13 @@
 import { ENTITY, EntityParams } from '../core/models';
 
 
-export const SINGLE_PARAMS: EntityParams = {
+export const SINGLE_PARAMS: EntityParams  = {
     key: 'default',
     etype: ENTITY.TOPIC,
     topic_type: 'merchant', // Only query merchant topic
     topic_has_offer: true,  // Only query topic which at least has 1 offer
-    topic_guid_starts: null,
     per_page: 20,
-    page: null,
-    category: null,
-    topic: null,
-    relations: null,
+    page: 1,
     order_by: 'guid',
     order: 'asc'
 };

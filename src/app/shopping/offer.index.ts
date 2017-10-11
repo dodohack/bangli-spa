@@ -4,20 +4,25 @@ import { Store } from "@ngrx/store";
 
 import { environment } from '../../environments/environment';
 import { AppState } from "../core/reducers";
-import { GroupEntitiesBase } from '../core/group-entities.base';
-import { GROUP_KEYS, GROUP_PARAMS } from './offer.index.cfg';
+import { GroupEntitiesBaseFixed } from '../core/group-entities-fixed.base';
+import * as cfg from './offer.index.cfg';
 
 
 @Component({
     selector: '',
     templateUrl: './offer.index.html'
 })
-export class _OfferIndex extends GroupEntitiesBase
+export class _OfferIndex extends GroupEntitiesBaseFixed
 {
     constructor(protected route: ActivatedRoute,
                 protected store: Store<AppState>,
                 protected router: Router) {
-        super(route, store, router, GROUP_KEYS, GROUP_PARAMS);
+        super(route, store, router, cfg.GROUP_KEYS, [
+            cfg.FEATURED_OFFER,
+            cfg.FEATURED_BEAUTY_OFFER,
+            cfg.FEATURED_HEALTHCARE_OFFER,
+            cfg.FEATURED_FASHION_OFFER
+        ]);
     }
 }
 
@@ -25,12 +30,17 @@ export class _OfferIndex extends GroupEntitiesBase
     selector: '',
     templateUrl: './offer.index.m.html'
 })
-export class _OfferIndexMobile extends GroupEntitiesBase
+export class _OfferIndexMobile extends GroupEntitiesBaseFixed
 {
     constructor(protected route: ActivatedRoute,
                 protected store: Store<AppState>,
                 protected router: Router) {
-        super(route, store, router, GROUP_KEYS, GROUP_PARAMS);
+        super(route, store, router, cfg.GROUP_KEYS, [
+            cfg.FEATURED_OFFER,
+            cfg.FEATURED_BEAUTY_OFFER,
+            cfg.FEATURED_HEALTHCARE_OFFER,
+            cfg.FEATURED_FASHION_OFFER
+        ]);
     }
 }
 

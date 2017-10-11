@@ -3,11 +3,11 @@
  * Data model of cms post
  */
 
-export class PostParams {
+export interface PostParams {
 
 }
 
-export class Post {
+export interface Post {
     id: number;
     channel_id: number;
 }

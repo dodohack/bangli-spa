@@ -12,14 +12,11 @@ import { DOCUMENT }        from '@angular/common';
 import { Observable }      from 'rxjs/Rx';
 import { Store }           from '@ngrx/store';
 
-import { EntityParams }  from './models';
-
-import { AppState } from '../core/reducers';
-
+import { EntityParams, Paginator }  from './models';
 import * as EntityActions  from '../core/actions/entity';
-
+import { AppState } from './reducers';
 import { getIsLoading, getEntitiesCurPage, getPaginators } from './reducers';
-import {Paginator} from "./models/paginator";
+
 
 export abstract class EntitiesBase implements OnInit, OnDestroy
 {
@@ -32,9 +29,6 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
 
     // A copy of route.params
     params: any;
-
-    // Entities query parameters for API request
-    entityParams: EntityParams;
 
     // If the list of entities is loading from server
     isLoading$: Observable<boolean>;
@@ -49,17 +43,16 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
                 protected router: Router,
                 protected baseUrl: string,
                 protected store: Store<AppState>,
-                protected PARAMS: EntityParams,
+                protected entityParams: EntityParams,
                 protected pageless: boolean = false) { }
 
     ngOnInit() {
-        this.isLoading$ = this.store.select(getIsLoading(this.PARAMS.etype));
-        this.entities$  = this.store.select(getEntitiesCurPage(this.PARAMS.etype));
-        this.paginator$ = this.store.select(getPaginators(this.PARAMS.etype));
+        this.isLoading$ = this.store.select(getIsLoading(this.entityParams.etype));
+        this.entities$  = this.store.select(getEntitiesCurPage(this.entityParams.etype));
+        this.paginator$ = this.store.select(getPaginators(this.entityParams.etype));
 
         this.subLoad   = this.isLoading$.subscribe(i => this.isLoading = i);
 
-        this.setupEntityParams();
         this.dispatchLoadEntities();
     }
 
@@ -70,8 +63,8 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
 
     /**
      * Kick an action to load entities when URL changes.
-     * TODO: Can we kick this action in entity effect since we can check
-     * on NAVIGATION action
+     * TODO: Can we kick this action in entity effect since we can use
+     * TODO: ROUTER_NAVIGATION action
      */
     dispatchLoadEntities() {
         this.subParams = this.route.params.subscribe(params => {
@@ -82,10 +75,10 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
                 // For first page entity, always clean up the idsCurPage.
                 if (this.pageless && params['page'] > 1)
                     this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
-                        {etype: this.PARAMS.etype, data: this.entityParams}));
+                        {etype: this.entityParams.etype, data: this.entityParams}));
                 else
                     this.store.dispatch(new EntityActions.LoadEntities(
-                        {etype: this.PARAMS.etype, data: this.entityParams}));
+                        {etype: this.entityParams.etype, data: this.entityParams}));
             }
         });
     }
@@ -125,25 +118,8 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
         return false;
     }
 
-    setupEntityParams() {
-        this.entityParams = new EntityParams(
-            this.PARAMS.key,
-            this.PARAMS.etype,
-            this.PARAMS.topic_type,
-            this.PARAMS.topic_has_offer,
-            this.PARAMS.topic_guid_starts,
-            this.PARAMS.per_page,
-            1 /* page */,
-            this.PARAMS.category,
-            this.PARAMS.topic,
-            this.PARAMS.relations,
-            this.PARAMS.order_by,
-            this.PARAMS.order,
-        );
-    }
-
     updateEntityParams(params) {
-        // Keep a copy of router params
+        // Keep a copy of route.params
         this.params = params;
 
         // TODO: Extract 'featured' from this.params['filter'].
@@ -152,14 +128,14 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
         if (this.params['filter'] && this.params['filter'].length == 1)
             // Update page number and filter
             this.entityParams = Object.assign({}, this.entityParams, {
-                    page: +this.params['page'],
-                    topic_guid_starts: this.params['filter'].toLowerCase()
-                });
+                page: +this.params['page'],
+                topic_guid_starts: this.params['filter'].toLowerCase()
+            });
         else
             // Update current page number
             this.entityParams = Object.assign({}, this.entityParams, {
                 page: +this.params['page'],
-                topic_guid_starts: null
+                topic_guid_starts: ''
             });
     }
 }

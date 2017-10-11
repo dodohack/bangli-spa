@@ -9,7 +9,7 @@ import { Store }             from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import { AppState } from "../core/reducers";
 import { GroupEntitiesBase } from '../core/group-entities.base';
-import { GROUP_KEYS, GROUP_PARAMS } from './offer.category.cfg';
+import * as cfg from './offer.category.cfg';
 
 @Component({
     selector: '',
@@ -20,7 +20,10 @@ export class _OfferCategory extends GroupEntitiesBase
     constructor(protected route: ActivatedRoute,
                 protected store: Store<AppState>,
                 protected router: Router) {
-        super(route, store, router, GROUP_KEYS, GROUP_PARAMS);
+        super(route, store, router, cfg.GROUP_KEYS, [
+            cfg.FEATURED_TOPIC_PARAMS,
+            cfg.TOPIC_PARAMS
+        ]);
     }
 }
 
@@ -33,7 +36,11 @@ export class _OfferCategoryMobile extends GroupEntitiesBase
     constructor(protected route: ActivatedRoute,
                 protected store: Store<AppState>,
                 protected router: Router) {
-        super(route, store, router, GROUP_KEYS, GROUP_PARAMS);
+        // Only last group of entities will be pageless
+        super(route, store, router, cfg.GROUP_KEYS, [
+            cfg.FEATURED_TOPIC_PARAMS,
+                cfg.TOPIC_PARAMS
+            ], true/*pageless*/);
     }
 }
 

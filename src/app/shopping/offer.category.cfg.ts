@@ -1,44 +1,83 @@
 /**
- * This file defines the grouped parameters used to query offers for
- * offer's home page.
+ * This file defines the grouped parameters used to query topics with
+ * offers for offer category page.
+ * NOTE: We are not querying offers with topics.
  */
 import { ENTITY } from "../core/models";
+import {EntityParams} from "../core/models/entity";
 
 export const GROUP_KEYS = {
-    FEATURED_BEAUTY_OFFER: 'ch_offer_beauty_featured_offers',
-    FEATURED_BRAND_LF_OFFER: 'ch_offer_brand_lf_featured_offers',
+    CATEGORY_FEATURED_TOPIC_W_OFFER: 'ch_offer_featured_topic_w_offer',
+    CATEGORY_TOPIC_W_OFFER: 'ch_offer_topic_w_offer',
 };
 
-export const GROUP_PARAMS = [
-    // Group 1
-    [
-        // 6 featured offers of beauty category
-        {
-            key: GROUP_KEYS.FEATURED_BEAUTY_OFFER,
-            name: '美妆优惠',
-            category: 'beauty',
-            style: '',
-            etype: ENTITY.OFFER,
-            per_page: 6,
-            order_by: 'published_at',
-            order: 'desc',
-            relations: ENTITY.TOPIC
-        },
-        // 6 featured offers from LF UK
-        {
-            key: GROUP_KEYS.FEATURED_BRAND_LF_OFFER,
-            name: 'Lookfantastic优惠',
-            topic: 'lookfantastic',
-            style: '',
-            etype: ENTITY.OFFER,
-            per_page: 6,
-            order_by: 'published_at',
-            order: 'desc',
-            relations: ENTITY.TOPIC
-        },
-    ],
-    // Group 2
-    [
+// We have simplified the GROUP_PARAMS based on previous generation.
+// In previous generation, we manually group params into sub-group so that
+// we can separate big API requests into small ones. But now, we will let
+// the code to decide how to divide big API requests into small ones.
 
-    ],
+// Featured topics with featured offers belongs to given category
+export const FEATURED_TOPIC_PARAMS: EntityParams = {
+    key: GROUP_KEYS.CATEGORY_FEATURED_TOPIC_W_OFFER,
+    name: '推荐优惠',
+    //category: 'beauty',
+    style: '',
+    etype: ENTITY.TOPIC,
+    featured: true, // Only query featured topic
+    topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
+    per_page: 6,
+    page: 1,
+    order_by: 'published_at',
+    order: 'desc',
+    relations: ENTITY.OFFER
+};
+
+// Topics with offers belongs to given category order by featured topics
+// at the front.
+export const TOPIC_PARAMS: EntityParams = {
+    key: GROUP_KEYS.CATEGORY_TOPIC_W_OFFER,
+    name: '更多优惠',
+    style: '',
+    etype: ENTITY.TOPIC,
+    topic_has_offer: true, // Only query topic which at least has 1 offer
+    per_page: 6,
+    page: 1,
+    order_by: 'featured',
+    order: 'desc',
+    relations: ENTITY.OFFER
+};
+
+/*
+export const GROUP_PARAMS = [
+    // Featured topics with featured offers belongs to given category
+    {
+        key: GROUP_KEYS.CATEGORY_FEATURED_TOPIC_W_OFFER,
+        name: '推荐优惠',
+        //category: 'beauty',
+        style: '',
+        etype: ENTITY.TOPIC,
+        featured: true, // Only query featured topic
+        topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
+        per_page: 6,
+        page: 1,
+        order_by: 'published_at',
+        order: 'desc',
+        relations: ENTITY.OFFER
+    },
+
+    // Topics with offers belongs to given category order by featured topics
+    // at the front.
+    {
+        key: GROUP_KEYS.CATEGORY_TOPIC_W_OFFER,
+        name: '更多优惠',
+        style: '',
+        etype: ENTITY.TOPIC,
+        topic_has_offer: true, // Only query topic which at least has 1 offer
+        per_page: 6,
+        page: 1,
+        order_by: 'featured',
+        order: 'desc',
+        relations: ENTITY.OFFER
+    },
 ];
+*/

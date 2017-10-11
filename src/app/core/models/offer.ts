@@ -5,11 +5,11 @@
  * define the full entries which matches what is in database.
  */
 
-export class OfferParams {
+export interface OfferParams {
 
 }
 
-export class Offer {
+export interface Offer {
     id: number;
     channel_id: number;
     title: string;

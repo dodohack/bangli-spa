@@ -3,7 +3,7 @@
  */
 
 
-export class Topic {
+export interface Topic {
     id: number;
     guid: string;
     channel_id: number;

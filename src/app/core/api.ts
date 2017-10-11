@@ -25,5 +25,5 @@ const ENDPOINT = {
 
 export function API(ep: string) {
     // FIXME: hardcode endpoint
-    return 'http://192.168.1.118:5001' + ENDPOINT[ep];
+    return 'http://localhost:5001' + ENDPOINT[ep];
 }

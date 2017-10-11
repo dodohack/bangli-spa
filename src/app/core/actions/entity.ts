@@ -40,7 +40,7 @@ export class LoadEntities implements Action {
 
 export class LoadGroupEntities implements Action {
     readonly type = LOAD_GROUP_ENTITIES;
-    constructor(public payload: {params: EntityParams[]}) {}
+    constructor(public payload: EntityParams[]) {}
 }
 
 export class LoadEntitiesSuccess implements Action {

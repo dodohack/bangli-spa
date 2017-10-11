@@ -135,6 +135,26 @@ export class EntityEffects {
     }
 
     /**
+     * Generalized function to convert EntityParams object into API get
+     * parameters.
+     * @param e
+     * @param delimiter - ';' for multiple group entities, '&' for single group entities
+     * @returns {string}
+     */
+    params2String(e: EntityParams, delimiter: string) {
+        let s = '';
+
+        for (let key in e) {
+            if (e.hasOwnProperty(key) && e[key] !== '' && e[key] !== null) {
+                s += key + '=' + e[key] + delimiter;
+            }
+        }
+
+        // Return the string with last delimiter trimmed
+        return s.substring(0, s.length-1);
+    }
+
+    /**
      * Convert an array of entities filters into a url string.
      * Multi group entity version
      */
@@ -142,7 +162,7 @@ export class EntityEffects {
         let ret = '[';
         let length = filterGroups.length;
         for(let i = 0; i < length; i++) {
-            ret += '{"params":"' + EntityParams.toBatchQueryString(filterGroups[i]) + '"}';
+            ret += '{"params":"' + this.params2String(filterGroups[i], ';') + '"}';
             if (i + 1 != length) ret += ',';
         }
         ret += ']';
@@ -166,7 +186,7 @@ export class EntityEffects {
      */
     protected getEntities(etype: string, filters: any): Observable<any> {
         let api = this.getApi(etype, false)
-            + '?etype=' + etype + '&' + EntityParams.toQueryString(filters);
+            + '?etype=' + etype + '&' + this.params2String(filters, '&');
 
         return this.http.get(api).map(res => res.json());
     }
@@ -185,7 +205,8 @@ export class EntityEffects {
      * Any parameters used in common entities queries can be used in the group
      * query.
      */
-    protected getGroupEntities(paramGroups: any): Observable<any> {
+    protected getGroupEntities(paramGroups: EntityParams[]): Observable<any> {
+        console.error("group params: ", paramGroups);
         let api = API('batch') + '?group=' + this.buildMultiGroupFilters(paramGroups);
         return this.http.get(api).map(res => res.json());
     }
