@@ -143,6 +143,9 @@ function entitiesReducer(etype: string,
             let key     = action.payload.data.key;
             let pager   = action.payload.data.paginator;
             let entities: Entity[] = action.payload.data.entities;
+            
+            if (!entities || !entities.length)
+                return state;
 
             let idx: string = getIdx(etype);
 
@@ -218,6 +221,18 @@ function entitiesReducer(etype: string,
                 entities: Object.assign({}, state.entities,
                     {[id]: action.payload.data}),
                 activeId: id,
+            });
+        }
+
+        case entity.CLEAN_CACHE:
+        {
+            return Object.assign({}, state, {
+                params: {},
+                ids: {},
+                idsCurPage: {},
+                paginators: {},
+                activeId: null,
+                isLoading: false
             });
         }
 
