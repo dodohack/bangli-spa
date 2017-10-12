@@ -39,8 +39,8 @@ export class _OfferCategoryMobile extends GroupEntitiesBase
         // Only last group of entities will be pageless
         super(route, store, router, cfg.GROUP_KEYS, [
             cfg.FEATURED_TOPIC_PARAMS,
-                cfg.TOPIC_PARAMS
-            ], true);
+            cfg.TOPIC_PARAMS
+        ], true);
     }
 }
 

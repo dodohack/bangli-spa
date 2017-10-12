@@ -27,7 +27,7 @@
   justify-content:space-between;
 }
 
-/* deal-card style used in list of offers in topic page */
+/* deal-card style used in list of offers in topic page, offer category page */
 mat-card.deal-card {
   margin: 0 4px 15px 4px;
 
@@ -49,6 +49,7 @@ mat-card.deal-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 0;
 
     .deal-metadata {
       font-size: 12px;
@@ -58,16 +59,17 @@ mat-card.deal-card {
   }
 }
 
-/* branded-deal-card used in offer home page */
+
+.brand-link {
+  text-decoration: none;
+  color: black;
+}
+
+/* branded-deal-card used in offer home/category page */
 mat-card.branded-deal-card {
   width: 48%;
   margin-bottom: 15px;
   padding: 0;
-
-  .brand-link {
-    text-decoration: none;
-    color: black;
-  }
 
   .image {
     position: relative;
