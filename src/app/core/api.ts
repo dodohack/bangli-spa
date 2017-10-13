@@ -2,6 +2,8 @@
  * API endpoint where all the data comes from.
  */
 
+import { API_SERVER } from '../../../.config';
+
 const ENDPOINT = {
 
     // Batch(group) entities
@@ -25,5 +27,5 @@ const ENDPOINT = {
 
 export function API(ep: string) {
     // FIXME: hardcode endpoint
-    return 'http://localhost:5001' + ENDPOINT[ep];
+    return API_SERVER + ENDPOINT[ep];
 }

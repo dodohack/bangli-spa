@@ -1,0 +1,6 @@
+/**
+ * Sample configuration file, copy this file to .config.ts and modify the
+ * corresponding entries.
+ */
+
+export const API_SERVER = 'http://localhost:5001';
