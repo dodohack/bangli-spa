@@ -16,13 +16,17 @@ export const FEATURED_OFFER: EntityParams = {
     key: GROUP_KEYS.FEATURED_OFFER,
     //name: '推荐优惠',
     //style: '',
-    etype: ENTITY.OFFER,
+    etype: ENTITY.TOPIC,
+    featured: true, // Only query featured topic
+    topic_type: 'merchant',
+    topic_has_offer: true,
+    //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
     per_page: 6,
     page: 1,
     order_by: 'published_at',
     order: 'desc',
     // Query offers with their topic
-    relations: ENTITY.TOPIC
+    relations: ENTITY.OFFER
 };
 
 // 6 featured offers of beauty category
@@ -31,12 +35,16 @@ export const FEATURED_BEAUTY_OFFER: EntityParams = {
     //name: '美妆优惠',
     category: 'beauty',
     //style: '',
-    etype: ENTITY.OFFER,
+    etype: ENTITY.TOPIC,
+    featured: true, // Only query featured topic
+    topic_type: 'merchant',
+    topic_has_offer: true,
+    //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
     per_page: 6,
     page: 1,
     order_by: 'published_at',
     order: 'desc',
-    relations: ENTITY.TOPIC
+    relations: ENTITY.OFFER
 };
 
 // 6 featured offers of health category
@@ -45,12 +53,16 @@ export const FEATURED_HEALTHCARE_OFFER: EntityParams = {
     //name: '保健优惠',
     category: 'healthcare',
     //style: '',
-    etype: ENTITY.OFFER,
+    etype: ENTITY.TOPIC,
+    featured: true, // Only query featured topic
+    topic_type: 'merchant',
+    topic_has_offer: true,
+    //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
     per_page: 6,
     page: 1,
     order_by: 'published_at',
     order: 'desc',
-    relations: ENTITY.TOPIC
+    relations: ENTITY.OFFER
 };
 
 // 6 featured offers of fashion category
@@ -59,11 +71,15 @@ export const FEATURED_FASHION_OFFER: EntityParams = {
     //name: '服饰箱包',
     category: 'clothes-bag',
     //style: '',
-    etype: ENTITY.OFFER,
+    etype: ENTITY.TOPIC,
+    featured: true, // Only query featured topic
+    topic_type: 'merchant',
+    topic_has_offer: true,
+    //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
     per_page: 6,
     page: 1,
     order_by: 'published_at',
     order: 'desc',
-    relations: ENTITY.TOPIC
+    relations: ENTITY.OFFER
 };
 

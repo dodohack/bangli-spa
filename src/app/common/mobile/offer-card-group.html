@@ -1,6 +1,9 @@
 <div class="cards-wrapper">
     <div class="cards-title">
         {{ topic.title }}
+
+        <span style="padding-left: 5px; color: rgba(0,0,0,0.5); font-size: 80%" *ngIf="topic.offers_count">{{ topic.offers_count }}条优惠</span>
+
         <a class="more" [routerLink]="['/deal/cat', category]" *ngIf="category">
             <i class="fa fa-lg fa-ellipsis-h"></i>
         </a>
@@ -10,7 +13,7 @@
         </a>
     </div>
 
-    <div class="cards-container">
+    <div class="cards-container" *ngIf="!isCategoryPage">
         <mat-card *ngFor="let offer of topic.offers" class="branded-deal-card">
             <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'" class="brand-link">
                 <div class="image">
@@ -22,6 +25,29 @@
                     <div class="brand-name">{{ topic.title }}</div>
                     <div class="offer-title">{{ offer.title }}</div>
                 </mat-card-content>
+            </a>
+        </mat-card>
+    </div>
+
+    <!-- Style for offer category page, show 1 or 2 cards for each offer -->
+    <div class="cards-wrapper" *ngIf="isCategoryPage">
+        <mat-card *ngFor="let offer of topic.offers | slice:0:2" class="deal-card">
+            <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'" class="brand-link"
+               style="display: block; margin-bottom: -32px !important;">
+                <div class="deal-card-content">
+                    <img mat-card-image src="http://placehold.it/64x64?text=logo">
+                    <mat-card-title>
+                        <span *ngIf="offer.title.length < 80">
+                            {{ offer.title }}
+                        </span>
+                        <span *ngIf="offer.title.length > 80">
+                            {{ offer.title.substr(0,79) }}...
+                        </span>
+                    </mat-card-title>
+                </div>
+                <mat-card-actions>
+                    <span class="deal-metadata">{{ expires(offer.ends) }}</span>
+                </mat-card-actions>
             </a>
         </mat-card>
     </div>
