@@ -10,7 +10,7 @@
             <div *ngIf="hasOffer">
                 <mat-card *ngFor="let offer of offers" class="deal-card">
                     <div class="deal-card-content">
-                        <img mat-card-image src="http://placehold.it/64x64?text=logo">
+                        <img mat-card-image [src]="logoUrl">
                         <mat-card-title>
                             <span *ngIf="offer.title.length < 80">
                                 {{ offer.title }}

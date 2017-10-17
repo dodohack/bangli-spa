@@ -3,8 +3,8 @@
     <!-- FIXME: Need to set the maximum width of topic-left -->
     <!-- FIXME: Need to cut down long topic title -->
     <div class="topic-left">
-        <div class="topic-img">
-            <img src="http://placehold.it/64x64?text=logo">
+        <div class="topic-img" *ngIf="topic.logo != ''">
+            <img [src]="imageUrl(topic.logo)">
         </div>
         <div class="topic-caption">
             <h2>{{ topic.title }}</h2>

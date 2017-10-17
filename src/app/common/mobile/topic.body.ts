@@ -14,7 +14,9 @@ import {
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { Offer, Post } from '../../core/models';
+import { Offer, Post, Entity } from '../../core/models';
+
+import { IMG_SERVER } from '../../../../.config';
 
 @Component({
     selector: 'voucher-code-dialog',
@@ -41,18 +43,33 @@ export class TopicBody
     @Input() ttype: string;
 
     @Input() tabIdx: string;  // String index of default showing tab
-    @Input() content: string; // Topic detailed introduction
-    @Input() posts: Post[];   // Posts of this topic
-    @Input() offers: Offer[]; // Offers of this topic
+    @Input() topic: Entity;
 
     today = new Date();
 
     constructor(public dialog: MatDialog) {}
 
-    get hasOffer() { return this.offers && this.offers.length > 0; }
+    // Topic content
+    get content() { return this.topic && this.topic.content; }
+
+    // Posts of this topic
+    //get posts() { return this.topic.posts; }
+
+    // Offers of this topic
+    get offers() { return this.topic && this.topic.offers; }
+
+    get logoUrl() {
+        if(this.topic.logo) {
+            if (this.topic.logo[0] == 'h' && this.topic.logo[1] == 't')
+                return this.topic.logo;
+            return IMG_SERVER + '/' + this.topic.logo;
+        }
+    }
+
+    get hasOffer() { return this.topic && this.offers && this.offers.length > 0; }
 
     get numOffers() {
-        let num = this.offers && this.offers.length;
+        let num = this.topic && this.offers && this.offers.length;
         if (num) return ' (' + num + ')';
         return;
     }

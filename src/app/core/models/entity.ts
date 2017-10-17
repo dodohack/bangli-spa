@@ -48,6 +48,8 @@ export interface Entity {
     content: string;
     updated_at: string;
     offers: any; // FIXME: Replace 'any' with proper type
+    posts: any;
+    logo: string;
 }
 
 

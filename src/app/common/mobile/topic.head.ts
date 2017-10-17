@@ -13,6 +13,8 @@ import {
 
 import { Topic }  from '../../core/models';
 
+import { IMG_SERVER } from '../../../../.config';
+
 @Component({
     selector: 'topic-head',
     templateUrl: './topic.head.html',
@@ -26,4 +28,12 @@ export class TopicHead
     @Input() topic: Topic;
 
     constructor(private cd: ChangeDetectorRef) {}
+
+    /**
+     * Get image url from relative or absolute uri
+     */
+    imageUrl(uri: string) {
+        if (uri[0] == 'h' && uri[1] == 't') return uri;
+        return IMG_SERVER + '/' + uri;
+    }
 }

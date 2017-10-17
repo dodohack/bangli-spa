@@ -37,7 +37,8 @@ mat-card.deal-card {
 
   img {
     width: 64px;
-    height: auto;
+    height: 64px;
+    border: 1px solid #ddd;
     margin: -10px 10px 10px 0 !important;
   }
   .mat-card-title {

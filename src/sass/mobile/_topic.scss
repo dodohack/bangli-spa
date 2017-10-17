@@ -7,9 +7,9 @@
 
   .topic-img img, .deal-img img {
     border-radius: 10px;
-    border: 1px solid lightgrey;
-    max-width: 64px;
-    max-height: 64px;
+    border: 1px solid #ddd;
+    width: 64px;
+    height: 64px;
   }
 
   .topic-head {
@@ -38,12 +38,17 @@
 
       h2 {
         margin: 0.5rem 0;
-        font-size: 1.2rem;
+        font-size: 1.0rem;
+        white-space: nowrap;
+        overflow: hidden;
       }
       p {
         margin: 0;
         font-size: 0.8rem;
         color: grey;
+        // 2 rows height
+        height: 29px;
+        overflow: hidden;
       }
     }
 
