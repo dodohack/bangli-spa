@@ -17,8 +17,7 @@
         <mat-card *ngFor="let offer of topic.offers" class="branded-deal-card">
             <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'" class="brand-link">
                 <div class="image">
-                    <!--<img class="logo" src="http://placehold.it/64x64?text=Logo">-->
-                    <img class="logo" [src]="topic.logo" *ngIf="topic.logo">
+                    <img class="logo" [src]="logoUrl">
                     <img class="main" src="http://placehold.it/400x260?text=BeautyOffer">
                 </div>
                 <mat-card-content>
@@ -35,7 +34,7 @@
             <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'" class="brand-link"
                style="display: block; margin-bottom: -32px !important;">
                 <div class="deal-card-content">
-                    <img mat-card-image src="http://placehold.it/64x64?text=logo">
+                    <img mat-card-image [src]="logoUrl">
                     <mat-card-title>
                         <span *ngIf="offer.title.length < 80">
                             {{ offer.title }}

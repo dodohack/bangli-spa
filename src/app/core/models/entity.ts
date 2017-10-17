@@ -10,6 +10,7 @@ export const ENTITY = {
     POST:    'post',
     ADVERTISE: 'advertise',
     COMMENT: 'comment',
+    ATTACHMENT: 'attachment'
 };
 
 /**
@@ -22,10 +23,11 @@ export const ENTITY_INFO = {
     'page':      { selector: 'pages',      name: '页面', slug: 'page'  },
     'advertise': { selector: 'advertises', name: '广告', slug: 'ads'   },
     'comment':   { selector: 'comments',   name: '评论', slug: 'comment' },
+    'attachment': { selector: 'attachment',  name: '图片', slug: 'attachment' },
 };
 
 /**
- * Entity model of topic
+ * Entity model
  */
 export interface Entity {
     id: string;
@@ -50,6 +52,12 @@ export interface Entity {
     offers: any; // FIXME: Replace 'any' with proper type
     posts: any;
     logo: string;
+
+    // Attachment only
+    path: string;
+    thumb_path: string;
+    filename: string;
+    thumbnail: any;
 }
 
 
@@ -76,7 +84,7 @@ export interface EntityParams {
     topic_guid_starts?: string; // topic guid starts with character
     category?: string;  // Category this entity belongs
     topic?: string;     // Topic this entity belongs
-    relations?: string; // Relationships to be queried together
+    relations?: string[]; // Relationships to be queried together
     order_by?: string;  // Sort entites by which column
     order?: string; // Sort order: asc or desc
 }

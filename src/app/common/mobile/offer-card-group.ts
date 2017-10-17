@@ -6,6 +6,7 @@
 import { Component, Input }        from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Entity }                  from "../../core/models";
+import { IMG_SERVER }              from "../../../../.config";
 
 @Component ({
     selector: 'offer-card-group',
@@ -44,4 +45,13 @@ export class OfferCardGroup
         }
     }
 
+    get logoUrl() {
+        if (this.topic && this.topic.logo)
+            if (this.topic.logo[0] == 'h' && this.topic.logo[1] == 't')
+                return this.topic.logo;
+            else
+                return IMG_SERVER + '/' + this.topic.logo;
+
+        return "http://placehold.it/64x64?text=logo";
+    }
 }

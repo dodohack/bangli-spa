@@ -3,7 +3,7 @@
     <carousel [interval]="3000" [noWrap]="false">
         <slide *ngFor="let topic of (topics$ | async)[groupKeys.CATEGORY_FEATURED_TOPIC_W_OFFER]; let idx=index">
             <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'">
-                <img src="http://placehold.it/800x300?text=TopOffer-{{idx}}">
+                <img [src]="thumbCard21Url(topic.images)">
                 <div class="carousel-caption">
                     <h4>[{{ topic.title }}] {{ topic.offers[0].title }}</h4>
                 </div>
@@ -17,9 +17,6 @@
 
     </div>
     -->
-
-    <h2>We are going list all offers of this category when user scrolls down</h2>
-    <h2>Sort all the offers by their topic and order by featured topics to non featured ones</h2>
 
     <!-- Deal card with brand logo -->
     <ng-template ngFor let-topic [ngForOf]="(topics$ | async)[groupKeys.CATEGORY_TOPIC_W_OFFER]">

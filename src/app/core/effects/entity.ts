@@ -145,8 +145,11 @@ export class EntityEffects {
         let s = '';
 
         for (let key in e) {
-            if (e.hasOwnProperty(key) && e[key] !== '' && e[key] !== null) {
-                s += key + '=' + e[key] + delimiter;
+            if (e.hasOwnProperty(key)) {
+                if (Array.isArray(e[key]))
+                    s += key + '=' + e[key].toString() + delimiter;
+                else if (e[key] !== '' && e[key] !== null)
+                    s += key + '=' + e[key] + delimiter;
             }
         }
 

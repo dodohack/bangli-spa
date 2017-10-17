@@ -31,7 +31,7 @@ export const FEATURED_TOPIC_PARAMS: EntityParams = {
     page: 1,
     order_by: 'published_at',
     order: 'desc',
-    relations: ENTITY.OFFER
+    relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
 
 // Topics with offers belongs to given category order by featured topics
@@ -47,7 +47,9 @@ export const TOPIC_PARAMS: EntityParams = {
     page: 1,
     order_by: 'featured',
     order: 'desc',
-    relations: ENTITY.OFFER
+    // NOTE: We must have ENTITY.ATTACHMENT here even we don't use it, cause
+    // some topics loaded here may overwrite the featured topics.
+    relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
 
 /*

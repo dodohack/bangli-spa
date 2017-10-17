@@ -11,11 +11,13 @@ import { Store }             from '@ngrx/store';
 
 //import { Channel }           from './models';
 //import { Category }          from './models';
-import { ENTITY, Paginator, EntityParams } from './models';
+import { ENTITY, Paginator, Entity, EntityParams } from './models';
 
 import * as EntityActions    from './actions/entity';
 
 import { AppState, getEntitiesCurPage, getIsLoading, getPaginators } from './reducers';
+
+import { IMG_SERVER, THUMBS } from "../../../.config";
 
 export abstract class GroupEntitiesBase implements OnInit, OnDestroy
 {
@@ -83,7 +85,6 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
         this.sub1 = this.route.params.subscribe(params => {
             // Check if elements of url change
             if (JSON.stringify(this.localParams) != JSON.stringify(params)) {
-                console.error("route.param changed: ", params);
                 //this.cleanupCache(params);
 
                 // Update last group parameters and keep a copy of route.params
@@ -91,11 +92,8 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
 
                 let page = params['page'];
 
-                console.error("Page updated: ", page);
-
                 // Load all grouped entities when this is page number 1
                 if (typeof page === 'undefined' || page == 1) {
-                    console.error("Display first loadGroupEntities with groupParams: ", gps);
                     this.store.dispatch(new EntityActions.LoadGroupEntities(gps));
                 }
 
@@ -106,7 +104,6 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
                 // will be loaded as pageless.
                 if (this.pageless && page && page > 1) {
                     let lastGroup = gps[gps.length - 1];
-                    console.error("Pageless load groupParams: ", gps);
                     this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
                         {etype: lastGroup.etype, data: lastGroup}));
                 }
@@ -174,5 +171,20 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
 
     get lastGroupCat() {
         return this.localParams['slug'];
+    }
+
+    /**
+     * Return thumbnail THUMB_CARD_21 url
+     * @param images
+     * @returns {any}
+     */
+    thumbCard21Url(images: Entity[]) {
+        if (images && images.length > 0 && images[0].thumbnail) {
+            let thumbs = JSON.parse(images[0].thumbnail);
+            if (thumbs && thumbs.hasOwnProperty(THUMBS.THUMB_CARD_21))
+                return IMG_SERVER + '/' + images[0].thumb_path + thumbs[THUMBS.THUMB_CARD_21].file;
+        }
+
+        return 'http://placehold.it/400x200?text=Image';
     }
 }
