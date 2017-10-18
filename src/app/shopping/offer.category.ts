@@ -2,7 +2,7 @@
  * Offer category page
  */
 
-import { Component }         from '@angular/core';
+import { HostListener, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store }             from '@ngrx/store';
 
@@ -41,6 +41,23 @@ export class _OfferCategoryMobile extends GroupEntitiesBase
             cfg.FEATURED_TOPIC_PARAMS,
             cfg.TOPIC_PARAMS
         ], true);
+    }
+
+    /**
+     * Pageless loading
+     * Load next page of entities when scroll to page bottom
+     */
+
+    @HostListener('window:scroll', [])
+    loadEntitiesOnScroll() {
+        if (this.pageless /*&& !this.isLoading*/ &&
+            (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            setTimeout(() => {
+                //if (this.isLoading) return;
+                // Navigate to next page to trigger the load
+                this.router.navigate(['/deal/cat', this.lastGroupCat, this.nextPage]);
+            }, 10);
+        }
     }
 }
 

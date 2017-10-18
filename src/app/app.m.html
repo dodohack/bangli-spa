@@ -1,24 +1,26 @@
 <!-- FIXME: fullscreen prevent window:scroll to be fired, so we couldn't trigger
  loadEntitiesOnScroll with this event. -->
-
-<mat-sidenav-container fullscreen>
+<mat-sidenav-container> <!-- id="root" (scroll)="log()"> -->
 
     <!-- SECOND STAGE! -->
     <!--<top-nav (menuToggle)="sidenav.toggle()"></top-nav>-->
 
-    <mat-sidenav #sidenav mode="push" style="width: 75%;">
+    <mat-sidenav #sidenav mode="push" style="width: 75%; position: fixed !important;">
         <side-nav (click)="sidenav.toggle()"></side-nav>
     </mat-sidenav>
 
-    <div class="content-wrapper" id="root"> <!-- (scroll)="log()"> -->
-        <div class="inner-content p1-inner-content">
-            <!-- top-nav will not be fixed in first state. -->
-            <top-nav></top-nav>
+    <mat-sidenav-content style="min-height: 100vh">
+        <div class="content-wrapper">
+            <div class="inner-content p1-inner-content">
+                <!-- top-nav will not be fixed in first state. -->
+                <top-nav></top-nav>
 
-            <router-outlet></router-outlet>
+                <router-outlet></router-outlet>
+            </div>
         </div>
-    </div>
+        <bottom-nav (menuToggle)="sidenav.toggle()"></bottom-nav>
 
-    <bottom-nav (menuToggle)="sidenav.toggle()"></bottom-nav>
+    </mat-sidenav-content>
+
 
 </mat-sidenav-container>

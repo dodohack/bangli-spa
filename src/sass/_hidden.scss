@@ -1,0 +1,39 @@
+//
+// Hidden classes
+//
+
+// Hide element on mobile phones
+@media only screen and (max-width: $break-sm)
+{
+  .hidden-xs
+  {
+    display: none !important;
+  }
+}
+
+// Hide element on tablets
+@media only screen and (min-width: $break-sm)
+{
+  .hidden-sm
+  {
+    display: none !important;
+  }
+}
+
+// Hide element on desktops
+@media only screen and (min-width: $break-md)
+{
+  .hidden-md
+  {
+    display: none !important;
+  }
+}
+
+// Hide element on desktops
+@media only screen and (min-width: $break-lg)
+{
+  .hidden-lg
+  {
+    display: none !important;
+  }
+}

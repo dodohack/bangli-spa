@@ -1,6 +1,9 @@
+/**
+ * Global variables used in different sass files
+ */
+
 // Overwrite default font-awesome variable
 // We will copy fa fonts into public folder
-
 // FIXME: fontawesome 5 does work, 4.7 works.
 //$fa-font-path: "/assets/webfonts";
 $fa-font-path: "../node_modules/font-awesome/fonts";
@@ -17,6 +20,37 @@ $padding: 1rem;
 $flexboxgrid-grid-columns: $columns;
 $flexboxgrid-gutter-width: $gutter;
 $flexboxgrid-outer-margin: $margin;
+
+$break-sm: 48em;
+$break-md: 64em;
+$break-lg: 75em;
+
+$container-sm: 46rem;
+$container-md: 61rem;
+$container-lg: 71rem;
+
+//
+// flexboxgrid variable
+//
+
+// Set the number of columns you want to use on your layout.
+$grid-columns: 12;
+// Set the gutter between columns.
+$gutter-width: 1rem;
+// Set a margin for the container sides.
+$outer-margin: 2rem;
+// Create or remove breakpoints for your project
+// Syntax:
+// name SIZErem,
+$breakpoints:
+        sm $break-sm $container-sm,
+        md $break-md $container-md,
+        lg $break-lg $container-lg;
+$flexboxgrid-max-width: 1200px;
+
+//
+// flexboxgrid variable
+//
 
 
 //

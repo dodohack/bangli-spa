@@ -17,6 +17,8 @@
 @import "./sass/carousel";
 @import "./sass/card";
 
+@import "./sass/hidden";
+
 @media screen and (min-width: $desktop-min-width) {
   @import "./sass/offer";
 }
