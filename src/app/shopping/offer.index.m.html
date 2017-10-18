@@ -5,7 +5,7 @@
             <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'">
                 <img src="http://placehold.it/800x300?text=TopOffer-{{idx}}">
                 <div class="carousel-caption">
-                    <h4>[{{ topic.title }}] {{ topic.offers[0].title }}</h4>
+                    <h4>[{{ topic.title }}] <span *ngIf="topic.offers">{{ topic.offers[0].title }}</span></h4>
                 </div>
             </a>
         </slide>
