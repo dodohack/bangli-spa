@@ -7,15 +7,12 @@ import {
     Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store }             from '@ngrx/store';
-import { Observable }        from 'rxjs/Rx';
 
-import { Paginator } from '../core/models';
 import { AppState } from "../core/reducers";
 import { GroupEntitiesBase } from '../core/group-entities.base';
 import * as cfg from './offer.category.cfg';
 
 @Component({
-    selector: '',
     templateUrl: './offer.category.html'
 })
 export class OfferCategory extends GroupEntitiesBase

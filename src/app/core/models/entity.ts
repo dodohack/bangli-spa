@@ -43,6 +43,7 @@ export interface Entity {
     // FIXME
     locations: any; //GeoLocation[]; // This array only contains 0 or 1 element
     title: string;
+    title_cn: string;  // Topic only
     // FIXME
     categories: any; //Category[];
     // FIXME

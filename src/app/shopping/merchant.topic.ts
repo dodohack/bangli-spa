@@ -1,5 +1,6 @@
 import { Component }         from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
+import { Title }             from '@angular/platform-browser';
 import { Store }             from '@ngrx/store';
 
 import { AppState }          from '../core/reducers';
@@ -13,7 +14,8 @@ export class MerchantTopic extends EntityBase
     isGeneralTopic: boolean;
 
     constructor(protected route: ActivatedRoute,
-                protected store: Store<AppState>) {
-        super(ENTITY.TOPIC, route, store);
+                protected store: Store<AppState>,
+                protected title: Title) {
+        super(ENTITY.TOPIC, route, store, title);
     }
 }

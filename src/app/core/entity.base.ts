@@ -1,5 +1,6 @@
 import { OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
+import { Title }             from '@angular/platform-browser';
 import { Observable }        from 'rxjs/Rx';
 import { Store }             from '@ngrx/store';
 
@@ -10,6 +11,7 @@ import * as EntityActions from '../core/actions/entity';
 
 export abstract class EntityBase implements OnInit, OnDestroy
 {
+    subEntity: any;
     subParams:  any;
     //channel$:    Observable<Channel>;
     //categories$: Observable<Category[]>;
@@ -21,32 +23,36 @@ export abstract class EntityBase implements OnInit, OnDestroy
 
     constructor(protected etype: string,
                 protected route: ActivatedRoute,
-                protected store: Store<fromEntities.AppState>) {
+                protected store: Store<fromEntities.AppState>,
+                protected title: Title) { }
 
+    ngOnInit() {
         this.fragment$ = this.route.fragment;
 
-        switch (etype) {
+        switch (this.etype) {
             case ENTITY.TOPIC:
-                this.entity$ = store.select(fromEntities.getCurTopic);
+                this.entity$ = this.store.select(fromEntities.getCurTopic);
                 break;
             case ENTITY.OFFER:
-                this.entity$ = store.select(fromEntities.getCurOffer);
+                this.entity$ = this.store.select(fromEntities.getCurOffer);
                 break;
             case ENTITY.POST:
-                this.entity$ = store.select(fromEntities.getCurPost);
+                this.entity$ = this.store.select(fromEntities.getCurPost);
                 break;
             default:
                 console.error("ERROR: Unhandled entity type!");
                 break;
         }
-    }
 
-    ngOnInit() {
+        this.subEntity = this.entity$.filter(e => e!= null)
+            .subscribe(e => { this.setTitle(e); });
+
         this.dispatchLoadEntity();
     }
 
     ngOnDestroy() {
         this.subParams.unsubscribe();
+        this.subEntity.unsubscribe();
     }
 
     // FIXME: We should utilize ngrx/router-store as single truth of source.
@@ -62,5 +68,27 @@ export abstract class EntityBase implements OnInit, OnDestroy
                 let payload = { etype: this.etype, data: id };
                 this.store.dispatch(new EntityActions.LoadEntity(payload));
             });
+    }
+
+    /**
+     * Set html title
+     * @param e
+     */
+    setTitle(e: Entity) {
+        let t: string;
+        switch (this.etype) {
+            case ENTITY.TOPIC:
+                t = '[专题] ' + e.title;
+                if (e.title_cn) t += ' - ' + e.title_cn;
+                break;
+
+            default:
+                t = e.title;
+                break;
+        }
+        
+        t  += ' - 英国邦利';
+
+        this.title.setTitle(t);
     }
 }
