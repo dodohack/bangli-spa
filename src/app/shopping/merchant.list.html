@@ -28,7 +28,6 @@
 </mat-nav-list>
 
 <div style="padding: 20px 0" *ngIf="!isLoading && pageless">
-    <a mat-raised-button class="load-more"
-       [routerLink]="[nextPage]"
-       *ngIf="!isLastPage((paginator$|async)[key])">加载更多</a>
+    <a mat-raised-button class="load-more" [routerLink]="[nextPage]"
+       *ngIf="!isLastPage">加载更多...</a>
 </div>

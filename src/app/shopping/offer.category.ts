@@ -2,10 +2,14 @@
  * Offer category page
  */
 
-import { HostListener, Component } from '@angular/core';
+import {
+    HostListener,
+    Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store }             from '@ngrx/store';
+import { Observable }        from 'rxjs/Rx';
 
+import { Paginator } from '../core/models';
 import { AppState } from "../core/reducers";
 import { GroupEntitiesBase } from '../core/group-entities.base';
 import * as cfg from './offer.category.cfg';
@@ -30,10 +34,10 @@ export class OfferCategory extends GroupEntitiesBase
      * Pageless loading
      * Load next page of entities when scroll to page bottom
      */
-
     @HostListener('window:scroll', [])
     loadEntitiesOnScroll() {
-        if (this.pageless /*&& !this.isLoading*/ &&
+        if (this.pageless && !this.isLastGroupLoading &&
+            !this.isLastPage(cfg.GROUP_KEYS.CATEGORY_TOPIC_W_OFFER) &&
             (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             setTimeout(() => {
                 //if (this.isLoading) return;

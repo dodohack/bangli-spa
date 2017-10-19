@@ -23,6 +23,7 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
 {
     sub1: any;
     sub2: any;
+    sub3: any;
 
     // A copy of route.params
     localParams: any;
@@ -35,7 +36,8 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
     // Used in pageless load for last group
     isLastGroupLoading$: Observable<boolean>;
     isLastGroupLoading: boolean;
-    paginator$: Observable<{[key:string]:Paginator}>;
+    paginators$: Observable<{[key:string]:Paginator}>;
+    paginators: {[key: string]: Paginator};
 
     offers$: Observable<any>;
     topics$: Observable<any>;
@@ -65,9 +67,10 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
 
         let etype = this.groupParams[this.groupParams.length - 1].etype;
         this.isLastGroupLoading$ = this.store.select(getIsLoading(etype));
-        this.paginator$ = this.store.select(getPaginators(etype));
+        this.paginators$ = this.store.select(getPaginators(etype));
 
         this.sub2 = this.isLastGroupLoading$.subscribe(i => this.isLastGroupLoading = i);
+        this.sub3 = this.paginators$.subscribe(p => this.paginators = Object.assign({}, p));
 
         // Kick the batch load
         this.batchLoadEntities();
@@ -75,7 +78,8 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
 
     ngOnDestroy() {
         //this.sub1.unsubscribe();
-        //this.sub2.unsubscribe();
+        this.sub2.unsubscribe();
+        this.sub3.unsubscribe();
     }
 
     /**
@@ -155,11 +159,18 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
     }
     */
 
-    isLastPage(paginator: Paginator) {
-        if (!paginator) return true;
+    /**
+     * Check if it is the last page of current group entity
+     * @param key
+     * @returns {boolean}
+     */
+    isLastPage(key: string) {
+        if (!this.paginators) return true;
+        if (!this.paginators.hasOwnProperty(key)) return true;
 
-        if (paginator.cur_page == paginator.last_page)
+        if (this.paginators[key].cur_page == this.paginators[key].last_page)
             return true;
+
         return false;
     }
 

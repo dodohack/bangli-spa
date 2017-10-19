@@ -28,6 +28,6 @@
 
     <div style="padding: 20px 0" *ngIf="!isLastGroupLoading && pageless">
         <a mat-raised-button class="load-more" [routerLink]="['/deal/cat', lastGroupCat, nextPage]"
-           *ngIf="!isLastPage((paginator$|async)[groupKeys.CATEGORY_TOPIC_W_OFFER])">加载更多</a>
+           *ngIf="!isLastPage(groupKeys.CATEGORY_TOPIC_W_OFFER)">加载更多...</a>
     </div>
 </div>

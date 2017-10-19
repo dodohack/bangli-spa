@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 
 import { ActivatedRoute, Router }  from '@angular/router';
-import { DOCUMENT }        from '@angular/common';
 import { Observable }      from 'rxjs/Rx';
 import { Store }           from '@ngrx/store';
 
@@ -22,6 +21,7 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
 {
     subParams: any;
     subLoad: any;
+    subPager: any;
 
     // For single gropued entities page, we only need a default key to
     // index EntitiesState
@@ -34,7 +34,8 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
     isLoading$: Observable<boolean>;
     isLoading: boolean;
 
-    paginator$: Observable<any>;
+    paginators$: Observable<{[key: string]: Paginator}>;
+    paginator: Paginator;
 
     // Object of entities indexed by key
     entities$: Observable<any>;
@@ -47,11 +48,13 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
                 protected pageless: boolean = false) { }
 
     ngOnInit() {
-        this.isLoading$ = this.store.select(getIsLoading(this.entityParams.etype));
-        this.entities$  = this.store.select(getEntitiesCurPage(this.entityParams.etype));
-        this.paginator$ = this.store.select(getPaginators(this.entityParams.etype));
+        this.isLoading$  = this.store.select(getIsLoading(this.entityParams.etype));
+        this.entities$   = this.store.select(getEntitiesCurPage(this.entityParams.etype));
+        this.paginators$ = this.store.select(getPaginators(this.entityParams.etype));
 
         this.subLoad   = this.isLoading$.subscribe(i => this.isLoading = i);
+        this.subPager  = this.paginators$.subscribe(p => this.paginator =
+            Object.assign({}, p[this.key]));
 
         this.dispatchLoadEntities();
     }
@@ -59,6 +62,7 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
     ngOnDestroy() {
         this.subParams.unsubscribe();
         this.subLoad.unsubscribe();
+        this.subPager.unsubscribe();
     }
 
     /**
@@ -91,7 +95,7 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
      */
     @HostListener('window:scroll', [])
     loadEntitiesOnScroll() {
-        if (this.pageless && !this.isLoading &&
+        if (this.pageless && !this.isLoading && !this.isLastPage &&
             (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             setTimeout(() => {
                 if (this.isLoading) return;
@@ -107,10 +111,10 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
         return this.baseUrl + this.params['filter'] + '/' + np;
     }
 
-    isLastPage(paginator: Paginator) {
-        if (!paginator) return true;
+    get isLastPage() {
+        if (!this.paginator) return true;
 
-        if (paginator.cur_page == paginator.last_page)
+        if (this.paginator.cur_page == this.paginator.last_page)
             return true;
         return false;
     }
