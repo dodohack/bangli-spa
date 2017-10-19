@@ -19,15 +19,24 @@
     -->
 
     <!-- Deal card with brand logo -->
-    <ng-template ngFor let-topic [ngForOf]="(topics$ | async)[groupKeys.CATEGORY_TOPIC_W_OFFER]">
-        <offer-card-group [offers]="topic.offers"
-                          [topic]="topic">
-        </offer-card-group>
-    </ng-template>
+    <div class="row">
 
+        <div class="col-xs-24 col-sm-24 col-md-17">
+            <ng-template ngFor let-topic [ngForOf]="(topics$ | async)[groupKeys.CATEGORY_TOPIC_W_OFFER]">
+                <offer-card-group [offers]="topic.offers"
+                                  [topic]="topic">
+                </offer-card-group>
+            </ng-template>
 
-    <div style="padding: 20px 0" *ngIf="!isLastGroupLoading && pageless">
-        <a mat-raised-button class="load-more" [routerLink]="['/deal/cat', lastGroupCat, nextPage]"
-           *ngIf="!isLastPage(groupKeys.CATEGORY_TOPIC_W_OFFER)">加载更多...</a>
+            <div style="padding: 20px 0" *ngIf="!isLastGroupLoading && pageless">
+                <a mat-raised-button class="load-more" [routerLink]="['/deal/cat', lastGroupCat, nextPage]"
+               *ngIf="!isLastPage(groupKeys.CATEGORY_TOPIC_W_OFFER)">加载更多...</a>
+            </div>
+        </div>
+
+        <div class="col-md-7 hidden-xs hidden-sm">
+            This is the sidebar of offer category page form md/lg screen
+        </div>
+
     </div>
 </div>
