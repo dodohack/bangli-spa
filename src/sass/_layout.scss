@@ -1,0 +1,77 @@
+/**
+ * Layout related definitions
+ */
+
+//
+// flexboxgrid variables
+//
+
+// Media query break points for different screen width
+$break-sm: 48em;       // 768px  if base font-size is 16px
+$break-md: 64em;       // 1024px
+$break-lg: 75em;       // 1200px
+
+// Container with for each corresponding screen with
+$container-sm: 46rem;  // 736px
+$container-md: 61rem;  // 976px
+$container-lg: 71rem;  // 1136px
+
+
+// Set the number of columns you want to use on your layout.
+$grid-columns: 24;
+// Set the gutter between columns.
+$gutter-width: 0.5rem;
+// Set a margin for the container sides.
+$outer-margin: 2rem;
+// Create or remove breakpoints for your project
+// Syntax:
+// name SIZErem,
+$breakpoints:
+        sm $break-sm $container-sm,
+        md $break-md $container-md,
+        lg $break-lg $container-lg;
+$flexboxgrid-max-width: 1200px;
+
+
+$padding: 1rem;
+
+// Flexbox grid
+@import "../../node_modules/flexboxgrid-sass/flexboxgrid";
+
+//
+// Body
+//
+.layout {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+//
+// Page wrapper
+//
+.wrap {
+  background: #eee;
+  box-sizing: border-box;
+  max-width: $flexboxgrid-max-width;
+  margin: 0 auto;
+}
+
+//
+// Mobile sidebar
+//
+.sidenav {
+  width: 75vw; // 75% of screen width
+  position: fixed !important; // mat-sidenav bug workaround
+}
+
+//
+// Make the page 100% height, mat-sidenav bug workaround
+//
+.fullscreen-container {
+  min-height: 100vh;
+  // Overwrite container-fluid padding on phones and tablets
+  @media only screen and (max-width: $break-md) {
+    padding: 0 0 0 0 !important;
+  }
+}

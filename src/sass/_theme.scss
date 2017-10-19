@@ -1,9 +1,6 @@
 /**
- * Define the baseline theme of bangli spa
+ * Define the baseline theme of bangli spa based on material design
  */
-
-//////////////////////////////////////////////////////////////////////////////
-// Define base style for material design
 
 // Font size base line
 // Pixel value used to responsively scale all typography. Applied to the `<html>` element.
@@ -16,11 +13,28 @@ $font-size-lg:   1.25rem;
 $font-size-sm:   .875rem;
 $font-size-xs:   .75rem;
 
+
 // Font family
 $md-font-family: Roboto, 'Helvetica Neue', sans-serif;
 
-//////////////////////////////////////////////////////////////////////////////
-// Include material design
+
+//
+// Font awesome
+//
+// Overwrite default font-awesome variable
+// We will copy fa fonts into public folder
+// FIXME: fontawesome 5 does work, 4.7 works.
+//$fa-font-path: "/assets/webfonts";
+$fa-font-path: "../node_modules/font-awesome/fonts";
+//@import "./sass/vendors/fontawesome5/scss/fontawesome-pro-core";
+//@import "./sass/vendors/fontawesome5/scss/fontawesome-pro-light";
+//@import "./sass/vendors/fontawesome5/scss/fontawesome-pro-brands";
+@import "../../node_modules/font-awesome/scss/font-awesome";
+
+
+//
+// Material design
+//
 @import "~@angular/material/theming";
 
 // Include the common styles for Angular Material.
@@ -43,6 +57,7 @@ $theme: mat-light-theme($primary, $accent);
 //////////////////////////////////////////////////////////////////////////////
 // Variables
 
+//
 // Body
 //
 // Settings for the `<body>` element.
@@ -50,16 +65,19 @@ $theme: mat-light-theme($primary, $accent);
 $body-bg:    #fff !default;
 $body-color: #222 !default;
 
+//
 // Border color
 //
 // Default color for border
 $border-color: mat-color($primary, 100) !default; // #dadada !default;
 
+//
 // Background color
 //
 // Default light background color
 $bg-color: mat-color($primary, 50) !default; //  #f3f3f3 !default;
 
+//
 // Links
 //
 // Style anchor elements.
@@ -69,27 +87,9 @@ $link-hover-color:      mat-color($primary, 400) !default;
 $link-hover-decoration: underline !default;
 $link-visited-color:    mat-color($primary, 900) !default;
 
+//
 // Buttons
 //
 // Style buttons based on md-color
 $btn-primary-color:        $link-color;
 $btn-primary-hover-color:  $link-hover-color;
-
-// Carousel
-$carousel-text-shadow:  0 1px 2px rgba(0,0,0,.6) !default;
-$carousel-control-color: #fff !default;
-$carousel-control-width: 15% !default;
-$carousel-control-opacity: 30px !default;
-$carousel-control-font-size: 40px !default;
-
-$carousel-indicators-width: 60% !default;
-
-$carousel-indicator-size:  10px !default;
-$carousel-indicator-bg:     mat-color($primary, 100) !default;
-$carousel-indicator-active-size: 12px !default;
-$carousel-indicator-active-bg: #fff !default;
-$carousel-indicator-border-color: #fff !default;
-
-$carousel-caption-width: 70% !default;
-$carousel-caption-color: #fff !default;
-$carousel-icon-width:    40px !default;

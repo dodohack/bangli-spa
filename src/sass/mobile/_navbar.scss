@@ -1,3 +1,5 @@
+$navbar-height: 3rem;
+
 /* Phase 1 style */
 .p1-navbar {
   position: relative !important;
@@ -12,7 +14,7 @@
   z-index: 99;
   width: 100%;
   position: fixed;
-  height: $mobile-toolbar-height;
+  height: $navbar-height;
 
   .mat-tab-links {
     display: flex;

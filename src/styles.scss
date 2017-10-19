@@ -1,35 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "./sass/variable";
-//@import "./sass/vendors/fontawesome5/scss/fontawesome-pro-core";
-//@import "./sass/vendors/fontawesome5/scss/fontawesome-pro-light";
-//@import "./sass/vendors/fontawesome5/scss/fontawesome-pro-brands";
-@import "../node_modules/font-awesome/scss/font-awesome";
-
+//
+// Unify the style cross browsers
+//
 @import "./sass/vendors/normalize.css";
-@import "../node_modules/flexboxgrid-sass/flexboxgrid";
 
-@import "./sass/mixins/gradients";
-
-// Customized theme based on material 2
-@import "./sass/theme";
-
-@import "./sass/carousel";
-@import "./sass/card";
-
+//
+// Layout
+//
+// Flexbox grid definition and layout
+@import "./sass/layout";
+// Hidden classes for various screen sizes
 @import "./sass/hidden";
 
-@media screen and (min-width: $desktop-min-width) {
-  @import "./sass/offer";
-}
+//
+// Themes: font, color, icon, icon path, variables
+//
+@import "./sass/theme";
 
 //
-// Mobile only style
+// Image slider
 //
-@media screen and (max-width: $mobile-max-width) {
-  @import "./sass/mobile/navbar";
-  @import "./sass/mobile/topic";
-  @import "./sass/mobile/body";
-  @import "./sass/mobile/list";
-}
+@import "./sass/carousel";
+
+@import "./sass/card";
+
+// Rework
+//@import "./sass/offer";
+
+@import "./sass/mobile/navbar";
+@import "./sass/mobile/topic";
+@import "./sass/mobile/list";
+
 

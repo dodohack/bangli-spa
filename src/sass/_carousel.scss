@@ -1,5 +1,26 @@
 // This is copied from bootstrap 4 _carousel.scss
 
+//
+// Carousel style definition
+//
+$carousel-text-shadow:  0 1px 2px rgba(0,0,0,.6) !default;
+$carousel-control-color: #fff !default;
+$carousel-control-width: 15% !default;
+$carousel-control-opacity: 30px !default;
+$carousel-control-font-size: 40px !default;
+
+$carousel-indicators-width: 60% !default;
+
+$carousel-indicator-size:  10px !default;
+$carousel-indicator-bg:     mat-color($primary, 100) !default;
+$carousel-indicator-active-size: 12px !default;
+$carousel-indicator-active-bg: #fff !default;
+$carousel-indicator-border-color: #fff !default;
+
+$carousel-caption-width: 70% !default;
+$carousel-caption-color: #fff !default;
+$carousel-icon-width:    40px !default;
+
 // Wrapper for the slide container and indicators
 .carousel {
   position: relative;
@@ -108,14 +129,12 @@
   // We can't have this transition here because WebKit cancels the carousel
   // animation if you trip this while in the middle of another animation.
 
-  // Set gradients for backgrounds
   &.left {
-    //@include gradient-x($start-color: rgba(0,0,0,.5), $end-color: rgba(0,0,0,.0001));
+
   }
   &.right {
     right: 0;
     left: auto;
-    //@include gradient-x($start-color: rgba(0,0,0,.0001), $end-color: rgba(0,0,0,.5));
   }
 
   // Hover/focus state
