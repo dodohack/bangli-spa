@@ -8,6 +8,7 @@ import { ENTITY, Entity }    from './models';
 import * as fromEntities     from './reducers';
 
 import * as EntityActions from '../core/actions/entity';
+import { SITE }            from '../../../.config';
 
 export abstract class EntityBase implements OnInit, OnDestroy
 {
@@ -87,7 +88,7 @@ export abstract class EntityBase implements OnInit, OnDestroy
                 break;
         }
         
-        t  += ' - 英国邦利';
+        t  += ' - ' + SITE.NAME;
 
         this.title.setTitle(t);
     }

@@ -13,3 +13,9 @@ export const THUMBS = {
     THUMB_CARD_LG: 'thumb-card-lg', // 320 x 260
     THUMB_CARD_21: 'thumb-card-21', // 400 x 200
 };
+
+// Website constant definition
+export const SITE = {
+    // Site name
+    NAME: '英国邦利',
+};
