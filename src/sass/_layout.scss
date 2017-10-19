@@ -86,8 +86,17 @@ $navbar-height: 3rem;
 // Content wrap
 .content-wrap {
   min-height: 100vh;
+  // No horizontal scroll: Overwrite .mat-sidenav-content
+  @media only screen and (min-width: $break-md) {
+    overflow: hidden !important;
+  }
 }
 
-.content {
-  margin: 0 0 $navbar-height;
+//
+// Leave some space so fixed bottom-nav can not cover content.
+//
+@media only screen and (max-width: $break-md) {
+  .content {
+    margin: 0 0 $navbar-height;
+  }
 }

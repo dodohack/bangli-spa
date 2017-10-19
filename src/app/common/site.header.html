@@ -2,68 +2,49 @@
 TODO: We listen on different page to to show different menu for different page.
 E.g: Only show locations for home, travel, local etc.
 -->
-<header style="margin-bottom: 1rem;">
-    <nav class="mega-menu-wrapper">
 
-        <div class="mega-menu" *ngFor="let c of (topMenus$ | async)">
-            <a class="menu-item" mat-ripple [routerLink]="[c.url]">{{ c.name }}</a>
-
-            <div class="mega-dropdown" *ngIf="subMenus$(c.id) | async">
-                <h2><a [routerLink]="[c.url]">{{ c.name }}热门城市</a></h2>
-                <div class="dropdown-items">
-                    <!-- Group 1 is hot cities -->
-                    <a mat-button mat-ripple *ngFor="let city of (subMenus$(c.id) | async)[1]"
-                       [routerLink]="[city.url]">{{ city.name }}</a>
-                </div>
-                <h2>{{ c.name }}所有城市</h2>
-                <div class="dropdown-items">
-                    <!-- Group 2 is all cities -->
-                    <a mat-button mat-ripple *ngFor="let city of (subMenus$(c.id) | async)[2]"
-                       [routerLink]="[city.url]">{{ city.name }}</a>
-                </div>
-            </div>
-        </div>
-
-    </nav>
-</header>
-
-<div class="container">
-
-    <!-- Header - logo and banners -->
-    <div class="header">
-        <div class="row">
-            <div class="col-lg-3">
-                <a routerLink="/">
-                    <img class="logo" src="http://placehold.it/300x90?text=频道LOGO">
-                </a>
-            </div>
-
-            <div class="col-lg-1">
-                <a routerLink="/place/london" mat-button>伦敦</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main menus -->
-    <!--
+<!-- Header - logo and banners -->
+<div class="header">
     <div class="row">
-        <div class="col-lg-12">
-            <mat-tab-group [selectedIndex]="menuidx || 0">
-
-                <mat-tab *ngFor="let m of (mainMenus$ | async); let i=index">
-                    <a *mat-tab-label (mouseover)="menuidx = i"
-                       [routerLink]="[m.url]" routerLinkActive="active">{{ m.name }}</a>
-
-                    <template mat-tab-content>
-                        <div *ngFor="let gid of (subMenuGids$(m.id) | async)" class="multirow col4">
-                            <a *ngFor="let item of (subMenus$(m.id) | async)[gid]"
-                               [routerLink]="[item.url]">{{ item.name }}</a>
-                        </div>
-                    </template>
-                </mat-tab>
-
-            </mat-tab-group>
+        <div class="col-md-6 col-lg-6">
+            <a routerLink="/">
+                <img class="logo" src="http://placehold.it/300x90?text=频道LOGO">
+            </a>
         </div>
     </div>
--->
 </div>
+
+<!-- Deal menus -->
+<div class="row">
+    <div class="col-md-24 col-lg-24">
+        <nav mat-tab-nav-bar>
+            <a mat-tab-link href="http://www.bangli.uk" target="_blank">英国邦利首页</a>
+            <a mat-tab-link *ngFor="let menu of menus" [routerLink]="menu.url">
+                {{menu.name}}
+            </a>
+        </nav>
+    </div>
+</div>
+
+<!-- Main menus, second phase -->
+<!--
+<div class="row">
+    <div class="col-md-24 col-lg-24">
+        <mat-tab-group [selectedIndex]="menuidx || 0">
+
+            <mat-tab *ngFor="let m of (mainMenus$ | async); let i=index">
+                <a *mat-tab-label (mouseover)="menuidx = i"
+                   [routerLink]="[m.url]" routerLinkActive="active">{{ m.name }}</a>
+
+                <template mat-tab-content>
+                    <div *ngFor="let gid of (subMenuGids$(m.id) | async)" class="multirow col4">
+                        <a *ngFor="let item of (subMenus$(m.id) | async)[gid]"
+                           [routerLink]="[item.url]">{{ item.name }}</a>
+                    </div>
+                </template>
+            </mat-tab>
+
+        </mat-tab-group>
+    </div>
+</div>
+-->

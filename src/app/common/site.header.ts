@@ -49,6 +49,14 @@ export class SiteHeader implements OnInit, OnDestroy
     subMenus: any;
     subMenuUpdate: any;
 
+    // Phase 1 menu: deal menu
+    menus = [
+        {url: '/deal', name: '优惠首页'},
+        {url: '/deal/cat/beauty', name: '美妆优惠'},
+        {url: '/deal/cat/healthcare', name: '医药保健'},
+        {url: '/deal/list', name: '优惠导航'}
+    ];
+
     constructor(private route: ActivatedRoute,
                 private store: Store<AppState>,
                 private cd: ChangeDetectorRef) {}
