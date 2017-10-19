@@ -15,8 +15,6 @@ import {
     MatExpansionModule
 } from '@angular/material';
 
-import { environment }   from '../../environments/environment';
-
 import { TopNav }      from './mobile/top.nav';
 import { BottomNav }   from './mobile/bottom.nav';
 import { SideNav }     from './mobile/side.nav';
@@ -38,8 +36,7 @@ export const MD_MODULES = [
     MatExpansionModule
 ];
 
-export const COMPONENTS = environment.mobile ?
-    [
+export const COMPONENTS = [
         TopNav,
         BottomNav,
         SideNav,
@@ -48,14 +45,10 @@ export const COMPONENTS = environment.mobile ?
         Carousel,
         Slide,
         OfferCardGroup,
-        VoucherCodeDialog
-    ] :
-    [
-        // FIXME: Actually We could use MerchantTopic as OfferTopic!!
+        VoucherCodeDialog,
+
         SiteHeader,
         SiteFooter,
-        Carousel,
-        Slide
     ];
 
 

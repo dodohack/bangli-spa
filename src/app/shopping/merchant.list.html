@@ -1,0 +1,34 @@
+
+<div class="brand-a-z">
+    <nav mat-tab-nav-bar>
+        <a mat-tab-link [routerLink]="[baseUrl, 'all', '1']">全部</a>
+        <!--<a mat-tab-link [routerLink]="[baseUrl, 'featured', '1']">推荐</a>-->
+        <ng-template ngFor let-a [ngForOf]="alphabets">
+            <a mat-tab-link [routerLink]="[baseUrl, a, '1']">{{ a }}</a>
+        </ng-template>
+    </nav>
+</div>
+
+
+<mat-nav-list>
+    <ng-template ngFor let-entity [ngForOf]="(entities$ | async)[key]" let-i="index">
+        <h3 mat-subheader
+            *ngIf="isGroupStart(i, (entities$ | async)[key][i > 0 ? i - 1 : 0].guid, entity.guid)">{{ entity.guid.substring(0,1) | uppercase}}</h3>
+        <a mat-list-item [routerLink]="['/merchant', entity.guid]"
+           [fragment]="'deal'" class="topic-list-item">
+            <img mat-list-avatar [src]="entity.logo" *ngIf="entity.logo">
+            <h4 mat-line>{{ entity.title }}</h4>
+            <span class="offer-count-badge">{{ entity.offers_count }}</span>
+            <p mat-line class="offer-title-cn">
+                <span>中文标题 -- </span>
+                <span class="offer-desc-cn">简短一句话介绍</span>
+            </p>
+        </a>
+    </ng-template>
+</mat-nav-list>
+
+<div style="padding: 20px 0" *ngIf="!isLoading && pageless">
+    <a mat-raised-button class="load-more"
+       [routerLink]="[nextPage]"
+       *ngIf="!isLastPage((paginator$|async)[key])">加载更多</a>
+</div>

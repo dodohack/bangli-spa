@@ -5,7 +5,6 @@ import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-br
 
 import { routing }      from './routes';
 
-import { OfferTopic }   from './offer.topic';
 import { OfferIndex }   from './offer.index';
 import { OfferCategory } from './offer.category';
 import { MerchantTopic } from './merchant.topic';
@@ -15,16 +14,13 @@ import { MerchantList }  from './merchant.list';
 import { SharedModule }  from '../common/shared.module';
 
 
-export const COMPONENTS =
-        [
-            // FIXME: Actually We could use MerchantTopic as OfferTopic!!
-            OfferTopic,
-            OfferIndex,
-            OfferCategory,
-            MerchantTopic,
-            MerchantIndex,
-            MerchantList,
-        ];
+export const COMPONENTS = [
+    OfferIndex,
+    OfferCategory,
+    MerchantTopic,
+    MerchantIndex,
+    MerchantList,
+];
 
 @NgModule({
     imports: [

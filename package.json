@@ -4,12 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --disableHostCheck true --extract-css --env=dev-mobile",
-    "start-pc": "ng serve --extract-css --env=dev",
-    "build-dev": "ng build --extract-css --env=dev-mobile",
-    "build-dev-pc": "ng build --extract-css --env=dev",
-    "build": "ng build --extract-css --env=prod-mobile",
-    "build-pc": "ng build --extract-css --env=prod",
+    "start": "ng serve --host 0.0.0.0 --disableHostCheck true --extract-css --env=dev",
+    "build-dev": "ng build --extract-css --env=dev",
+    "build": "ng build --extract-css --env=prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
