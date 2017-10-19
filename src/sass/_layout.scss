@@ -35,8 +35,16 @@ $flexboxgrid-max-width: 1200px;
 
 $padding: 1rem;
 
+//
 // Flexbox grid
+//
 @import "../../node_modules/flexboxgrid-sass/flexboxgrid";
+
+//
+// Height of mobile navbar(top, bottom)
+//
+$navbar-height: 3rem;
+
 
 //
 // Body
@@ -68,10 +76,18 @@ $padding: 1rem;
 //
 // Make the page 100% height, mat-sidenav bug workaround
 //
-.fullscreen-container {
-  min-height: 100vh;
-  // Overwrite container-fluid padding on phones and tablets
-  @media only screen and (max-width: $break-md) {
+@media only screen and (max-width: $break-md) {
+  .fullscreen-container {
+    // Overwrite container-fluid padding on phones and tablets
     padding: 0 0 0 0 !important;
   }
+}
+
+// Content wrap
+.content-wrap {
+  min-height: 100vh;
+}
+
+.content {
+  margin: 0 0 $navbar-height;
 }

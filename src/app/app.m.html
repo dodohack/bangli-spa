@@ -1,19 +1,19 @@
-<!-- FIXME: fullscreen prevent window:scroll to be fired, so we couldn't trigger
- loadEntitiesOnScroll with this event. -->
 <mat-sidenav-container class="wrap container-fluid container fullscreen-container">
 
-    <!-- SECOND STAGE! -->
+    <!-- SECOND STAGE: Move top-nav outside mat-sidenav-content for fixed position -->
     <!--<top-nav (menuToggle)="sidenav.toggle()"></top-nav>-->
 
-    <mat-sidenav #sidenav mode="push" class="sidenav hidden-md hidden-lg">
+    <!-- mode="push" is bugged with current sidenav workaround  -->
+    <mat-sidenav #sidenav class="sidenav hidden-md hidden-lg">
         <side-nav (click)="sidenav.toggle()"></side-nav>
     </mat-sidenav>
 
-    <mat-sidenav-content>
-        <!-- top-nav will not be fixed in first state. -->
+    <mat-sidenav-content class="content-wrap">
         <top-nav class="hidden-md hidden-lg"></top-nav>
 
-        <router-outlet></router-outlet>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
 
         <bottom-nav class="hidden-md hidden-lg" (menuToggle)="sidenav.toggle()"></bottom-nav>
     </mat-sidenav-content>
