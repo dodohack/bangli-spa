@@ -1,5 +1,6 @@
 <!-- Offers home page for mobile, this is different from merchants home page -->
 <div class="offers-index">
+<!--
     <carousel [interval]="3000" [noWrap]="false">
         <slide *ngFor="let topic of (topics$ | async)[groupKeys.CATEGORY_FEATURED_TOPIC_W_OFFER]; let idx=index">
             <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'">
@@ -10,6 +11,20 @@
             </a>
         </slide>
     </carousel>
+-->
+
+
+    <ngx-carousel [inputs]="carouselConfig">
+        <ngx-item NgxCarouselItem *ngFor="let topic of (topics$ | async)[groupKeys.CATEGORY_FEATURED_TOPIC_W_OFFER]">
+            <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'">
+                <img [src]="thumbCard21Url(topic.images)">
+                <h2>[{{ topic.title }}] <span *ngIf="topic.offers">{{ topic.offers[0].title }}</span></h2>
+            </a>
+        </ngx-item>
+
+        <button NgxCarouselPrev mat-mini-fab>&lt;</button>
+        <button NgxCarouselNext mat-mini-fab>&gt;</button>
+    </ngx-carousel>
 
     <!-- Show hot offer topic brand logo of this category -->
     <!--

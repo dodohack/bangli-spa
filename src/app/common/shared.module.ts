@@ -15,6 +15,8 @@ import {
     MatExpansionModule
 } from '@angular/material';
 
+import { NgxCarouselModule } from 'ngx-carousel';
+
 import { TopNav }      from './mobile/top.nav';
 import { BottomNav }   from './mobile/bottom.nav';
 import { SideNav }     from './mobile/side.nav';
@@ -56,6 +58,7 @@ export const COMPONENTS = [
     imports: [
         CommonModule,
         RouterModule,
+        NgxCarouselModule,
         MD_MODULES,
     ],
     declarations: [
@@ -67,6 +70,7 @@ export const COMPONENTS = [
     exports: [
         CommonModule,
         RouterModule,
+        NgxCarouselModule,
         MD_MODULES,
         COMPONENTS
     ],
