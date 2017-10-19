@@ -11,8 +11,13 @@ $break-sm: 48em;       // 768px  if base font-size is 16px
 $break-md: 64em;       // 1024px
 $break-lg: 75em;       // 1200px
 
+// Break point minus 0.1
+$break-sm-m1: 47.9em;
+$break-md-m1: 63.9em;
+$break-lg-m1: 74.9em;
+
 // Container with for each corresponding screen with
-$container-sm: 46rem;  // 736px
+$container-sm: 48rem;  // 768px
 $container-md: 61rem;  // 976px
 $container-lg: 71rem;  // 1136px
 
@@ -39,6 +44,16 @@ $padding: 1rem;
 // Flexbox grid
 //
 @import "../../node_modules/flexboxgrid-sass/flexboxgrid";
+
+//
+// Overwrite container width for small screen
+//
+@media only screen and (min-width: $break-sm) and (max-width: $break-md-m1)
+{
+  .container {
+    width: auto;
+  }
+}
 
 //
 // Height of mobile navbar(top, bottom)

@@ -7,7 +7,7 @@
 }
 
 // Hide element on mobile phones
-@media only screen and (max-width: $break-sm)
+@media only screen and (max-width: $break-sm-m1)
 {
   .hidden-xs
   {
@@ -16,7 +16,7 @@
 }
 
 // Hide element on tablets
-@media only screen and (min-width: $break-sm) and (max-width: $break-md)
+@media only screen and (min-width: $break-sm) and (max-width: $break-md-m1)
 {
   .hidden-sm
   {
@@ -25,7 +25,7 @@
 }
 
 // Hide element on desktops
-@media only screen and (min-width: $break-md) and (max-width: $break-lg)
+@media only screen and (min-width: $break-md) and (max-width: $break-lg-m1)
 {
   .hidden-md
   {
