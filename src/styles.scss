@@ -5,6 +5,12 @@
 //
 @import "./sass/vendors/normalize.css";
 
+
+//
+// Themes: font, color, icon, icon path, variables
+//
+@import "./sass/theme";
+
 //
 // Layout
 //
@@ -12,11 +18,6 @@
 @import "./sass/layout";
 // Hidden classes for various screen sizes
 @import "./sass/hidden";
-
-//
-// Themes: font, color, icon, icon path, variables
-//
-@import "./sass/theme";
 
 //
 // Image slider
@@ -28,8 +29,8 @@
 // Rework
 //@import "./sass/offer";
 
+@import "./sass/topic";
 @import "./sass/mobile/navbar";
-@import "./sass/mobile/topic";
 @import "./sass/mobile/list";
 
 

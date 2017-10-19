@@ -1,26 +1,20 @@
 <!-- topic logo, title, number of deal/post, tracking_url, subscribe -->
 <div class="topic-head" *ngIf="topic">
-    <!-- FIXME: Need to set the maximum width of topic-left -->
-    <!-- FIXME: Need to cut down long topic title -->
-    <div class="topic-left">
-        <div class="topic-img" *ngIf="topic.logo != ''">
-            <img [src]="imageUrl(topic.logo)">
-        </div>
-        <div class="topic-caption">
-            <h2>{{ topic.title }}</h2>
-            <p [innerHtml]="topic.description"></p>
-        </div>
-    </div>
-    <div class="topic-action">
+
+    <div style="width: 100%">
+
+        <a  class="float-right" mat-raised-button target="_blank"
+            href="{{ topic.tracking_url }}">访问官网</a>
         <!--<button mat-raised-button>订阅</button><br>-->
-        <a mat-raised-button target="_blank" href="{{ topic.tracking_url }}">访问官网</a>
+
+        <div class="flexbox">
+            <img class="topic-img" *ngIf="topic.logo != ''"
+                 [src]="imageUrl(topic.logo)">
+
+            <div class="topic-caption">
+                <h2>{{ topic.title }}</h2>
+                <p [innerHtml]="topic.description"></p>
+            </div>
+        </div>
     </div>
 </div>
-
-    <!-- row 2 -->
-    <!-- tabs of topic intro, deals, hot posts, new posts, related topics, etc -->
-
-    <!-- Then we have corresponding content listed below -->
-
-    <!-- bottom navbar -->
-    <!-- Comment, thumb-up, etc-->

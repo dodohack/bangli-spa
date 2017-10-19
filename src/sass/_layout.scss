@@ -59,7 +59,7 @@ $navbar-height: 3rem;
 // Page wrapper
 //
 .wrap {
-  background: #eee;
+  background: $body-bg;
   box-sizing: border-box;
   max-width: $flexboxgrid-max-width;
   margin: 0 auto;
@@ -98,5 +98,26 @@ $navbar-height: 3rem;
 @media only screen and (max-width: $break-md) {
   .content {
     margin: 0 0 $navbar-height;
+  }
+}
+
+.float-right {
+  float: right;
+}
+
+.flexbox {
+  display: flex;
+}
+
+//
+// Narrow down mat-tabs a bit
+//
+.narrow {
+  .mat-tab-label {
+    padding: 0 12px !important;
+    min-width: 100px;
+    @media only screen and (max-width: $break-sm) {
+      min-width: 72px;
+    }
   }
 }

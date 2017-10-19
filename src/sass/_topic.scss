@@ -1,0 +1,77 @@
+/**
+ * Topic related style for mobile
+ */
+
+//////////////////////////////////////////////////////////////////////////////
+// Topic head
+//////////////////////////////////////////////////////////////////////////////
+
+.topic-head {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.topic-img {
+  display: inline-block;
+  border-radius: 10px;
+  border: 1px solid $border-color;
+  width: 64px;
+  height: 64px;
+
+  @media only screen and (min-width: $break-sm) {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.topic-caption {
+  display: inline-block;
+  padding-left: 0.5rem;
+
+  h2 {
+    margin: 0.5rem 0;
+    font-size: 1.0rem;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: grey;
+    // 2 rows height
+    height: 29px;
+    word-wrap: break-word;
+    overflow: hidden;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Topic body
+//////////////////////////////////////////////////////////////////////////////
+
+
+.topic-body {
+  .mat-tab-body-wrapper {
+    margin: 1rem;
+  }
+
+  mat-tab-group {
+    border-top: 1px solid #dddddd;
+  }
+
+  // A single deal in the topic deal list
+  .topic-deal {
+    .deal-detail {
+      display: flex;
+      div {
+        display: inline-block;
+      }
+    }
+
+    .deal-footer {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

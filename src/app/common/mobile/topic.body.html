@@ -1,57 +1,72 @@
 
-<div class="topic-body">
-    <mat-tab-group [selectedIndex]="selectedTab">
-        <mat-tab label="介绍">
-            <!-- FIXME: Need to support dynamic content -->
-            <div [innerHtml]="content">
-            </div>
-        </mat-tab>
-        <mat-tab label="优惠{{ numOffers }}">
-            <div *ngIf="hasOffer">
-                <mat-card *ngFor="let offer of offers" class="deal-card">
-                    <div class="deal-card-content">
-                        <img mat-card-image [src]="logoUrl">
-                        <mat-card-title>
-                            <span *ngIf="offer.title.length < 80">
-                                {{ offer.title }}
-                            </span>
-                            <a *ngIf="offer.title.length > 80"
-                               (click)="openVoucherDialog(offer.title, null, offer.tracking_url)">
-                                {{ offer.title.substr(0,79) }}... 展开 <i class="fa fa-caret-down"></i>
-                            </a>
-                        </mat-card-title>
-                    </div>
-                    <mat-card-actions>
-                        <span class="deal-metadata">{{ expires(offer.ends) }}</span>
-                        <a mat-raised-button target="_blank" href="{{offer.tracking_url}}"
-                           *ngIf="offer.vouchers == ''">购买链接</a>
-                        <button mat-raised-button color="primary"
-                                (click)="openVoucherDialog(null, offer.vouchers, offer.tracking_url)"
-                                *ngIf="offer.vouchers">查看优惠码</button>
-                    </mat-card-actions>
-                </mat-card>
-            </div>
-            <div *ngIf="!hasOffer">
-                亲，暂时还没有发现优惠哦...
-            </div>
-        </mat-tab>
-        <mat-tab label="文章">
-            <div>
-                List of posts of this topic, we should support order by
-                count of views and publish date.
-            </div>
-        </mat-tab>
-        <mat-tab label="相关产品">
-            <div>
-                If this is a merchant topic, we will list topics of hot products
-                related to this merchant.
-            </div>
-        </mat-tab>
-        <mat-tab label="相关专题">
-            <div>
-                List of related topics
-            </div>
-        </mat-tab>
-    </mat-tab-group>
+<div class="topic-body row">
 
+    <div class="col-xs-24 col-sm-24 col-md-17">
+        <mat-tab-group [selectedIndex]="selectedTab" class="narrow">
+            <mat-tab label="介绍">
+                <!-- FIXME: Need to support dynamic content -->
+                <div [innerHtml]="content">
+                </div>
+            </mat-tab>
+            <mat-tab label="优惠{{ numOffers }}">
+                <div *ngIf="hasOffer">
+                    <mat-card *ngFor="let offer of offers" class="deal-card">
+                        <div class="deal-card-content">
+                            <img mat-card-image [src]="logoUrl">
+
+                            <mat-card-title class="hidden-sm hidden-md hidden-lg">
+                                <span *ngIf="offer.title.length < 80">
+                                    {{ offer.title }}
+                                </span>
+                                <a *ngIf="offer.title.length > 80"
+                                   (click)="openVoucherDialog(offer.title, null, offer.tracking_url)">
+                                    {{ offer.title.substr(0,79) }}... 展开 <i class="fa fa-caret-down"></i>
+                                </a>
+                            </mat-card-title>
+
+                            <mat-card-title class="hidden-xs">
+                                <span>
+                                    {{ offer.title }}
+                                </span>
+                            </mat-card-title>
+
+                        </div>
+                        <mat-card-actions>
+                            <span class="deal-metadata">{{ expires(offer.ends) }}</span>
+                            <a mat-raised-button target="_blank" href="{{offer.tracking_url}}"
+                               *ngIf="offer.vouchers == ''">购买链接</a>
+                            <button mat-raised-button color="primary"
+                                    (click)="openVoucherDialog(null, offer.vouchers, offer.tracking_url)"
+                                    *ngIf="offer.vouchers">查看优惠码</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+                <div *ngIf="!hasOffer">
+                    亲，暂时还没有发现优惠哦...
+                </div>
+            </mat-tab>
+            <mat-tab label="文章">
+                <div>
+                    List of posts of this topic, we should support order by
+                    count of views and publish date.
+                </div>
+            </mat-tab>
+            <mat-tab label="相关产品">
+                <div>
+                    If this is a merchant topic, we will list topics of hot products
+                    related to this merchant.
+                </div>
+            </mat-tab>
+            <mat-tab label="相关专题">
+                <div>
+                    List of related topics
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+
+    <div class="sidebar col-md-7">
+        This is the sidebar on desktop on topic page.
+    </div>
 </div>
