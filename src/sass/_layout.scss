@@ -84,7 +84,10 @@ $navbar-height: 3rem;
 // Mobile sidebar
 //
 .sidenav {
-  width: 75vw; // 75% of screen width
+  width: 75vw; // 75% of xs screen width
+  @media only screen and (min-width: $break-sm) {
+    width: 35vw; // 35% of sm screen width
+  }
   position: fixed !important; // mat-sidenav bug workaround
 }
 
