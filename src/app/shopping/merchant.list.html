@@ -16,7 +16,7 @@
             *ngIf="isGroupStart(i, (entities$ | async)[key][i > 0 ? i - 1 : 0].guid, entity.guid)">{{ entity.guid.substring(0,1) | uppercase}}</h3>
         <a mat-list-item [routerLink]="['/merchant', entity.guid]"
            [fragment]="'deal'" class="topic-list-item">
-            <img mat-list-avatar [src]="entity.logo" *ngIf="entity.logo">
+            <img mat-list-avatar [src]="imgurl(entity.logo)">
             <h4 mat-line>{{ entity.title }}</h4>
             <span class="offer-count-badge">{{ entity.offers_count }}</span>
             <p mat-line class="offer-title-cn">

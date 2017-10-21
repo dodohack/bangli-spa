@@ -16,6 +16,8 @@ import * as EntityActions  from '../core/actions/entity';
 import { AppState } from './reducers';
 import { getIsLoading, getEntitiesCurPage, getPaginators } from './reducers';
 
+import { imageUrl } from './utils';
+
 
 export abstract class EntitiesBase implements OnInit, OnDestroy
 {
@@ -139,4 +141,7 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
                 topic_guid_starts: ''
             });
     }
+
+    imgurl(uri: string) { return imageUrl(uri); }
+
 }

@@ -47,8 +47,9 @@ export class Sidebar implements OnInit, OnDestroy
     ngOnInit() {
         this.params = {
             key: 'default',
-            per_page: 3,
+            per_page: 5,
             page: 1,
+            position: 'ad-pc-sidebar-banner',
         };
 
         this.ads$ = this.store.select(getAdvertisesCurPage);

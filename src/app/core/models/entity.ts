@@ -88,4 +88,6 @@ export interface EntityParams {
     relations?: string[]; // Relationships to be queried together
     order_by?: string;  // Sort entites by which column
     order?: string; // Sort order: asc or desc
+
+    position?: string; // Advertisement position
 }
