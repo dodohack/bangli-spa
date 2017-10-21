@@ -4,6 +4,7 @@
 
 import {
     Component,
+    Input,
     OnInit,
     OnDestroy,
     ChangeDetectorRef,
@@ -31,6 +32,9 @@ import { imageUrl } from '../core/utils';
 })
 export class Sidebar implements OnInit, OnDestroy
 {
+    // Which type of page this sidebar is shown on
+    @Input() type: string;
+
     ads$: Observable<Entity[]>;
     paginators$: Observable<{[key: string]: Paginator}>;
 

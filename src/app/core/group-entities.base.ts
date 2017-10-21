@@ -124,7 +124,7 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
         // Keep a copy of route.params
         this.localParams = params;
 
-        console.error("Updated localParams: ", this.localParams);
+        //console.error("Updated localParams: ", this.localParams);
 
         let newGPS: EntityParams[] = [];
         let idx = this.groupParams.length - 1;
