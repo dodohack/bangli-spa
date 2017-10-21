@@ -12,7 +12,7 @@
                  [src]="imageUrl(topic.logo)">
 
             <div class="topic-caption">
-                <h2>{{ topic.title }}</h2>
+                <h2>{{ topic.title }}<span *ngIf="topic.title_cn" class="hidden-xs"> | {{ topic.title_cn }}</span></h2>
                 <p [innerHtml]="topic.description"></p>
             </div>
         </div>
