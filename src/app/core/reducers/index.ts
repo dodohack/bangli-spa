@@ -27,16 +27,15 @@ import {
     postReducer,
     pageReducer,
     offerReducer,
+    advertiseReducer,
 } from './entities';
-import {getIds} from "./entities";
-
-
 
 export interface AppState {
     topics: EntitiesState;
     posts:  EntitiesState;
     offers: EntitiesState;
     pages: EntitiesState;
+    advertises: EntitiesState;
     routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
 };
 
@@ -45,6 +44,7 @@ export const reducers: ActionReducerMap<AppState> = {
     posts:  postReducer,
     offers: offerReducer,
     pages: pageReducer,
+    advertises: advertiseReducer,
     routerReducer: fromRouter.routerReducer,
 };
 
@@ -77,41 +77,49 @@ export const getTopicsState = (state: AppState) => state.topics;
 export const getOffersState = (state: AppState) => state.offers;
 export const getPostsState  = (state: AppState) => state.posts;
 export const getPagesState  = (state: AppState) => state.pages;
+export const getAdvertisesState  = (state: AppState) => state.advertises;
 
 export const getCurTopicId = createSelector(getTopicsState,fromEntities.getCurID);
 export const getCurOfferId = createSelector(getOffersState,fromEntities.getCurID);
-export const getCurPostId = createSelector(getPostsState,fromEntities.getCurID);
-export const getCurPageId = createSelector(getPagesState,fromEntities.getCurID);
+export const getCurPostId  = createSelector(getPostsState,fromEntities.getCurID);
+export const getCurPageId  = createSelector(getPagesState,fromEntities.getCurID);
+export const getCurAdvertiseId = createSelector(getAdvertisesState,fromEntities.getCurID);
 
 export const getTopicIds = createSelector(getTopicsState, fromEntities.getIds);
 export const getOfferIds = createSelector(getOffersState, fromEntities.getIds);
-export const getPostIds = createSelector(getPostsState, fromEntities.getIds);
-export const getPageIds = createSelector(getPagesState, fromEntities.getIds);
+export const getPostIds  = createSelector(getPostsState, fromEntities.getIds);
+export const getPageIds  = createSelector(getPagesState, fromEntities.getIds);
+export const getAdvertiseIds = createSelector(getAdvertisesState, fromEntities.getIds);
 
 export const getTopicIdsCurPage = createSelector(getTopicsState, fromEntities.getIdsCurPage);
 export const getOfferIdsCurPage = createSelector(getOffersState, fromEntities.getIdsCurPage);
-export const getPostIdsCurPage = createSelector(getPostsState, fromEntities.getIdsCurPage);
-export const getPageIdsCurPage = createSelector(getPagesState, fromEntities.getIdsCurPage);
+export const getPostIdsCurPage  = createSelector(getPostsState, fromEntities.getIdsCurPage);
+export const getPageIdsCurPage  = createSelector(getPagesState, fromEntities.getIdsCurPage);
+export const getAdvertiseIdsCurPage = createSelector(getAdvertisesState, fromEntities.getIdsCurPage);
 
 export const getTopicPaginators = createSelector(getTopicsState, fromEntities.getPaginators);
 export const getOfferPaginators = createSelector(getOffersState, fromEntities.getPaginators);
-export const getPostPaginators = createSelector(getPostsState, fromEntities.getPaginators);
-export const getPagePaginators = createSelector(getPagesState, fromEntities.getPaginators);
+export const getPostPaginators  = createSelector(getPostsState, fromEntities.getPaginators);
+export const getPagePaginators  = createSelector(getPagesState, fromEntities.getPaginators);
+export const getAdvertisePaginators = createSelector(getAdvertisesState, fromEntities.getPaginators);
 
 export const getTopicIsLoading = createSelector(getTopicsState, fromEntities.getIsLoading);
 export const getOfferIsLoading = createSelector(getOffersState, fromEntities.getIsLoading);
-export const getPostIsLoading = createSelector(getPostsState, fromEntities.getIsLoading);
-export const getPageIsLoading = createSelector(getPagesState, fromEntities.getIsLoading);
+export const getPostIsLoading  = createSelector(getPostsState, fromEntities.getIsLoading);
+export const getPageIsLoading  = createSelector(getPagesState, fromEntities.getIsLoading);
+export const getAdvertiseIsLoading = createSelector(getAdvertisesState, fromEntities.getIsLoading);
 
 export const getTopicEntities = createSelector(getTopicsState, fromEntities.getEntities);
 export const getOfferEntities = createSelector(getOffersState, fromEntities.getEntities);
-export const getPostEntities = createSelector(getPostsState, fromEntities.getEntities);
-export const getPageEntities = createSelector(getPagesState, fromEntities.getEntities);
+export const getPostEntities  = createSelector(getPostsState, fromEntities.getEntities);
+export const getPageEntities  = createSelector(getPagesState, fromEntities.getEntities);
+export const getAdvertiseEntities = createSelector(getAdvertisesState, fromEntities.getEntities);
 
 export const getTopicKeys = createSelector(getTopicsState, fromEntities.getKeys);
 export const getOfferKeys = createSelector(getOffersState, fromEntities.getKeys);
-export const getPostKeys = createSelector(getPostsState, fromEntities.getKeys);
-export const getPageKeys = createSelector(getPagesState, fromEntities.getKeys);
+export const getPostKeys  = createSelector(getPostsState, fromEntities.getKeys);
+export const getPageKeys  = createSelector(getPagesState, fromEntities.getKeys);
+export const getAdvertiseKeys = createSelector(getAdvertisesState, fromEntities.getKeys);
 
 // Helper projector which product object: {[key:string]: Entity[]}
 export const entitiesProjector = (entities, ids, keys) =>
@@ -130,6 +138,8 @@ export const getPosts = createSelector(
     getPostEntities, getPostIds, getPostKeys, entitiesProjector);
 export const getPages = createSelector(
     getPageEntities, getPageIds, getPageKeys, entitiesProjector);
+export const getAdvertises = createSelector(
+    getAdvertiseEntities, getAdvertiseIds, getAdvertiseKeys, entitiesProjector);
 
 // getEntities factory method
 export function getEntities(etype: string) {
@@ -142,6 +152,8 @@ export function getEntities(etype: string) {
             return getPosts;
         case ENTITY.PAGE:
             return getPages;
+        case ENTITY.ADVERTISE:
+            return getAdvertises;
         default:
             console.error("REDUCER EXCEPTION!");
     }
@@ -155,6 +167,8 @@ export const getPostsCurPage = createSelector(
     getPostEntities, getPostIdsCurPage, getPostKeys, entitiesProjector);
 export const getPagesCurPage = createSelector(
     getPageEntities, getPageIdsCurPage, getPageKeys, entitiesProjector);
+export const getAdvertisesCurPage = createSelector(
+    getAdvertiseEntities, getAdvertiseIdsCurPage, getAdvertiseKeys, entitiesProjector);
 
 // getEntitiesCurPage factory method
 export function getEntitiesCurPage(etype: string) {
@@ -167,6 +181,8 @@ export function getEntitiesCurPage(etype: string) {
             return getPostsCurPage;
         case ENTITY.PAGE:
             return getPagesCurPage;
+        case ENTITY.ADVERTISE:
+            return getAdvertisesCurPage;
         default:
             console.error("REDUCER EXCEPTION!");
     }
@@ -182,6 +198,8 @@ export function getPaginators(etype: string) {
             return getPostPaginators;
         case ENTITY.PAGE:
             return getPagePaginators;
+        case ENTITY.ADVERTISE:
+            return getAdvertisePaginators;
         default:
             console.error("REDUCER EXCEPTION!");
     }
@@ -198,6 +216,8 @@ export function getIsLoading(etype: string) {
             return getPostIsLoading;
         case ENTITY.PAGE:
             return getPageIsLoading;
+        case ENTITY.ADVERTISE:
+            return getAdvertiseIsLoading;
         default:
             console.error("REDUCER EXCEPTION!");
     }
@@ -219,5 +239,17 @@ export const getCurOffer = createSelector(
 export const getCurPost = createSelector(
     getPostEntities,
     getCurPostId,
+    (entities, id) => { return id && entities[id]; }
+);
+
+export const getCurPage = createSelector(
+    getPageEntities,
+    getCurPageId,
+    (entities, id) => { return id && entities[id]; }
+);
+
+export const getCurAdvertise = createSelector(
+    getAdvertiseEntities,
+    getCurAdvertiseId,
     (entities, id) => { return id && entities[id]; }
 );

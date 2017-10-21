@@ -1,5 +1,6 @@
 import { RouterStateSerializer }       from '@ngrx/router-store';
 import { RouterStateSnapshot, Params, UrlSegment } from '@angular/router';
+import {IMG_SERVER} from "../../../.config";
 
 /**
  * The RouterStateSerializer takes the current RouterStateSnapshot and returns
@@ -27,4 +28,19 @@ export class CustomRouterStateSerializer
 
         return { url, urlseg, params, queryParams};
     }
+}
+
+/***************************************************************************
+ * Other helper functions
+ ****************************************************************************/
+
+export function imageUrl(uri: string) {
+    if (typeof uri === 'undefined' || uri === null || uri === '')
+        return 'placeholder image';
+
+    // Url starts from 'http'.
+    if (uri[0] === 'h' && uri[1] === 't') return uri;
+
+    // Relative uri, prefix with our base image server
+    return IMG_SERVER + '/' + uri;
 }

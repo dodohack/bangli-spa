@@ -102,6 +102,19 @@ export function offerReducer(state = initState,
 }
 
 /**
+ * Advertise reducer
+ */
+export function advertiseReducer(state = initState,
+                             action: entity.Actions): EntitiesState {
+    if (!action.payload) return state;
+
+    if (action.payload.etype === ENTITY.ADVERTISE)
+        return entitiesReducer(action.payload.etype, state, action);
+
+    return state;
+}
+
+/**
  * Helper function to return the index type of entities
  * @param etype
  * @returns {any}

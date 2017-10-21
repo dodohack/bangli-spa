@@ -23,7 +23,7 @@ const ENDPOINT = {
     comments: '/comments',
 
     advertises: '/advertises',
-}
+};
 
 export function API(ep: string) {
     // FIXME: hardcode endpoint

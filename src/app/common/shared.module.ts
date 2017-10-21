@@ -26,8 +26,10 @@ import { Carousel }    from './carousel/carousel';
 import { Slide }       from './carousel/slide';
 import { OfferCardGroup }  from './mobile/offer-card-group';
 
+// Desktop only component
 import { SiteHeader }  from './site.header';
 import { SiteFooter }  from './site.footer';
+import { Sidebar }     from './sidebar';
 
 export const MD_MODULES = [
     MatTabsModule,
@@ -51,6 +53,7 @@ export const COMPONENTS = [
 
         SiteHeader,
         SiteFooter,
+        Sidebar,
     ];
 
 
