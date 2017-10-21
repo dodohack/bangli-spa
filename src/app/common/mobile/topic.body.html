@@ -31,11 +31,12 @@
                     </div>
                     <mat-card-actions>
                         <span class="deal-metadata">{{ expires(offer.ends) }}</span>
-                        <a mat-raised-button target="_blank" href="{{offer.tracking_url}}"
-                           *ngIf="offer.vouchers == ''">购买链接</a>
-                        <button mat-raised-button color="primary"
-                                (click)="openVoucherDialog(null, offer.vouchers, offer.tracking_url)"
-                                *ngIf="offer.vouchers">查看优惠码</button>
+                        <div style="display: inline-block; float: right;">
+                            <a mat-raised-button target="_blank" href="{{offer.tracking_url}}">购买链接</a>
+                            <button mat-raised-button color="primary"
+                                    (click)="openVoucherDialog(null, offer.vouchers, offer.tracking_url)"
+                                    *ngIf="offer.vouchers">查看优惠码</button>
+                        </div>
                     </mat-card-actions>
                 </mat-card>
             </div>
