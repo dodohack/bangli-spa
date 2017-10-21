@@ -45,7 +45,7 @@ export const TOPIC_PARAMS: EntityParams = {
     topic_has_offer: true, // Only query topic which at least has 1 offer
     per_page: 6,
     page: 1,
-    order_by: 'featured',
+    order_by: 'ranking',
     order: 'desc',
     // NOTE: We must have ENTITY.ATTACHMENT here even we don't use it, cause
     // some topics loaded here may overwrite the featured topics.
