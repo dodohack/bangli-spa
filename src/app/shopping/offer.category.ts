@@ -2,7 +2,7 @@
  * Offer category page
  */
 
-import { HostListener, Component, OnInit } from '@angular/core';
+import { HostListener, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store }             from '@ngrx/store';
 import { NgxCarousel }       from 'ngx-carousel';
@@ -15,7 +15,7 @@ import * as cfg from './offer.category.cfg';
 @Component({
     templateUrl: './offer.category.html'
 })
-export class OfferCategory extends GroupEntitiesBase // implements OnInit
+export class OfferCategory extends GroupEntitiesBase
 {
     public carouselConfig:  NgxCarousel;
 

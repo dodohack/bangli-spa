@@ -29,7 +29,7 @@
     </div>
 
     <!-- Style for offer category page, show 1 or 2 cards for each offer -->
-    <div class="cards-wrapper" *ngIf="isCategoryPage">
+    <div class="cards-container" *ngIf="isCategoryPage">
         <mat-card *ngFor="let offer of topic.offers | slice:0:2" class="deal-card">
             <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'" class="brand-link"
                style="display: block; margin-bottom: -32px !important;">

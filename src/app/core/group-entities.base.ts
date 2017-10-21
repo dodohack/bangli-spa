@@ -4,7 +4,6 @@
  * route.params is required to trigger the load.
  */
 import { OnInit, OnDestroy } from '@angular/core';
-
 import { ActivatedRoute, Router }    from '@angular/router';
 import { Observable }        from 'rxjs/Rx';
 import { Store }             from '@ngrx/store';
@@ -14,10 +13,13 @@ import { Store }             from '@ngrx/store';
 import { ENTITY, Paginator, Entity, EntityParams } from './models';
 
 import * as EntityActions    from './actions/entity';
-
-import { AppState, getEntitiesCurPage, getIsLoading, getPaginators } from './reducers';
-
 import { IMG_SERVER, THUMBS } from "../../../.config";
+import {
+    AppState,
+    getEntitiesCurPage,
+    getIsLoading,
+    getPaginators } from './reducers';
+
 
 export abstract class GroupEntitiesBase implements OnInit, OnDestroy
 {
@@ -168,10 +170,7 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
         if (!this.paginators) return true;
         if (!this.paginators.hasOwnProperty(key)) return true;
 
-        if (this.paginators[key].cur_page == this.paginators[key].last_page)
-            return true;
-
-        return false;
+        return this.paginators[key].cur_page == this.paginators[key].last_page;
     }
 
     get nextPage() {

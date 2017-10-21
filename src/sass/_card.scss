@@ -4,12 +4,12 @@
 
 .cards-wrapper {
   background: #eeeeee;
-  margin-top: 16px;
+  margin-bottom: 1rem;
 }
 
 .cards-title {
   font-size: 16px;
-  padding: 10px;
+  padding: 10px 16px;
   border-bottom: 1px solid #dcdcdc;
 
   a.more {
@@ -21,10 +21,7 @@
 }
 
 .cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 15px 10px 0 10px;
-  justify-content:space-between;
+  padding: 15px 10px 1px 10px;
 }
 
 /* deal-card style used in list of offers in topic page, offer category page */

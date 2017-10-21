@@ -1,20 +1,22 @@
 <!-- Offers home page for mobile, this is different from merchants home page -->
-<div class="offers-index">
-    <carousel [interval]="3000" [noWrap]="false">
-        <slide *ngFor="let topic of (topics$ | async)[groupKeys.FEATURED_OFFER]; let idx=index">
-            <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'">
-                <img src="http://placehold.it/800x300?text=TopOffer-{{idx}}">
-                <div class="carousel-caption">
-                    <h4>[{{ topic.title }}] <span *ngIf="topic.offers">{{ topic.offers[0].title }}</span></h4>
-                </div>
-            </a>
-        </slide>
-    </carousel>
+<div class="offers-index" style="margin-top: 1rem">
 
-    <p class="hidden-xs">hidden-xs</p>
-    <p class="hidden-sm">hidden-sm</p>
-    <p class="hidden-md">hidden-md</p>
-    <p class="hidden-lg">hidden-lg</p>
+    <ngx-carousel [inputs]="carouselConfig">
+        <ngx-item NgxCarouselItem *ngFor="let topic of (topics$ | async)[groupKeys.FEATURED_OFFER]">
+            <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'" class="tile">
+                <img [src]="thumbCard21Url(topic.images)">
+                <h2 class="carousel-caption">[{{ topic.title }}] <span *ngIf="topic.offers">{{ topic.offers[0].title }}</span></h2>
+            </a>
+        </ngx-item>
+
+        <button NgxCarouselPrev mat-mini-fab class="prev">
+            <i class="fa fa-2x fa-angle-left"></i>
+        </button>
+        <button NgxCarouselNext mat-mini-fab class="next">
+            <i class="fa fa-2x fa-angle-right"></i>
+        </button>
+    </ngx-carousel>
+
 
     <!-- TODO: Get title/category from groupParams instead of hardcoded here -->
 <!--

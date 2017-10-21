@@ -22,8 +22,6 @@ import { BottomNav }   from './mobile/bottom.nav';
 import { SideNav }     from './mobile/side.nav';
 import { TopicHead }   from './mobile/topic.head';
 import { TopicBody, VoucherCodeDialog }   from './mobile/topic.body';
-import { Carousel }    from './carousel/carousel';
-import { Slide }       from './carousel/slide';
 import { OfferCardGroup }  from './mobile/offer-card-group';
 
 // Desktop only component
@@ -46,8 +44,6 @@ export const COMPONENTS = [
         SideNav,
         TopicHead,
         TopicBody,
-        Carousel,
-        Slide,
         OfferCardGroup,
         VoucherCodeDialog,
 
