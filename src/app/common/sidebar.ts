@@ -50,6 +50,8 @@ export class Sidebar implements OnInit, OnDestroy
             per_page: 5,
             page: 1,
             position: 'ad-pc-sidebar-banner',
+            order_by: 'rank',
+            order: 'asc'
         };
 
         this.ads$ = this.store.select(getAdvertisesCurPage);
