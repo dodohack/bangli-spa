@@ -20,8 +20,8 @@
             <h4 mat-line>{{ entity.title }}</h4>
             <span class="offer-count-badge">{{ entity.offers_count }}</span>
             <p mat-line class="offer-title-cn">
-                <span>中文标题 -- </span>
-                <span class="offer-desc-cn">简短一句话介绍</span>
+                <span *ngIf="entity.title_cn">{{ entity.title_cn }} -- </span>
+                <span class="offer-desc-cn">{{ entity.description }}</span>
             </p>
         </a>
     </ng-template>
