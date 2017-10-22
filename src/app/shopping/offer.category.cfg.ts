@@ -23,7 +23,7 @@ export const FEATURED_TOPIC_PARAMS: EntityParams = {
     //category: 'beauty',
     //style: '',
     etype: ENTITY.TOPIC,
-    featured: true, // Only query featured topic
+    featured: 1, // Only query featured topic
     topic_type: 'merchant',
     topic_has_offer: true,
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer

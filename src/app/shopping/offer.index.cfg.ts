@@ -17,7 +17,7 @@ export const FEATURED_OFFER: EntityParams = {
     //name: '推荐优惠',
     //style: '',
     etype: ENTITY.TOPIC,
-    featured: true, // Only query featured topic
+    featured: 2, // Only query top featured topic
     topic_type: 'merchant',
     topic_has_offer: true,
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
@@ -36,7 +36,7 @@ export const FEATURED_BEAUTY_OFFER: EntityParams = {
     category: 'beauty',
     //style: '',
     etype: ENTITY.TOPIC,
-    featured: true, // Only query featured topic
+    featured: 1, // Only query featured topic
     topic_type: 'merchant',
     topic_has_offer: true,
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
@@ -54,7 +54,7 @@ export const FEATURED_HEALTHCARE_OFFER: EntityParams = {
     category: 'healthcare',
     //style: '',
     etype: ENTITY.TOPIC,
-    featured: true, // Only query featured topic
+    featured: 1, // Only query featured topic
     topic_type: 'merchant',
     topic_has_offer: true,
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
@@ -72,7 +72,7 @@ export const FEATURED_FASHION_OFFER: EntityParams = {
     category: 'clothes-bag',
     //style: '',
     etype: ENTITY.TOPIC,
-    featured: true, // Only query featured topic
+    featured: 1, // Only query featured topic
     topic_type: 'merchant',
     topic_has_offer: true,
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer

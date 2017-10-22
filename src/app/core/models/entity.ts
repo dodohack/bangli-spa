@@ -78,7 +78,7 @@ export interface EntityParams {
     etype: string;     // Entity type
     per_page: number;  // How many entities per page
     page: number;      // Which page going to be load
-    featured?: boolean; // Is featured entity
+    featured?: number; // Is level 1 or 2 featured entity
     topic_has_featured_offer?: boolean; // Has featured offer
     topic_type?: string; // Topic type only if when querying topics
     topic_has_offer?: boolean; // If the topic has offer associated
