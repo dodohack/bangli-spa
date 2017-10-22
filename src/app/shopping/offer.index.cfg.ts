@@ -44,7 +44,7 @@ export const FEATURED_BEAUTY_OFFER: EntityParams = {
     page: 1,
     order_by: 'published_at',
     order: 'desc',
-    relations: [ENTITY.OFFER]
+    relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
 
 // 6 featured offers of health category
@@ -62,7 +62,7 @@ export const FEATURED_HEALTHCARE_OFFER: EntityParams = {
     page: 1,
     order_by: 'published_at',
     order: 'desc',
-    relations: [ENTITY.OFFER]
+    relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
 
 // 6 featured offers of fashion category
@@ -80,6 +80,6 @@ export const FEATURED_FASHION_OFFER: EntityParams = {
     page: 1,
     order_by: 'published_at',
     order: 'desc',
-    relations: [ENTITY.OFFER]
+    relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
 
