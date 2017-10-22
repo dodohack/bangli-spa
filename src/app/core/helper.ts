@@ -19,7 +19,7 @@ export class Helper
      * @param length
      * @returns {any}
      */
-    offerTitle(topic: Entity, length: number) {
+    public offerTitle(topic: Entity, length: number) {
         if (topic && topic.offers && topic.offers.length) {
             // Find featured offer
             let offer = topic.offers.find(ele => ele.featured);
@@ -44,7 +44,7 @@ export class Helper
      * @param date
      * @returns {any}
      */
-    expireDate(date: string) {
+    public expireDate(date: string) {
         let exp = new Date(date);
         let diff = exp.getTime() - this.today.getTime();
         if (diff < 0)
@@ -67,7 +67,7 @@ export class Helper
      * @param topic
      * @returns {any}
      */
-    topicLogoUrl(topic: Entity) {
+    public topicLogoUrl(topic: Entity) {
         if (topic && topic.logo)
             if (topic.logo[0] == 'h' && topic.logo[1] == 't')
                 return topic.logo;
@@ -78,12 +78,14 @@ export class Helper
     }
 
     /**
-     * Get 2:1 thumbnail url
+     * Get 2:1 thumbnail url with random featured image or given index
      * @param entity
+     * @param idx - featured image index, normally 0
      */
-    thumb21Url(entity: Entity) {
+    public thumb21Url(entity: Entity, idx: number) {
         if (entity && entity.images && entity.images.length) {
-            let idx = Math.floor(Math.random() * entity.images.length);
+            if (typeof idx === 'undefined')
+                idx = Math.floor(Math.random() * entity.images.length);
             let img = entity.images[idx];
             if (img.thumbnail) {
                 let thumbs = JSON.parse(img.thumbnail);
