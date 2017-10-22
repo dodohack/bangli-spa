@@ -168,6 +168,17 @@ mat-card.branded-deal-card {
     display: block;
     overflow:hidden;
 
+    .counter-badge {
+      background-color: red;
+      border-radius: 20%;
+      position: absolute;
+      top: 2%;
+      right: 2%;
+      font-size: 0.8rem;
+      padding: 2px 6px;
+      color: white;
+    }
+
     .media-img {
       bottom: 35%;
       right: 16px;

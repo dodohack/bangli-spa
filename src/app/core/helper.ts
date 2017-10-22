@@ -95,4 +95,14 @@ export class Helper
 
         return "http://placehold.it/400x200?text=img";
     }
+
+    /**
+     * Return number of offers this topic has
+     * @param topic
+     * @returns {any}
+     */
+    public offerCount(topic: Entity) {
+        if (topic && topic.offers) return topic.offers.length;
+        return 0;
+    }
 }

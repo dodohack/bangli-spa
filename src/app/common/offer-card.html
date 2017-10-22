@@ -86,11 +86,11 @@
                 </div>
 
                 <span class="media">
+                    <span class="counter-badge">{{ helper.offerCount(t) }}</span>
                     <img class="media-img" [src]="helper.topicLogoUrl(t)">
                     <span class="media-body">
                         <span class="merchant-name">{{ t.title }}</span>
                         <span class="offer-title">
-                            <span class="featured" *ngIf="t.featured > 0">[推荐]</span>
                             {{ helper.offerTitle(t) }}
                         </span>
                     </span>
