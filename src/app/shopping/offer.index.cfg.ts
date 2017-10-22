@@ -11,7 +11,29 @@ export const GROUP_KEYS = {
     FEATURED_FASHION_OFFER: 'ch_offer_fashion_featured_offers',
 };
 
-// 6 featured offers
+/**
+ * Client side display parameters
+ */
+export const DISPLAY_PARAMS = [
+    {
+        key: GROUP_KEYS.FEATURED_BEAUTY_OFFER,
+        category: 'beauty',
+        title: '药妆优惠推荐'
+    },
+    {
+        key: GROUP_KEYS.FEATURED_HEALTHCARE_OFFER,
+        category: 'healthcare',
+        title: '保健品优惠推荐'
+    },
+    {
+        key: GROUP_KEYS.FEATURED_FASHION_OFFER,
+        category: 'fashion',
+        title: '时尚优惠推荐'
+    }
+];
+
+
+// 8 featured offers
 export const FEATURED_OFFER: EntityParams = {
     key: GROUP_KEYS.TOP_FEATURED_OFFER,
     //name: '推荐优惠',
@@ -29,7 +51,7 @@ export const FEATURED_OFFER: EntityParams = {
     relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
 
-// 6 featured offers of beauty category
+// 8 featured offers of beauty category
 export const FEATURED_BEAUTY_OFFER: EntityParams = {
     key: GROUP_KEYS.FEATURED_BEAUTY_OFFER,
     //name: '美妆优惠',
@@ -47,7 +69,7 @@ export const FEATURED_BEAUTY_OFFER: EntityParams = {
     relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
 
-// 6 featured offers of health category
+// 8 featured offers of health category
 export const FEATURED_HEALTHCARE_OFFER: EntityParams = {
     key: GROUP_KEYS.FEATURED_HEALTHCARE_OFFER,
     //name: '保健优惠',
@@ -65,7 +87,7 @@ export const FEATURED_HEALTHCARE_OFFER: EntityParams = {
     relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
 
-// 6 featured offers of fashion category
+// 8 featured offers of fashion category
 export const FEATURED_FASHION_OFFER: EntityParams = {
     key: GROUP_KEYS.FEATURED_FASHION_OFFER,
     //name: '服饰箱包',

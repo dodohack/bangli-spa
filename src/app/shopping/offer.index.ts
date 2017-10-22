@@ -6,7 +6,9 @@ import 'hammerjs';
 
 import { AppState } from "../core/reducers";
 import { GroupEntitiesBaseFixed } from '../core/group-entities-fixed.base';
+import { Helper } from "../core/helper";
 import * as cfg from './offer.index.cfg';
+
 
 @Component({
     templateUrl: './offer.index.html'
@@ -14,8 +16,10 @@ import * as cfg from './offer.index.cfg';
 export class OfferIndex extends GroupEntitiesBaseFixed
 {
     public carouselConfig:  NgxCarousel;
+    public displayCfg: any;
 
-    constructor(protected route: ActivatedRoute,
+    constructor(private helper: Helper,
+                protected route: ActivatedRoute,
                 protected store: Store<AppState>,
                 protected router: Router) {
         super(route, store, router, cfg.GROUP_KEYS, [
@@ -35,5 +39,7 @@ export class OfferIndex extends GroupEntitiesBaseFixed
             touch: true,
             loop: true
         };
+
+        this.displayCfg = cfg.DISPLAY_PARAMS;
     }
 }

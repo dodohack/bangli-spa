@@ -15,6 +15,8 @@ import {
     MatExpansionModule
 } from '@angular/material';
 
+import { Helper } from '../core/helper';
+
 import { NgxCarouselModule } from 'ngx-carousel';
 
 import { OfferCard }   from './offer-card';
@@ -75,7 +77,7 @@ export const COMPONENTS = [
         COMPONENTS
     ],
     providers: [
-
+        Helper
     ]
 })
 export class SharedModule {

@@ -11,6 +11,8 @@ import 'hammerjs';
 import { AppState } from "../core/reducers";
 import { GroupEntitiesBase } from '../core/group-entities.base';
 import * as cfg from './offer.category.cfg';
+import { Helper } from "../core/helper";
+
 
 @Component({
     templateUrl: './offer.category.html'
@@ -19,7 +21,8 @@ export class OfferCategory extends GroupEntitiesBase
 {
     public carouselConfig:  NgxCarousel;
 
-    constructor(protected route: ActivatedRoute,
+    constructor(protected helper: Helper,
+                protected route: ActivatedRoute,
                 protected store: Store<AppState>,
                 protected router: Router) {
         // Only last group of entities will be pageless

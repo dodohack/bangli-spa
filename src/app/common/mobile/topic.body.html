@@ -10,7 +10,7 @@
             <div *ngIf="hasOffer">
                 <mat-card *ngFor="let offer of offers" class="deal-card">
                     <div class="deal-card-content">
-                        <img mat-card-image [src]="logoUrl">
+                        <img mat-card-image [src]="helper.topicLogoUrl(topic)">
 
                         <mat-card-title class="hidden-sm hidden-md hidden-lg">
                             <span *ngIf="offer.title.length < 80">
@@ -30,7 +30,7 @@
 
                     </div>
                     <mat-card-actions>
-                        <span class="deal-metadata">{{ expires(offer.ends) }}</span>
+                        <span class="deal-metadata">{{ helper.expireDate(offer.ends) }}</span>
                         <div style="display: inline-block; float: right;">
                             <a mat-raised-button target="_blank" href="{{offer.tracking_url}}">购买链接</a>
                             <button mat-raised-button color="primary"

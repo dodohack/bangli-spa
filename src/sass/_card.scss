@@ -102,6 +102,46 @@ mat-card.branded-deal-card {
 
 
 /**
+ * Offer card box
+ */
+.box {
+  display: block;
+  padding: 0 0 0.5rem 0;
+  margin: 0.5rem 0.5rem 2rem;
+  border: 1px solid #ececec;
+  background: #fff;
+  // FIXME: box-shadow.
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card-group-title {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1rem;
+  background-color: #f1f1f1;
+
+  h2,h3,h4,h5 {
+    margin: 0;
+    display: inline-block;
+    font-size: 1.1rem;
+    color: rgba(70, 70, 70, 0.80);
+    font-weight: 400;
+  }
+
+  // Link to category
+  .more {
+    float: right;
+    font-size: 0.9rem;
+    color: rgba(70, 70, 70, 0.60);
+  }
+}
+
+.card-group-content {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+/**
  * Offer card style
  */
 
@@ -124,27 +164,23 @@ mat-card.branded-deal-card {
   }
 
   .media {
-    padding: 10px;
+    margin: 10px;
     display: block;
+    overflow:hidden;
 
     .media-img {
-      top: 94px;
+      bottom: 35%;
       right: 16px;
-      width: 64px;
-      height: 64px;
+      width: 48px;
+      height: 48px;
       position: absolute;
       margin-right: 0;
       border: 1px solid #e2e2e2;
       border-radius: 4px;
       float: left;
-      @media only screen and (max-width: $break-lg-m1) {
-        top: 80px;
-        width: 48px;
-        height: 48px;
-      }
 
       @media only screen and (max-width: $break-sm-m1) {
-        display: none;
+        bottom: 30%;
       }
     }
 
@@ -165,14 +201,23 @@ mat-card.branded-deal-card {
 
       .offer-title {
         font-size: 0.9rem;
-        height: 3rem;
-        line-height: 18px;
+        height: 3.1rem;
+        line-height: 16px;
         color: #222222;
         display: block;
       }
 
       .featured {
         color: #ec564a;
+      }
+
+      @media only screen and (min-width: $break-sm) and (max-width: $break-md-m1) {
+        .merchant-name {
+          font-size: 0.6rem;
+        }
+        .offer-title {
+          font-size: 0.8rem;
+        }
       }
     }
   }

@@ -18,12 +18,12 @@
         <mat-card *ngFor="let offer of topic.offers" class="branded-deal-card">
             <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'" class="brand-link">
                 <div class="image">
-                    <img class="logo" [src]="logoUrl">
-                    <img class="main" src="http://placehold.it/400x260?text=BeautyOffer">
+                    <img class="logo" [src]="helper.topicLogoUrl(topic)">
+                    <img class="main" [src]="helper.thumb21Url(topic)">
                 </div>
                 <mat-card-content>
                     <div class="brand-name">{{ topic.title }}</div>
-                    <div class="offer-title">{{ offerTitle }}</div>
+                    <div class="offer-title">{{ helper.offerTitle(topic, 80) }}</div>
                 </mat-card-content>
             </a>
         </mat-card>
@@ -35,13 +35,13 @@
             <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'" class="brand-link"
                style="display: block; margin-bottom: -32px !important;">
                 <div class="deal-card-content">
-                    <img mat-card-image [src]="logoUrl">
+                    <img mat-card-image [src]="helper.topicLogoUrl(topic)">
                     <mat-card-title>
-                        {{ offerTitle }}
+                        {{ helper.offerTitle(topic, 80) }}
                     </mat-card-title>
                 </div>
                 <mat-card-actions>
-                    <span class="deal-metadata">{{ expires(offer.ends) }}</span>
+                    <span class="deal-metadata">{{ helper.expireDate(offer.ends) }}</span>
                 </mat-card-actions>
             </a>
         </mat-card>
@@ -52,17 +52,50 @@
 <a class="offer-card-wrapper inset-logo" [routerLink]="['/merchant', topic.guid]"
    [fragment]="'deal'" *ngIf="display == 'card'">
     <div class="header-image">
-        <img [src]="thumbCard21Url">
+        <img [src]="helper.thumb21Url(topic)">
     </div>
 
     <span class="media">
-        <img class="media-img" [src]="logoUrl">
+        <img class="media-img" [src]="helper.topicLogoUrl(topic)">
         <span class="media-body">
             <span class="merchant-name">{{ topic.title }}</span>
             <span class="offer-title">
                 <span class="featured" *ngIf="topic.featured > 0">[推荐]</span>
-                {{ offerTitle }}
+                {{ helper.offerTitle(topic, 80) }}
             </span>
         </span>
     </span>
 </a>
+
+
+<div *ngIf="topics" class="box">
+    <div class="card-group-title">
+        <a [routerLink]="['/deal/cat', category]">
+            <h2>{{ title }}</h2>
+            <span class="more">更多...</span>
+        </a>
+    </div>
+
+    <div class="row card-group-content">
+        <div class="col-xs-24 col-sm-6 col-md-6" *ngFor="let t of topics">
+            <!-- Responsive card style with featured image and logo -->
+            <a class="offer-card-wrapper inset-logo" [routerLink]="['/merchant', t.guid]"
+               [fragment]="'deal'">
+                <div class="header-image">
+                    <img [src]="helper.thumb21Url(t)">
+                </div>
+
+                <span class="media">
+                    <img class="media-img" [src]="helper.topicLogoUrl(t)">
+                    <span class="media-body">
+                        <span class="merchant-name">{{ t.title }}</span>
+                        <span class="offer-title">
+                            <span class="featured" *ngIf="t.featured > 0">[推荐]</span>
+                            {{ helper.offerTitle(t) }}
+                        </span>
+                    </span>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>

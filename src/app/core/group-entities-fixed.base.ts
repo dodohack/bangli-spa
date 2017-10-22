@@ -61,20 +61,4 @@ export abstract class GroupEntitiesBaseFixed implements OnInit
         this.store.dispatch(new EntityActions.LoadGroupEntities(this.groupParams));
         // TODO: Kick more load when previous one finishes if there are too many groups
     }
-
-    /**
-     * FIXME: Duplicated function, same as GroupEntitiesBase::thumbCard21Url
-     * Return thumbnail THUMB_CARD_21 url
-     * @param images
-     * @returns {any}
-     */
-    thumbCard21Url(images: Entity[]) {
-        if (images && images.length > 0 && images[0].thumbnail) {
-            let thumbs = JSON.parse(images[0].thumbnail);
-            if (thumbs && thumbs.hasOwnProperty(THUMBS.THUMB_CARD_21))
-                return IMG_SERVER + '/' + images[0].thumb_path + thumbs[THUMBS.THUMB_CARD_21].file;
-        }
-
-        return 'http://placehold.it/400x200?text=Image';
-    }
 }

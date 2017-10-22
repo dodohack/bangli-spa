@@ -17,6 +17,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Offer, Post, Entity } from '../../core/models';
 
 import { IMG_SERVER } from '../../../../.config';
+import { Helper }     from "../../core/helper";
 
 @Component({
     selector: 'voucher-code-dialog',
@@ -45,9 +46,7 @@ export class TopicBody
     @Input() tabIdx: string;  // String index of default showing tab
     @Input() topic: Entity;
 
-    today = new Date();
-
-    constructor(public dialog: MatDialog) {}
+    constructor(private helper: Helper, public dialog: MatDialog) {}
 
     // Topic content
     get content() { return this.topic && this.topic.content; }
@@ -58,13 +57,6 @@ export class TopicBody
     // Offers of this topic
     get offers() { return this.topic && this.topic.offers; }
 
-    get logoUrl() {
-        if(this.topic.logo) {
-            if (this.topic.logo[0] == 'h' && this.topic.logo[1] == 't')
-                return this.topic.logo;
-            return IMG_SERVER + '/' + this.topic.logo;
-        }
-    }
 
     get hasOffer() { return this.topic && this.offers && this.offers.length > 0; }
 
@@ -81,23 +73,6 @@ export class TopicBody
                 return 1;
             default:
                 return 0;
-        }
-    }
-
-    // Convert MySQL date into number of days away from today
-    expires(date) {
-        let exp = new Date(date);
-        let diff = exp.getTime() - this.today.getTime();
-        if (diff < 0)
-            return '已过期';
-        else {
-            let days = Math.ceil(diff / (1000*3600*24));
-            if (days < 2)
-                return '有效期：仅限今日';
-            else if (days < 10)
-                return '有效期：还剩' + days + '天';
-            else
-                return '有效期：随时失效';
         }
     }
 

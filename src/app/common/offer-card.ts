@@ -6,7 +6,7 @@
 import { Component, Input }        from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Entity }                  from "../core/models";
-import { IMG_SERVER, THUMBS }      from "../../../.config";
+import { Helper }                  from "../core/helper";
 
 @Component ({
     selector: 'offer-card',
@@ -15,82 +15,21 @@ import { IMG_SERVER, THUMBS }      from "../../../.config";
 })
 export class OfferCard
 {
-    @Input() offers: Entity[];
-    @Input() title: string;
-    @Input() category: string; // Category slug
-    @Input() topic: Entity;    // Topic object
+    constructor(private helper: Helper) { }
+
     @Input() display: string;  // Display style: 'card', 'group' etc
 
-    today = new Date();
+    @Input() title: string;
+    @Input() topics: Entity[];
+    @Input() category: string; // Category slug
+
+    // Will deprecate these
+    @Input() offers: Entity[];
+    @Input() topic: Entity;    // Topic object
+
 
     // If 'category' slug is given, then this is not a category page
     get isCategoryPage() {
         return !this.category;
-    }
-
-
-    // Convert MySQL date into number of days away from today
-    expires(date) {
-        let exp = new Date(date);
-        let diff = exp.getTime() - this.today.getTime();
-        if (diff < 0)
-            return '已过期';
-        else {
-            let days = Math.ceil(diff / (1000 * 3600 * 24));
-            if (days < 2)
-                return '有效期：仅限今日';
-            else if (days < 10)
-                return '有效期：还剩' + days + '天';
-            else
-                return '有效期：随时失效';
-        }
-    }
-
-    /**
-     * Get an random featured image from the topic
-     */
-    get thumbCard21Url() {
-        if (this.topic && this.topic.images && this.topic.images.length) {
-            let idx = Math.floor(Math.random() * this.topic.images.length);
-            let img = this.topic.images[idx];
-            if (img.thumbnail) {
-                let thumbs = JSON.parse(img.thumbnail);
-                return IMG_SERVER + '/' + img.thumb_path + thumbs[THUMBS.THUMB_CARD_21].file;
-            }
-        }
-
-        return "http://placehold.it/400x200?text=img";
-    }
-
-    /**
-     * Get topic logo
-     */
-    get logoUrl() {
-        if (this.topic && this.topic.logo)
-            if (this.topic.logo[0] == 'h' && this.topic.logo[1] == 't')
-                return this.topic.logo;
-            else
-                return IMG_SERVER + '/' + this.topic.logo;
-
-        return "http://placehold.it/64x64?text=logo";
-    }
-
-    /**
-     * Return offer of this topic, firstly choose featured offer
-     */
-    get offerTitle() {
-        if (this.topic && this.topic.offers && this.topic.offers.length) {
-            // Find featured offer
-            let offer = this.topic.offers.find(ele => ele.featured);
-
-            // If we don't have featured offer
-            if (!offer) {
-                offer = this.topic.offers[0];
-            }
-
-            // Shorten long text
-            if (offer.title.length < 80) return offer.title;
-            else return offer.title.substr(0,79) + '...';
-        }
     }
 }
