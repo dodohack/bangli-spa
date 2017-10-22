@@ -50,7 +50,7 @@
 
 <!-- Responsive card style with featured image and logo -->
 <a class="offer-card-wrapper inset-logo" [routerLink]="['/merchant', topic.guid]"
-   *ngIf="display == 'card'">
+   [fragment]="'deal'" *ngIf="display == 'card'">
     <div class="header-image">
         <img [src]="imgUrl">
     </div>
@@ -59,11 +59,9 @@
         <img class="media-img" [src]="logoUrl">
         <span class="media-body">
             <span class="merchant-name">{{ topic.title }}</span>
-            <span class="offer-details">
-                <span class="feature-flag" *ngIf="topic.featured > 0">[推荐]</span>
-                <span class="offer-title">
-                    {{ offerTitle }}
-                </span>
+            <span class="offer-title">
+                <span class="featured" *ngIf="topic.featured > 0">[推荐]</span>
+                {{ offerTitle }}
             </span>
         </span>
     </span>
