@@ -6,7 +6,7 @@
 import { Component, Input }        from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Entity }                  from "../core/models";
-import { IMG_SERVER }              from "../../../.config";
+import { IMG_SERVER, THUMBS }      from "../../../.config";
 
 @Component ({
     selector: 'offer-card',
@@ -49,13 +49,17 @@ export class OfferCard
     /**
      * Get an random featured image from the topic
      */
-    get imgUrl() {
-        if (this.topic && this.topic.images) {
-            let idx = Math.random() * this.topic.images.length;
-            return IMG_SERVER + '/' + this.topic.images[idx];
+    get thumbCard21Url() {
+        if (this.topic && this.topic.images && this.topic.images.length) {
+            let idx = Math.floor(Math.random() * this.topic.images.length);
+            let img = this.topic.images[idx];
+            if (img.thumbnail) {
+                let thumbs = JSON.parse(img.thumbnail);
+                return IMG_SERVER + '/' + img.thumb_path + thumbs[THUMBS.THUMB_CARD_21].file;
+            }
         }
 
-        return "http://placehold.it/400x220?text=img";
+        return "http://placehold.it/400x200?text=img";
     }
 
     /**
