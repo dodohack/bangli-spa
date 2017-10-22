@@ -5,7 +5,7 @@
 import { ENTITY, EntityParams } from "../core/models";
 
 export const GROUP_KEYS = {
-    FEATURED_OFFER: 'ch_offer_featured_offers',
+    TOP_FEATURED_OFFER: 'ch_offer_top_featured_offers',
     FEATURED_BEAUTY_OFFER: 'ch_offer_beauty_featured_offers',
     FEATURED_HEALTHCARE_OFFER: 'ch_offer_healthcare_featured_offers',
     FEATURED_FASHION_OFFER: 'ch_offer_fashion_featured_offers',
@@ -13,7 +13,7 @@ export const GROUP_KEYS = {
 
 // 6 featured offers
 export const FEATURED_OFFER: EntityParams = {
-    key: GROUP_KEYS.FEATURED_OFFER,
+    key: GROUP_KEYS.TOP_FEATURED_OFFER,
     //name: '推荐优惠',
     //style: '',
     etype: ENTITY.TOPIC,

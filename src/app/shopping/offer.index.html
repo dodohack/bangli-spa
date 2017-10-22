@@ -2,7 +2,7 @@
 <div class="offers-page">
 
     <ngx-carousel [inputs]="carouselConfig">
-        <ngx-item NgxCarouselItem *ngFor="let topic of (topics$ | async)[groupKeys.FEATURED_OFFER]">
+        <ngx-item NgxCarouselItem *ngFor="let topic of (topics$ | async)[groupKeys.TOP_FEATURED_OFFER]">
             <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'" class="tile">
                 <img [src]="thumbCard21Url(topic.images)">
                 <h2 class="carousel-caption">[{{ topic.title }}] <span *ngIf="topic.offers">{{ topic.offers[0].title }}</span></h2>
@@ -18,21 +18,32 @@
     </ngx-carousel>
 
 
-    <!-- TODO: Get title/category from groupParams instead of hardcoded here -->
-<!--
-    <offer-card-group [topic]="(offers$ | async)[groupKeys.FEATURED_BEAUTY_OFFER]"
-                      [title]="'美妆优惠'"
-                      [category]="'beauty'">
-    </offer-card-group>
+    <div class="row">
+        <ng-template ngFor let-topic [ngForOf]="(topics$ | async)[groupKeys.FEATURED_BEAUTY_OFFER]">
+            <div class="col-xs-24 col-sm-6 col-md-6">
+                <offer-card [offers]="topic.offers" [topic]="topic"
+                            [display]="'card'">
+                </offer-card>
+            </div>
+        </ng-template>
+    </div>
 
-    <offer-card-group [offers]="(offers$ | async)[groupKeys.FEATURED_HEALTHCARE_OFFER]"
-                      [title]="'保健优惠'"
-                      [category]="'healthcare'">
-    </offer-card-group>
+    <div class="row">
+        <ng-template ngFor let-topic [ngForOf]="(topics$ | async)[groupKeys.FEATURED_HEALTHCARE_OFFER]">
+            <div class="col-xs-24 col-sm-6 col-md-6">
+                <offer-card [offers]="topic.offers" [topic]="topic"
+                            [display]="'card'"></offer-card>
+            </div>
+        </ng-template>
+    </div>
 
-    <offer-card-group [offers]="(offers$ | async)[groupKeys.FEATURED_FASHION_OFFER]"
-                      [title]="'服饰箱包'"
-                      [category]="'clothes-bag'">
-    </offer-card-group>
-    -->
+    <div class="row">
+        <ng-template ngFor let-topic [ngForOf]="(topics$ | async)[groupKeys.FEATURED_FASHION_OFFER]">
+            <div class="col-xs-24 col-sm-6 col-md-6">
+                <offer-card [offers]="topic.offers" [topic]="topic"
+                            [display]="'card'"></offer-card>
+            </div>
+        </ng-template>
+    </div>
+
 </div>

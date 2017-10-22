@@ -1,4 +1,5 @@
-<div class="cards-wrapper">
+<!-- Grouped card style, each card take a whole row which is not good on desktop view -->
+<div class="cards-wrapper" *ngIf="display == 'group'">
     <div class="cards-title">
         {{ topic.title }}
 
@@ -22,7 +23,7 @@
                 </div>
                 <mat-card-content>
                     <div class="brand-name">{{ topic.title }}</div>
-                    <div class="offer-title">{{ offer.title }}</div>
+                    <div class="offer-title">{{ offerTitle }}</div>
                 </mat-card-content>
             </a>
         </mat-card>
@@ -36,12 +37,7 @@
                 <div class="deal-card-content">
                     <img mat-card-image [src]="logoUrl">
                     <mat-card-title>
-                        <span *ngIf="offer.title.length < 80">
-                            {{ offer.title }}
-                        </span>
-                        <span *ngIf="offer.title.length > 80">
-                            {{ offer.title.substr(0,79) }}...
-                        </span>
+                        {{ offerTitle }}
                     </mat-card-title>
                 </div>
                 <mat-card-actions>
@@ -51,3 +47,24 @@
         </mat-card>
     </div>
 </div>
+
+<!-- Responsive card style with featured image and logo -->
+<a class="offer-card-wrapper inset-logo" [routerLink]="['/merchant', topic.guid]"
+   *ngIf="display == 'card'">
+    <div class="header-image">
+        <img [src]="imgUrl">
+    </div>
+
+    <span class="media">
+        <img class="media-img" [src]="logoUrl">
+        <span class="media-body">
+            <span class="merchant-name">{{ topic.title }}</span>
+            <span class="offer-details">
+                <span class="feature-flag" *ngIf="topic.featured > 0">[推荐]</span>
+                <span class="offer-title">
+                    {{ offerTitle }}
+                </span>
+            </span>
+        </span>
+    </span>
+</a>

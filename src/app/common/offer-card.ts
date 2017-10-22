@@ -5,20 +5,21 @@
 
 import { Component, Input }        from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
-import { Entity }                  from "../../core/models";
-import { IMG_SERVER }              from "../../../../.config";
+import { Entity }                  from "../core/models";
+import { IMG_SERVER }              from "../../../.config";
 
 @Component ({
-    selector: 'offer-card-group',
-    templateUrl: './offer-card-group.html',
+    selector: 'offer-card',
+    templateUrl: './offer-card.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OfferCardGroup
+export class OfferCard
 {
     @Input() offers: Entity[];
     @Input() title: string;
     @Input() category: string; // Category slug
     @Input() topic: Entity;    // Topic object
+    @Input() display: string;  // Display style: 'card', 'group' etc
 
     today = new Date();
 
@@ -45,6 +46,21 @@ export class OfferCardGroup
         }
     }
 
+    /**
+     * Get an random featured image from the topic
+     */
+    get imgUrl() {
+        if (this.topic && this.topic.images) {
+            let idx = Math.random() * this.topic.images.lentth;
+            return IMG_SERVER + '/' + this.topic.images[idx];
+        }
+
+        return "http://placehold.it/400x220?text=img";
+    }
+
+    /**
+     * Get topic logo
+     */
     get logoUrl() {
         if (this.topic && this.topic.logo)
             if (this.topic.logo[0] == 'h' && this.topic.logo[1] == 't')
@@ -53,5 +69,24 @@ export class OfferCardGroup
                 return IMG_SERVER + '/' + this.topic.logo;
 
         return "http://placehold.it/64x64?text=logo";
+    }
+
+    /**
+     * Return offer of this topic, firstly choose featured offer
+     */
+    get offerTitle() {
+        if (this.topic && this.topic.offers && this.topic.offers.length) {
+            // Find featured offer
+            let offer = this.topic.offers.find(ele => ele.featured);
+
+            // If we don't have featured offer
+            if (!offer) {
+                offer = this.topic.offers[0];
+            }
+
+            // Shorten long text
+            if (offer.title.length < 80) return offer.title;
+            else return offer.title.substr(0,79) + '...';
+        }
     }
 }

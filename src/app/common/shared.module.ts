@@ -17,12 +17,13 @@ import {
 
 import { NgxCarouselModule } from 'ngx-carousel';
 
+import { OfferCard }   from './offer-card';
+
 import { TopNav }      from './mobile/top.nav';
 import { BottomNav }   from './mobile/bottom.nav';
 import { SideNav }     from './mobile/side.nav';
 import { TopicHead }   from './mobile/topic.head';
 import { TopicBody, VoucherCodeDialog }   from './mobile/topic.body';
-import { OfferCardGroup }  from './mobile/offer-card-group';
 
 // Desktop only component
 import { SiteHeader }  from './site.header';
@@ -39,18 +40,18 @@ export const MD_MODULES = [
 ];
 
 export const COMPONENTS = [
-        TopNav,
-        BottomNav,
-        SideNav,
-        TopicHead,
-        TopicBody,
-        OfferCardGroup,
-        VoucherCodeDialog,
+    OfferCard,
+    TopNav,
+    BottomNav,
+    SideNav,
+    TopicHead,
+    TopicBody,
+    VoucherCodeDialog,
 
-        SiteHeader,
-        SiteFooter,
-        Sidebar,
-    ];
+    SiteHeader,
+    SiteFooter,
+    Sidebar,
+];
 
 
 @NgModule({
