@@ -21,7 +21,7 @@ export const FEATURED_OFFER: EntityParams = {
     topic_type: 'merchant',
     topic_has_offer: true,
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
-    per_page: 6,
+    per_page: 8,
     page: 1,
     order_by: 'published_at',
     order: 'desc',
@@ -40,7 +40,7 @@ export const FEATURED_BEAUTY_OFFER: EntityParams = {
     topic_type: 'merchant',
     topic_has_offer: true,
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
-    per_page: 6,
+    per_page: 8,
     page: 1,
     order_by: 'published_at',
     order: 'desc',
@@ -58,7 +58,7 @@ export const FEATURED_HEALTHCARE_OFFER: EntityParams = {
     topic_type: 'merchant',
     topic_has_offer: true,
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
-    per_page: 6,
+    per_page: 8,
     page: 1,
     order_by: 'published_at',
     order: 'desc',
@@ -76,7 +76,7 @@ export const FEATURED_FASHION_OFFER: EntityParams = {
     topic_type: 'merchant',
     topic_has_offer: true,
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
-    per_page: 6,
+    per_page: 8,
     page: 1,
     order_by: 'published_at',
     order: 'desc',

@@ -51,7 +51,7 @@ export class OfferCard
      */
     get imgUrl() {
         if (this.topic && this.topic.images) {
-            let idx = Math.random() * this.topic.images.lentth;
+            let idx = Math.random() * this.topic.images.length;
             return IMG_SERVER + '/' + this.topic.images[idx];
         }
 
