@@ -51,38 +51,3 @@ export const TOPIC_PARAMS: EntityParams = {
     // some topics loaded here may overwrite the featured topics.
     relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
-
-/*
-export const GROUP_PARAMS = [
-    // Featured topics with featured offers belongs to given category
-    {
-        key: GROUP_KEYS.CATEGORY_FEATURED_TOPIC_W_OFFER,
-        name: '推荐优惠',
-        //category: 'beauty',
-        style: '',
-        etype: ENTITY.TOPIC,
-        featured: true, // Only query featured topic
-        topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
-        per_page: 6,
-        page: 1,
-        order_by: 'published_at',
-        order: 'desc',
-        relations: ENTITY.OFFER
-    },
-
-    // Topics with offers belongs to given category order by featured topics
-    // at the front.
-    {
-        key: GROUP_KEYS.CATEGORY_TOPIC_W_OFFER,
-        name: '更多优惠',
-        style: '',
-        etype: ENTITY.TOPIC,
-        topic_has_offer: true, // Only query topic which at least has 1 offer
-        per_page: 6,
-        page: 1,
-        order_by: 'featured',
-        order: 'desc',
-        relations: ENTITY.OFFER
-    },
-];
-*/

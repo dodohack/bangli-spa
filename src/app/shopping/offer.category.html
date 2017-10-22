@@ -29,9 +29,7 @@
 
         <div class="col-xs-24 col-sm-24 col-md-17">
             <ng-template ngFor let-topic [ngForOf]="(topics$ | async)[groupKeys.CATEGORY_TOPIC_W_OFFER]">
-                <offer-card [offers]="topic.offers" [topic]="topic"
-                            [display]="'group'">
-                </offer-card>
+                <offer-card [topic]="topic"></offer-card>
             </ng-template>
 
             <div style="padding: 20px 0" *ngIf="!isLastGroupLoading && pageless">

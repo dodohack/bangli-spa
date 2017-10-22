@@ -11,7 +11,20 @@ export class Helper
 {
     today = new Date();
 
+    //
     // String concat or shorten
+    //
+
+    /**
+     * Shorten text to given length
+     * @param text
+     * @param length
+     */
+    public shorten(text: string, length: number) {
+        // Shorten long text
+        if (text.length < length) return text;
+        else return text.substr(0, length) + '...';
+    }
 
     /**
      * Return offer title for given topic
@@ -30,8 +43,7 @@ export class Helper
             }
 
             // Shorten long text
-            if (offer.title.length < length) return offer.title;
-            else return offer.title.substr(0,length) + '...';
+            return this.shorten(offer.title, length);
         }
     }
 

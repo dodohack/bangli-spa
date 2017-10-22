@@ -120,11 +120,15 @@ mat-card.branded-deal-card {
   margin-bottom: 1rem;
   background-color: #f1f1f1;
 
+  a {
+    text-decoration: none;
+    color: rgba(70, 70, 70, 0.80);
+  }
+
   h2,h3,h4,h5 {
     margin: 0;
     display: inline-block;
     font-size: 1.1rem;
-    color: rgba(70, 70, 70, 0.80);
     font-weight: 400;
   }
 
@@ -160,6 +164,7 @@ mat-card.branded-deal-card {
     overflow: hidden;
     img {
       width: 100%;
+      border-bottom: 1px solid #e2e2e2;
     }
   }
 

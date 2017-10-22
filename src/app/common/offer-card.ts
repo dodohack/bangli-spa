@@ -17,19 +17,10 @@ export class OfferCard
 {
     constructor(private helper: Helper) { }
 
-    @Input() display: string;  // Display style: 'card', 'group' etc
-
     @Input() title: string;
     @Input() topics: Entity[];
     @Input() category: string; // Category slug
 
     // Will deprecate these
-    @Input() offers: Entity[];
     @Input() topic: Entity;    // Topic object
-
-
-    // If 'category' slug is given, then this is not a category page
-    get isCategoryPage() {
-        return !this.category;
-    }
 }
