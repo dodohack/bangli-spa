@@ -54,6 +54,13 @@ mat-card.deal-card {
       font-size: 12px;
       color: grey;
       padding: 14px;
+
+    }
+
+    .actions {
+      display: inline-block;
+      float: right;
+      white-space: nowrap;
     }
   }
 }
