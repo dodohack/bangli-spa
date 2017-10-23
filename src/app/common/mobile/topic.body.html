@@ -13,7 +13,7 @@
                         <img mat-card-image [src]="helper.topicLogoUrl(topic)">
 
                         <mat-card-title class="hidden-sm hidden-md hidden-lg">
-                            <span *ngIf="offer.title.length < 80">
+                            <span *ngIf="offer.title.length <= 80">
                                 {{ offer.title }}
                             </span>
                             <a *ngIf="offer.title.length > 80"

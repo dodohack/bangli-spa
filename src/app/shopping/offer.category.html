@@ -5,7 +5,7 @@
         <ngx-item NgxCarouselItem *ngFor="let topic of (topics$ | async)[groupKeys.CATEGORY_FEATURED_TOPIC_W_OFFER]">
             <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'" class="tile">
                 <img [src]="helper.thumb21Url(topic, 0)">
-                <h2 class="carousel-caption">[{{ topic.title }}] {{ helper.offerTitle(topic, 80) }}</h2>
+                <h2 class="carousel-caption">[{{ topic.title }}] {{ helper.offerTitle(topic) }}</h2>
             </a>
         </ngx-item>
 

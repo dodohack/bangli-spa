@@ -20,7 +20,7 @@ export class Helper
      * @param text
      * @param length
      */
-    public shorten(text: string, length: number) {
+    public shorten(text: string, length: number = 80) {
         // Shorten long text
         if (text.length < length) return text;
         else return text.substr(0, length) + '...';
