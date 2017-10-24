@@ -5,15 +5,11 @@
 import {
     Component,
     Input,
-    Output,
-    EventEmitter,
-    ChangeDetectorRef,
     ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { Topic }  from '../../core/models';
-
-import { IMG_SERVER } from '../../../../.config';
+import { Helper } from '../../core/helper';
 
 @Component({
     selector: 'topic-head',
@@ -27,13 +23,5 @@ export class TopicHead
 
     @Input() topic: Topic;
 
-    constructor(private cd: ChangeDetectorRef) {}
-
-    /**
-     * Get image url from relative or absolute uri
-     */
-    imageUrl(uri: string) {
-        if (uri[0] == 'h' && uri[1] == 't') return uri;
-        return IMG_SERVER + '/' + uri;
-    }
+    constructor(private helper: Helper) {}
 }

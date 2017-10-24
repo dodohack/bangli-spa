@@ -9,7 +9,7 @@
 
         <div class="flexbox">
             <img class="topic-img" *ngIf="topic.logo != ''"
-                 [src]="imageUrl(topic.logo)">
+                 [src]="helper.topicLogoUrl(topic)">
 
             <div class="topic-caption">
                 <h2>{{ topic.title }}<span *ngIf="topic.title_cn" class="hidden-xs"> | {{ topic.title_cn }}</span></h2>

@@ -3,7 +3,7 @@
     <mat-tab-group [selectedIndex]="selectedTab" class="narrow">
         <mat-tab label="介绍">
             <!-- FIXME: Need to support dynamic content -->
-            <div [innerHtml]="content">
+            <div [innerHtml]="content" class="post-body">
             </div>
         </mat-tab>
         <mat-tab label="优惠{{ numOffers }}">
@@ -16,7 +16,7 @@
                             <span *ngIf="offer.title.length <= 80">
                                 {{ offer.title }}
                             </span>
-                            <a *ngIf="offer.title.length > 80"
+                            <a *ngIf="offer.ttitle.length > 80"
                                (click)="openVoucherDialog(offer.title, null, offer.tracking_url)">
                                 {{ offer.title.substr(0,79) }}... 展开 <i class="fa fa-caret-down"></i>
                             </a>
