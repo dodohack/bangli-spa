@@ -1,5 +1,6 @@
 import { Component }   from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
+import { Title }       from '@angular/platform-browser';
 import { Store } from "@ngrx/store";
 import { NgxCarousel }       from 'ngx-carousel';
 import 'hammerjs';
@@ -8,7 +9,7 @@ import { AppState } from "../core/reducers";
 import { GroupEntitiesBaseFixed } from '../core/group-entities-fixed.base';
 import { Helper } from "../core/helper";
 import * as cfg from './offer.index.cfg';
-
+import { SITE } from '../../../.config';
 
 @Component({
     templateUrl: './offer.index.html'
@@ -19,6 +20,7 @@ export class OfferIndex extends GroupEntitiesBaseFixed
     public displayCfg: any;
 
     constructor(private helper: Helper,
+                private title: Title,
                 protected route: ActivatedRoute,
                 protected store: Store<AppState>,
                 protected router: Router) {
@@ -41,5 +43,7 @@ export class OfferIndex extends GroupEntitiesBaseFixed
         };
 
         this.displayCfg = cfg.DISPLAY_PARAMS;
+
+        this.title.setTitle('邦利优惠 - ' + SITE.NAME);
     }
 }

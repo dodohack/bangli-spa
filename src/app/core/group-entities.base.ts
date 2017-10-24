@@ -4,7 +4,8 @@
  * route.params is required to trigger the load.
  */
 import { OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router }    from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Title }             from '@angular/platform-browser';
 import { Observable }        from 'rxjs/Rx';
 import { Store }             from '@ngrx/store';
 
@@ -13,7 +14,7 @@ import { Store }             from '@ngrx/store';
 import { ENTITY, Paginator, Entity, EntityParams } from './models';
 
 import * as EntityActions    from './actions/entity';
-import { IMG_SERVER, THUMBS } from "../../../.config";
+import {IMG_SERVER, THUMBS, SITE} from "../../../.config";
 import {
     AppState,
     getEntitiesCurPage,
@@ -54,7 +55,8 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
      * @param groupParams - group of parameters to query group of entities
      * @param pageless - pageless loading for the last entity group
      */
-    constructor(protected route: ActivatedRoute,
+    constructor(protected title: Title,
+                protected route: ActivatedRoute,
                 protected store: Store<AppState>,
                 protected router: Router,
                 protected groupKeys: any,
@@ -97,6 +99,8 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
                 let gps = this.updateLastGroupParams(params);
 
                 let page = params['page'];
+
+                this.title.setTitle(params['slug'] + ' - ' + SITE.NAME);
 
                 // Load all grouped entities when this is page number 1
                 if (typeof page === 'undefined' || page == 1) {

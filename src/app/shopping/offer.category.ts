@@ -4,9 +4,20 @@
 
 import { HostListener, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title }             from '@angular/platform-browser';
 import { Store }             from '@ngrx/store';
 import { NgxCarousel }       from 'ngx-carousel';
 import 'hammerjs';
+
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition
+} from '@angular/animations';
+
+
 
 import { AppState } from "../core/reducers";
 import { GroupEntitiesBase } from '../core/group-entities.base';
@@ -15,18 +26,27 @@ import { Helper } from "../core/helper";
 
 
 @Component({
-    templateUrl: './offer.category.html'
+    templateUrl: './offer.category.html',
+    animations: [
+        trigger('fadeIn', [
+            transition(':enter', [
+                style({ opacity: '0' }),
+                animate('.5s ease-out', style({ opacity: '1' })),
+            ]),
+        ]),
+    ],
 })
 export class OfferCategory extends GroupEntitiesBase
 {
     public carouselConfig:  NgxCarousel;
 
     constructor(protected helper: Helper,
+                protected title: Title,
                 protected route: ActivatedRoute,
                 protected store: Store<AppState>,
                 protected router: Router) {
         // Only last group of entities will be pageless
-        super(route, store, router, cfg.GROUP_KEYS, [
+        super(title, route, store, router, cfg.GROUP_KEYS, [
             cfg.FEATURED_TOPIC_PARAMS,
             cfg.TOPIC_PARAMS
         ], true);
