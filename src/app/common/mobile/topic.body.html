@@ -16,7 +16,7 @@
                             <span *ngIf="offer.title.length <= 80">
                                 {{ offer.title }}
                             </span>
-                            <a *ngIf="offer.ttitle.length > 80"
+                            <a *ngIf="offer.title.length > 80"
                                (click)="openVoucherDialog(offer.title, null, offer.tracking_url)">
                                 {{ offer.title.substr(0,79) }}... 展开 <i class="fa fa-caret-down"></i>
                             </a>
