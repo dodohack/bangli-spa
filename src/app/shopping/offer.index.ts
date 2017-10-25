@@ -46,8 +46,10 @@ export class OfferIndex extends GroupEntitiesBaseFixed
         super(route, store, router, cfg.GROUP_KEYS, [
             cfg.FEATURED_OFFER,
             cfg.FEATURED_BEAUTY_OFFER,
-            cfg.FEATURED_HEALTHCARE_OFFER,
-            cfg.FEATURED_FASHION_OFFER
+            cfg.FEATURED_CLOTHES_OFFER,
+            cfg.FEATURED_JEWELLERY_OFFER,
+            cfg.FEATURED_HOUSEHOLD_OFFER,
+            cfg.FEATURED_BOOKING_OFFER,
         ]);
 
         this.carouselConfig = {
