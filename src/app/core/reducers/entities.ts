@@ -134,6 +134,7 @@ function entitiesReducer(etype: string,
 
     switch (action.type)
     {
+        case entity.SEARCH:
         case entity.LOAD_ENTITY:
         case entity.LOAD_ENTITIES:
         case entity.LOAD_ENTITIES_ON_SCROLL: {

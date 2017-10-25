@@ -83,11 +83,8 @@ export class OfferCategory extends GroupEntitiesBase
         if (this.pageless && !this.isLastGroupLoading &&
             !this.isLastPage(cfg.GROUP_KEYS.CATEGORY_TOPIC_W_OFFER) &&
             (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            setTimeout(() => {
-                //if (this.isLoading) return;
-                // Navigate to next page to trigger the load
-                this.router.navigate(['/deal/cat', this.lastGroupCat, this.nextPage]);
-            }, 10);
+            // Navigate to next page to trigger the load
+            this.router.navigate(['/deal/cat', this.lastGroupCat, this.nextPage]);
         }
     }
 }

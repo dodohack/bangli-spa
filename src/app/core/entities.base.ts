@@ -99,13 +99,9 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
     @HostListener('window:scroll', [])
     loadEntitiesOnScroll() {
         if (this.pageless && !this.isLoading && !this.isLastPage &&
-            (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            setTimeout(() => {
-                if (this.isLoading) return;
-                this.isLoading = true;
-                // Navigate to next page to trigger the load
-                this.router.navigate([this.nextPage]);
-            }, 100);
+            (window.innerHeight * 1.2 + window.scrollY) >= document.body.offsetHeight) {
+            // Navigate to next page to trigger the load
+            this.router.navigate([this.nextPage]);
         }
     }
 

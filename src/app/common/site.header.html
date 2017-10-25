@@ -22,6 +22,7 @@ E.g: Only show locations for home, travel, local etc.
             <a mat-tab-link *ngFor="let menu of menus" [routerLink]="menu.url">
                 {{menu.name}}
             </a>
+            <a mat-tab-link routerLink="/deal/list" fragment="search"><i class="fa fa-lg fa-search"></i></a>
         </nav>
     </div>
 </div>

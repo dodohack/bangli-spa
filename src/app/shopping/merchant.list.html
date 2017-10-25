@@ -13,7 +13,8 @@
 <mat-form-field style="width: 100%" *ngIf="(fragment$ | async) === 'search'">
     <input type="text" matInput [formControl]="searchControl"
            [autofocus]="(fragment$ | async) === 'search'">
-    <i matSuffix class="fa fa-lg fa-search"></i>
+    <i matSuffix class="fa fa-lg fa-search" *ngIf="!isLoading"></i>
+    <i matSuffix class="fa fa-lg fa-spinner fa-pulse fa-fw" *ngIf="isLoading"></i>
 </mat-form-field>
 
 
