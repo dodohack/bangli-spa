@@ -5,23 +5,26 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { RouterModule }  from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
     MatTabsModule,
     MatButtonModule,
     MatCardModule,
     MatListModule,
+    MatInputModule,
     MatRippleModule,
     MatExpansionModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatAutocompleteModule
 } from '@angular/material';
 
 import { NgxCarouselModule } from 'ngx-carousel';
 
-import { Helper } from '../core/helper';
-
+import { AutofocusDirective } from './autofocus';
+import { Helper }      from '../core/helper';
 import { OfferCard }   from './offer-card';
-
+//import { Search }      from './search';
 import { TopNav }      from './mobile/top.nav';
 import { BottomNav }   from './mobile/bottom.nav';
 import { SideNav }     from './mobile/side.nav';
@@ -38,13 +41,17 @@ export const MD_MODULES = [
     MatButtonModule,
     MatCardModule,
     MatListModule,
+    MatInputModule,
     MatRippleModule,
     MatExpansionModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatAutocompleteModule
 ];
 
 export const COMPONENTS = [
+    AutofocusDirective,
     OfferCard,
+    //Search,
     TopNav,
     BottomNav,
     SideNav,
@@ -62,6 +69,8 @@ export const COMPONENTS = [
     imports: [
         CommonModule,
         RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
         NgxCarouselModule,
         MD_MODULES,
     ],
@@ -75,6 +84,8 @@ export const COMPONENTS = [
     exports: [
         CommonModule,
         RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
         NgxCarouselModule,
         MD_MODULES,
         COMPONENTS

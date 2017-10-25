@@ -9,8 +9,11 @@
     </mat-sidenav>
 
     <mat-sidenav-content class="content-wrap">
-        <top-nav class="hidden-md hidden-lg"></top-nav>
+        <top-nav class="hidden-md hidden-lg"
+                 (menuToggle)="sidenav.toggle()"></top-nav>
         <site-header class="hidden-xs hidden-sm"></site-header>
+
+        <!--<search *ngIf="showSearch"></search>-->
 
         <div class="content">
             <router-outlet></router-outlet>

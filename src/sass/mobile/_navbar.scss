@@ -2,8 +2,10 @@
 .p1-navbar {
   position: relative !important;
   top: auto !important;
-  .mat-tab-links {
-    justify-content: center !important;
+
+  .mat-tab-link {
+    min-width: 32px;
+    padding: 0 12px;
   }
 }
 

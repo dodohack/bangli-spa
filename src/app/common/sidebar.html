@@ -2,6 +2,6 @@
     <a *ngFor="let ad of (ads$ | async)[params.key]" [href]="ad.target_url"
        class="ad" target="_blank">
         <span *ngIf="!ad.image_url">{{ ad.title }}</span>
-        <img [src]="imgurl(ad.image_url)" *ngIf="ad.image_url">
+        <img [src]="absUrl(ad.image_url)" *ngIf="ad.image_url">
     </a>
 </div>

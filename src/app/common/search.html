@@ -1,3 +1,26 @@
+<form style="width: 100%">
+    <mat-form-field style="width: 100%">
+        <input type="text" matInput placeholder="搜索优惠"
+               [formControl]="searchControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let entity of (entities$ | async)[searchParams.key]"
+                        [value]="entity.id">
+                <a mat-list-item [routerLink]="['/merchant', entity.guid]"
+                   [fragment]="'deal'" class="topic-list-item">
+                    <!--
+                    <img style="width: 48px; height: 48px; border-radius: 50%"
+                         [src]="helper.topicLogoUrl(entity)">-->
+                    <span>{{ entity.title }}</span>
+                    <span *ngIf="entity.title_cn">| {{ entity.title_cn }}</span>
+                    <small> -- {{ entity.offers_count }}个优惠</small>
+                </a>
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
+
+
+<!--
 <div class="search-container-wrapper">
     <div class="search-container">
         <form role="search" method="get" class="search-form">
@@ -18,3 +41,4 @@
         </form>
     </div>
 </div>
+-->

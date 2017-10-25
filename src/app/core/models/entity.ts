@@ -90,4 +90,6 @@ export interface EntityParams {
     order?: string; // Sort order: asc or desc
 
     position?: string; // Advertisement position
+
+    query?: string;    // search text
 }

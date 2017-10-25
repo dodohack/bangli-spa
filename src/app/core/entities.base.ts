@@ -16,9 +16,6 @@ import * as EntityActions  from '../core/actions/entity';
 import { AppState } from './reducers';
 import { getIsLoading, getEntitiesCurPage, getPaginators } from './reducers';
 
-import { imageUrl } from './utils';
-
-
 export abstract class EntitiesBase implements OnInit, OnDestroy
 {
     subParams: any;
@@ -41,6 +38,8 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
 
     // Object of entities indexed by key
     entities$: Observable<any>;
+
+    fragment$: Observable<string>;
 
     constructor(protected route: ActivatedRoute,
                 protected router: Router,
@@ -73,6 +72,8 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
      * TODO: ROUTER_NAVIGATION action
      */
     dispatchLoadEntities() {
+        this.fragment$ = this.route.fragment;
+
         this.subParams = this.route.params.subscribe(params => {
             // Check if elements of url params change
             if (JSON.stringify(this.params) != JSON.stringify(params)) {
@@ -141,7 +142,4 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
                 topic_guid_starts: ''
             });
     }
-
-    imgurl(uri: string) { return imageUrl(uri); }
-
 }

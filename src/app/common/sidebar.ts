@@ -21,8 +21,9 @@ import {
     getAdvertisesCurPage,
     getAdvertisePaginators
 } from '../core/reducers';
+
 import { ENTITY } from "../core/models/entity";
-import { imageUrl } from '../core/utils';
+import { Helper } from '../core/helper';
 
 
 @Component({
@@ -42,7 +43,7 @@ export class Sidebar implements OnInit, OnDestroy
     params: any;
 
     constructor(private store: Store<AppState>,
-                private cd: ChangeDetectorRef) {}
+                private helper: Helper) {}
 
     ngOnInit() {
         this.params = {
@@ -63,6 +64,4 @@ export class Sidebar implements OnInit, OnDestroy
     ngOnDestroy() {
 
     }
-
-    imgurl(uri: string) { return imageUrl(uri); }
 }

@@ -11,6 +11,15 @@ export class Helper
 {
     today = new Date();
 
+    /**
+     * Test if an object is undefined or not.
+     * @param obj
+     * @returns {boolean}
+     */
+    public isUndefinedOrNull(obj: any) {
+        return typeof obj === 'undefined' || obj === undefined || obj === null;
+    }
+
     //
     // String concat or shorten
     //
@@ -81,12 +90,21 @@ export class Helper
      */
     public topicLogoUrl(topic: Entity) {
         if (topic && topic.logo)
-            if (topic.logo[0] == 'h' && topic.logo[1] == 't')
-                return topic.logo;
-            else
-                return IMG_SERVER + '/' + topic.logo;
+            return this.absUrl(topic.logo);
 
         return "http://placehold.it/64x64?text=logo";
+    }
+
+    /**
+     * Get absolute image url
+     * @param topic
+     * @returns {any}
+     */
+    public absUrl(uri: string) {
+        if (uri && uri[0] == 'h' && uri[1] == 't')
+            return uri;
+        else
+            return IMG_SERVER + '/' + uri;
     }
 
     /**
@@ -96,7 +114,7 @@ export class Helper
      */
     public thumb21Url(entity: Entity, idx: number) {
         if (entity && entity.images && entity.images.length) {
-            if (typeof idx === 'undefined')
+            if (typeof idx === 'undefined' || idx === undefined)
                 idx = Math.floor(Math.random() * entity.images.length);
             let img = entity.images[idx];
             if (img.thumbnail) {

@@ -23,14 +23,21 @@
     <!-- Default navbar -->
     <ng-template ngSwitchDefault>
         <nav mat-tab-nav-bar>
-            <!--
             <span mat-tab-link (click)="openMenu()"><i class="fa fa-lg fa-bars"></i></span>
-            -->
+
             <span mat-tab-link>英国邦利优惠频道</span>
+
             <!--
-            <span mat-tab-link><i class="fa fa-lg fa-search"></i></span>
+            <span mat-tab-link (click)="toggleSearch()">
+                <i class="fa fa-lg" [class.fa-search]="!showSearch"
+                   [class.fa-close]="showSearch"></i>
+            </span>
             -->
+            <a mat-tab-link routerLink="/deal/list" fragment="search"><i class="fa fa-lg fa-search"></i></a>
+
         </nav>
+
+
     </ng-template>
 
 </div>

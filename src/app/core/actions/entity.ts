@@ -10,7 +10,8 @@ import { Entity }            from '../models';
 import { EntityParams }      from '../models';
 
 export const SEARCH = '[Entity] Search';
-export const SEARCH_COMPLETE = '[Entity] Search Complete';
+export const SEARCH_SUCCESS = '[Entity] Search Success';
+export const SEARCH_FAIL = '[Entity] Search Fail';
 export const LOAD_ENTITIES = '[Entity] Load Entities';
 export const LOAD_GROUP_ENTITIES = '[Entity] Load Group Entities';
 export const LOAD_ENTITIES_SUCCESS = '[Entity] Load Entities Success';
@@ -29,14 +30,19 @@ export class Search implements Action {
     constructor(public payload: {etype: string, data: any/* params */}) {}
 }
 
-export class SearchComplete implements Action {
-    readonly type = SEARCH_COMPLETE;
+export class SearchSuccess implements Action {
+    readonly type = SEARCH_SUCCESS;
     constructor(public payload: {etype: string, data: Entity[]}) {}
+}
+
+export class SearchFail implements Action {
+    readonly type = SEARCH_FAIL;
+    readonly payload?: any;
 }
 
 export class LoadEntities implements Action {
     readonly type = LOAD_ENTITIES;
-    constructor(public payload: {etype: string, data: any/* efilter */}) {}
+    constructor(public payload: {etype: string, data: any/* params */}) {}
 }
 
 export class LoadGroupEntities implements Action {
@@ -99,7 +105,8 @@ export class CleanCache implements Action {
 }
 
 export type Actions = Search
-    | SearchComplete
+    | SearchSuccess
+    | SearchFail
     | LoadEntities
     | LoadGroupEntities
     | LoadEntitiesSuccess

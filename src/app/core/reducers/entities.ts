@@ -150,6 +150,7 @@ function entitiesReducer(etype: string,
         }
         */
 
+        case entity.SEARCH_SUCCESS:
         case entity.LOAD_ENTITIES_SUCCESS:
         case entity.LOAD_ENTITIES_ON_SCROLL_SUCCESS:
         {

@@ -28,6 +28,19 @@ export class EntityEffects {
      ************************************************************************/
 
     /**
+     * Search entities by given etype and search text
+     * We only support single group of entities currently, will support multi
+     * in second phase.
+     */
+    @Effect() search$: Observable<Action> =
+        this.actions$.ofType(EntityActions.SEARCH)
+            .switchMap((action: EntityActions.Search) =>
+                this.getEntities(action.payload.etype, action.payload.data)
+                    .map(ret => new EntityActions.SearchSuccess({etype: ret.etype, data: ret}))
+                    .catch(() => Observable.of(new EntityActions.SearchFail()))
+            );
+
+    /**
      * Load group of entities with same entity type
      */
     @Effect() loadEntities$: Observable<Action> =
