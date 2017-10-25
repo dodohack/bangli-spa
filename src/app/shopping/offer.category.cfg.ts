@@ -20,11 +20,9 @@ export const GROUP_KEYS = {
 export const FEATURED_TOPIC_PARAMS: EntityParams = {
     key: GROUP_KEYS.CATEGORY_FEATURED_TOPIC_W_OFFER,
     //name: '推荐优惠',
-    //category: 'beauty',
     //style: '',
     etype: ENTITY.TOPIC,
-    featured: 1, // Only query featured topic
-    topic_type: 'merchant',
+    featured: [1, 2],      // Only query featured topic
     topic_has_offer: true,
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
     per_page: 6,
@@ -41,7 +39,6 @@ export const TOPIC_PARAMS: EntityParams = {
     //name: '更多优惠',
     //style: '',
     etype: ENTITY.TOPIC,
-    topic_type: 'merchant',
     topic_has_offer: true, // Only query topic which at least has 1 offer
     per_page: 6,
     page: 1,
