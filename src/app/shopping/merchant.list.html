@@ -14,7 +14,7 @@
     <ng-template ngFor let-entity [ngForOf]="(entities$ | async)[key]" let-i="index">
         <h3 mat-subheader
             *ngIf="isGroupStart(i, (entities$|async)[key][i > 0 ? i - 1 : 0].guid, entity.guid)">{{ entity.guid.substring(0,1) | uppercase}}</h3>
-        <a [@flyInOut] mat-list-item [routerLink]="['/merchant', entity.guid]"
+        <a [@flyIn] mat-list-item [routerLink]="['/merchant', entity.guid]"
            [fragment]="'deal'" class="topic-list-item">
             <img mat-list-avatar [src]="imgurl(entity.logo)">
             <h4 mat-line>{{ entity.title }}</h4>

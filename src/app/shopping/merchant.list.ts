@@ -24,18 +24,11 @@ import { SITE }            from '../../../.config';
 @Component({
     templateUrl: './merchant.list.html',
     animations: [
-        trigger('fadeIn', [
-            transition(':enter', [
-                style({ opacity: '0' }),
-                animate('.5s ease-out', style({ opacity: '1' })),
-            ]),
-        ]),
-
-        trigger('flyInOut', [
+        trigger('flyIn', [
             state('in', style({ transform: 'translateY(0)'})),
             transition(':enter', [
                 style({transform: 'translateY(100%)'}),
-                animate(300),
+                animate(300)
             ]),
         ]),
     ],

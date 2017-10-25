@@ -35,7 +35,7 @@ export class OfferIndex extends GroupEntitiesBaseFixed
             grid: {xs: 1, sm: 2, md: 3, lg: 3, all: 0},
             slide: 1,
             speed: 400,
-            interval: 4000,
+            interval: 2500,
             point: { visible: true },
             load: 2,
             touch: true,
