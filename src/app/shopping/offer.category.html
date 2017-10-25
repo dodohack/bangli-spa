@@ -1,7 +1,7 @@
 <!-- Offers home page for mobile, this is different from merchants home page -->
-<div class="offers-page" [@fadeIn]>
+<div class="offers-page">
 
-    <ngx-carousel [inputs]="carouselConfig">
+    <ngx-carousel [inputs]="carouselConfig" [@fadeIn]>
         <ngx-item NgxCarouselItem *ngFor="let topic of (topics$ | async)[groupKeys.CATEGORY_FEATURED_TOPIC_W_OFFER]">
             <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'" class="tile">
                 <img [src]="helper.thumb21Url(topic, 0)">
