@@ -6,7 +6,6 @@ import {
     Component,
     Input,
     OnInit,
-    OnDestroy,
     ChangeDetectorRef,
     ChangeDetectionStrategy,
 } from '@angular/core';
@@ -31,7 +30,7 @@ import { Helper } from '../core/helper';
     templateUrl: './sidebar.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Sidebar implements OnInit, OnDestroy
+export class Sidebar implements OnInit
 {
     // Which type of page this sidebar is shown on
     @Input() type: string;
@@ -61,7 +60,4 @@ export class Sidebar implements OnInit, OnDestroy
             {etype: ENTITY.ADVERTISE, data: this.params}));
     }
 
-    ngOnDestroy() {
-
-    }
 }
