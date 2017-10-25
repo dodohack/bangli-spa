@@ -1,5 +1,5 @@
 <!-- Offers home page for mobile, this is different from merchants home page -->
-<div class="offers-page">
+<div class="offers-page" [@fadeIn]>
 
     <ngx-carousel [inputs]="carouselConfig">
         <ngx-item NgxCarouselItem *ngFor="let topic of (topics$ | async)[groupKeys.TOP_FEATURED_OFFER]">

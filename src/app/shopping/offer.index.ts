@@ -5,6 +5,16 @@ import { Store } from "@ngrx/store";
 import { NgxCarousel }       from 'ngx-carousel';
 import 'hammerjs';
 
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition
+} from '@angular/animations';
+
+
+
 import { AppState } from "../core/reducers";
 import { GroupEntitiesBaseFixed } from '../core/group-entities-fixed.base';
 import { Helper } from "../core/helper";
@@ -12,7 +22,16 @@ import * as cfg from './offer.index.cfg';
 import { SITE } from '../../../.config';
 
 @Component({
-    templateUrl: './offer.index.html'
+    templateUrl: './offer.index.html',
+    animations: [
+        trigger('fadeIn', [
+            state('in', style({ opacity: '1'})),
+            transition(':enter', [
+                style({ opacity: '0'}),
+                animate(500),
+            ]),
+        ]),
+    ],
 })
 export class OfferIndex extends GroupEntitiesBaseFixed
 {

@@ -1,6 +1,6 @@
 <div class="sidebar-ads">
     <a *ngFor="let ad of (ads$ | async)[params.key]" [href]="ad.target_url"
-       class="ad" target="_blank">
+       class="ad" target="_blank" [@fadeIn]>
         <span *ngIf="!ad.image_url">{{ ad.title }}</span>
         <img [src]="helper.absUrl(ad.image_url)" *ngIf="ad.image_url">
     </a>

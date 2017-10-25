@@ -5,10 +5,9 @@ import { Store }             from '@ngrx/store';
 import { DOCUMENT }          from '@angular/common';
 import { AppState }          from './core/reducers';
 
-
 @Component({
     selector: 'bangli-spa',
-    templateUrl: './app.html'
+    templateUrl: './app.html',
 })
 export class BangliSpa implements OnInit, OnDestroy
 {

@@ -6,11 +6,17 @@ import {
     Component,
     Inject,
     Input,
-    Output,
-    EventEmitter,
-    ChangeDetectorRef,
     ChangeDetectionStrategy,
 } from '@angular/core';
+
+
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition
+} from '@angular/animations';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
@@ -36,7 +42,16 @@ export class VoucherCodeDialog {
 @Component({
     selector: 'topic-body',
     templateUrl: './topic.body.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    animations: [
+        trigger('fadeIn', [
+            state('in', style({ opacity: '1'})),
+            transition(':enter', [
+                style({ opacity: '0'}),
+                animate(500),
+            ]),
+        ]),
+    ],
 })
 export class TopicBody
 {

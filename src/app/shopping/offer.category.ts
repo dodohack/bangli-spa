@@ -29,9 +29,10 @@ import { Helper } from "../core/helper";
     templateUrl: './offer.category.html',
     animations: [
         trigger('fadeIn', [
+            state('in', style({ opacity: '1'})),
             transition(':enter', [
-                style({ opacity: '0' }),
-                animate('.5s ease-out', style({ opacity: '1' })),
+                style({ opacity: '0'}),
+                animate(500),
             ]),
         ]),
     ],
