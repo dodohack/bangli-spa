@@ -41,6 +41,9 @@ mat-card.deal-card {
   }
   .mat-card-title {
     font-size: 14px;
+    @media only screen and (min-width: $break-sm) {
+      font-size: 16px;
+    }
   }
 
   // TODO: Rework
