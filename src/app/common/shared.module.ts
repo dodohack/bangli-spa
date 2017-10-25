@@ -12,12 +12,13 @@ import {
     MatCardModule,
     MatListModule,
     MatRippleModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressBarModule
 } from '@angular/material';
 
-import { Helper } from '../core/helper';
-
 import { NgxCarouselModule } from 'ngx-carousel';
+
+import { Helper } from '../core/helper';
 
 import { OfferCard }   from './offer-card';
 
@@ -38,7 +39,8 @@ export const MD_MODULES = [
     MatCardModule,
     MatListModule,
     MatRippleModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressBarModule
 ];
 
 export const COMPONENTS = [
@@ -66,6 +68,7 @@ export const COMPONENTS = [
     declarations: [
         COMPONENTS
     ],
+    // Dynamic components entry point declaration
     entryComponents: [
         VoucherCodeDialog
     ],

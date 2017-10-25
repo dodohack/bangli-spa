@@ -79,17 +79,17 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
                 this.updateEntityParams(params);
 
                 // For first page entity, always clean up the idsCurPage.
+
                 if (this.pageless && params['page'] > 1)
                     this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
                         {etype: this.entityParams.etype, data: this.entityParams}));
                 else
+
                     this.store.dispatch(new EntityActions.LoadEntities(
                         {etype: this.entityParams.etype, data: this.entityParams}));
             }
         });
     }
-
-
 
     /**
      * Pageless loading
@@ -101,12 +101,12 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
             (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             setTimeout(() => {
                 if (this.isLoading) return;
+                this.isLoading = true;
                 // Navigate to next page to trigger the load
                 this.router.navigate([this.nextPage]);
-            }, 10);
+            }, 100);
         }
     }
-
 
     get nextPage() {
         let np: number = +this.params['page'] + 1;

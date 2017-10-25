@@ -32,9 +32,12 @@
                 <offer-card [topic]="topic"></offer-card>
             </ng-template>
 
-            <div style="padding: 20px 0" *ngIf="!isLastGroupLoading && pageless">
-                <a mat-raised-button class="load-more" [routerLink]="['/deal/cat', lastGroupCat, nextPage]"
-               *ngIf="!isLastPage(groupKeys.CATEGORY_TOPIC_W_OFFER)">加载更多...</a>
+            <!-- Always has a fixed height to avoid page flicking -->
+            <div style="width: 100%; height: 20vh">
+                <div style="padding: 20px 0" *ngIf="!isLastGroupLoading && pageless">
+                    <a mat-raised-button class="load-more" [routerLink]="['/deal/cat', lastGroupCat, nextPage]"
+                   *ngIf="!isLastPage(groupKeys.CATEGORY_TOPIC_W_OFFER)">加载更多...</a>
+                </div>
             </div>
         </div>
 
