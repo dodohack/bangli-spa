@@ -19,3 +19,12 @@ export const SITE = {
     // Site name
     NAME: '英国邦利',
 };
+
+// Phase 1 menu for deal channel
+export const DEAL_MENUS = [
+    {name: '医药美妆', slug: 'beauty-health'},
+    {name: '服饰箱包', slug: 'clothes-bag'},
+    {name: '珠宝腕表', slug: 'jewellery-watch'},
+    {name: '日用百货', slug: 'household'},
+    {name: '票务预订', slug: 'booking'},
+];

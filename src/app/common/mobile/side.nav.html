@@ -2,12 +2,12 @@
     <h2 mat-subheader>目录</h2>
     <mat-divider></mat-divider>
     <a mat-list-item routerLink="/">优惠首页</a>
-    <a mat-list-item routerLink="/deal/cat/beauty">美妆优惠</a>
-    <a mat-list-item routerLink="/deal/cat/healthcare">保健优惠</a>
-    <a mat-list-item routerLink="/deal/cat/fashion">时尚优惠</a>
+    <a mat-list-item *ngFor="let menu of menus" [routerLink]="['/deal/cat', menu.slug]">
+        {{menu.name}}
+    </a>
     <a mat-list-item routerLink="/deal/list">品牌导航</a>
     <mat-divider></mat-divider>
-    <a mat-list-item href="http://www.bangli.uk" target="_blank">英国邦利首页</a>
+    <a mat-list-item href="http://www.bangli.uk" target="_blank">英国邦利</a>
 </mat-nav-list>
 
 <!--

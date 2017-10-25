@@ -11,6 +11,8 @@ import {
     ChangeDetectionStrategy,
 } from '@angular/core';
 
+import { DEAL_MENUS } from '../../../../.config';
+
 @Component({
     selector: 'side-nav',
     templateUrl: './side.nav.html',
@@ -22,4 +24,6 @@ export class SideNav
     @Input() navType: string;
 
     constructor(private cd: ChangeDetectorRef) {}
+
+    get menus() { return DEAL_MENUS; }
 }

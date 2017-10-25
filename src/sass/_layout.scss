@@ -144,3 +144,11 @@ $navbar-height: 3rem;
 .post-body {
   img { max-width: 100%; }
 }
+
+
+// Desktop main menu
+.site-menu {
+  .mat-tab-link {
+    min-width: 80px !important;
+  }
+}

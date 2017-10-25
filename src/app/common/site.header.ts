@@ -16,6 +16,8 @@ import { ChangeDetectorRef }       from '@angular/core';
 import { Store }                   from '@ngrx/store';
 import { Observable }              from 'rxjs/Observable';
 
+import { DEAL_MENUS }              from '../../../.config';
+
 import {
     AppState,/*
     getTopMenus,
@@ -49,14 +51,6 @@ export class SiteHeader implements OnInit, OnDestroy
     subMenus: any;
     subMenuUpdate: any;
 
-    // Phase 1 menu: deal menu
-    menus = [
-        {url: '/deal', name: '优惠首页'},
-        {url: '/deal/cat/beauty', name: '美妆优惠'},
-        {url: '/deal/cat/healthcare', name: '医药保健'},
-        {url: '/deal/list', name: '优惠导航'}
-    ];
-
     constructor(private route: ActivatedRoute,
                 private store: Store<AppState>,
                 private cd: ChangeDetectorRef) {}
@@ -71,6 +65,9 @@ export class SiteHeader implements OnInit, OnDestroy
     ngOnDestroy() {
         //this.subMenuUpdate.unsubscribe();
     }
+
+    // Phase 1 menu
+    get menus() { return DEAL_MENUS; }
 
     /*
     subMenus$(pid: number): Observable<any> {
