@@ -124,7 +124,7 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
             // Update query parameter to next page for last group
             let lastIdx = this.groupParams.length - 1;
             this.groupParams[lastIdx] = Object.assign({}, this.groupParams[lastIdx],
-                {page: this.groupParams[lastIdx].page + 1});
+                {category: this.params['slug'], page: this.groupParams[lastIdx].page + 1});
 
             // Dispatch load action
             this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
