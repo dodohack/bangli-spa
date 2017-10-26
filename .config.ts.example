@@ -28,3 +28,12 @@ export const DEAL_MENUS = [
     {name: '日用百货', slug: 'household'},
     {name: '票务预订', slug: 'booking'},
 ];
+
+// Slug to name mapping whish is used to set the title of offer category page
+export const CAT_NAMES = {
+    'beauty-health':   '医药美妆',
+    'clothes-bag':     '服饰箱包',
+    'jewellery-watch': '珠宝腕表',
+    'household':       '日用百货',
+    'booking':         '票务预定',
+};

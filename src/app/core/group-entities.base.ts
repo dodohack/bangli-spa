@@ -14,7 +14,7 @@ import { Store }             from '@ngrx/store';
 import { ENTITY, Paginator, Entity, EntityParams } from './models';
 
 import * as EntityActions    from './actions/entity';
-import {IMG_SERVER, THUMBS, SITE} from "../../../.config";
+import {IMG_SERVER, THUMBS, SITE, CAT_NAMES} from "../../../.config";
 import {
     AppState,
     getEntitiesCurPage,
@@ -100,7 +100,7 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
 
                 let page = params['page'];
 
-                this.title.setTitle(params['slug'] + ' - ' + SITE.NAME);
+                this.title.setTitle(CAT_NAMES[params['slug']] + ' - ' + SITE.NAME);
 
                 // Load all grouped entities when this is page number 1
                 if (typeof page === 'undefined' || page == 1) {

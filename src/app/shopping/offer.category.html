@@ -34,6 +34,7 @@
 
             <!-- Always has a fixed height to avoid page flicking -->
             <div style="width: 100%; height: 20vh">
+                <mat-progress-bar color="primary" mode="indeterminate" *ngIf="isLastGroupLoading"></mat-progress-bar>
                 <div style="padding: 20px 0" *ngIf="!isLastGroupLoading && pageless">
                     <a mat-raised-button class="load-more" [routerLink]="['/deal/cat', lastGroupCat, nextPage]"
                    *ngIf="!isLastPage(groupKeys.CATEGORY_TOPIC_W_OFFER)">加载更多...</a>
