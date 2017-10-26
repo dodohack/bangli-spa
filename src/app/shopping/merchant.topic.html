@@ -1,7 +1,7 @@
 <div class="topic-page">
     <topic-head [topic]="entity$ | async"></topic-head>
 
-    <div class="row">
+    <div class="row no-margin">
         <div class="col-xs-24 col-sm-24 col-md-17">
             <topic-body [tabIdx]="fragment$ | async"
                         [topic]="entity$ | async"></topic-body>
