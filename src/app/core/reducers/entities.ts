@@ -185,6 +185,7 @@ function entitiesReducer(etype: string,
                 if (!idsCurPage.length)
                     return Object.assign({}, state, {
                         keys: newKeys,
+                        ids: Object.assign({}, state.ids, {[key]: []}),
                         idsCurPage: Object.assign({}, state.idsCurPage, {[key]: []}),
                         paginators: Object.assign({}, state.paginators, {[key]: pager}),
                         isLoading: false
