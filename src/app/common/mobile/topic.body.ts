@@ -27,7 +27,8 @@ import { Helper } from "../../core/helper";
     template: `
     <p *ngIf="data.vouchers">优惠码: {{ data.vouchers }}</p>
     <p *ngIf="data.title">{{ data.title }}</p>
-    <a mat-raised-button color="primary" href="{{data.tracking_url}}" target="_blank" 
+    <a mat-raised-button color="primary" *ngIf="data.vouchers" 
+       href="{{data.tracking_url}}" target="_blank" 
        rel="nofollow" ngxClipboard [cbContent]="data.vouchers">复制优惠码</a>
     <a mat-raised-button href="{{data.tracking_url}}" target="_blank" rel="nofollow">购买链接</a>
     `
