@@ -2,7 +2,7 @@
  * This is popup full screen search modal, but we
  * support more includes offers, merchants, articles etc.
  */
-
+/*
 import { Component, Input, OnInit } from '@angular/core';
 import { ChangeDetectionStrategy }  from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -47,3 +47,4 @@ export class Search implements OnInit
         });
     }
 }
+n*/

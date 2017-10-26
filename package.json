@@ -5,8 +5,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --disableHostCheck true --extract-css --env=dev",
+    "start-aot": "ng serve --host 0.0.0.0 --disableHostCheck true --extract-css --env=dev --aot",
     "build-dev": "ng build --extract-css --env=dev",
     "build": "ng build --extract-css --env=prod",
+    "build-aot": "ng build --extract-css --env=prod --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

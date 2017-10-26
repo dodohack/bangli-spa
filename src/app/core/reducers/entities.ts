@@ -139,7 +139,6 @@ function entitiesReducer(etype: string,
         case entity.LOAD_ENTITIES:
         case entity.LOAD_ENTITIES_ON_SCROLL: {
             // TODO: Store key and query parameters
-            console.log("TODO: Cache entities query paramerters with key");
             return Object.assign({}, state, {isLoading: true});
         }
 

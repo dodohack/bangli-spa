@@ -44,11 +44,11 @@ export class MerchantList extends EntitiesBase
     alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
         'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-    constructor(protected route: ActivatedRoute,
-                protected router: Router,
-                protected store: Store<AppState>,
-                protected title: Title,
-                protected helper: Helper) {
+    constructor(public route: ActivatedRoute,
+                public router: Router,
+                public store: Store<AppState>,
+                public title: Title,
+                public helper: Helper) {
         super(route, router, '/deal/list/', store, SINGLE_PARAMS, true/*pageless*/);
 
         this.title.setTitle('优惠导航 - ' + SITE.NAME);

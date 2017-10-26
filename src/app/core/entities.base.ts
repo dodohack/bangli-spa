@@ -41,12 +41,12 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
 
     fragment$: Observable<string>;
 
-    constructor(protected route: ActivatedRoute,
-                protected router: Router,
-                protected baseUrl: string,
-                protected store: Store<AppState>,
-                protected entityParams: EntityParams,
-                protected pageless: boolean = false) { }
+    constructor(public route: ActivatedRoute,
+                public router: Router,
+                public baseUrl: string,
+                public store: Store<AppState>,
+                public entityParams: EntityParams,
+                public pageless: boolean = false) { }
 
     ngOnInit() {
         this.isLoading$  = this.store.select(getIsLoading(this.entityParams.etype));

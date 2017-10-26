@@ -41,11 +41,11 @@ export class OfferCategory extends GroupEntitiesBase
 {
     public carouselConfig:  NgxCarousel;
 
-    constructor(protected helper: Helper,
-                protected title: Title,
-                protected route: ActivatedRoute,
-                protected store: Store<AppState>,
-                protected router: Router) {
+    constructor(public helper: Helper,
+                public title: Title,
+                public route: ActivatedRoute,
+                public store: Store<AppState>,
+                public router: Router) {
         // Only last group of entities will be pageless
         super(title, route, store, router, cfg.GROUP_KEYS, [
             cfg.FEATURED_TOPIC_PARAMS,

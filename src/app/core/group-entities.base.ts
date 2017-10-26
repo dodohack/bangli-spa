@@ -55,13 +55,13 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
      * @param groupParams - group of parameters to query group of entities
      * @param pageless - pageless loading for the last entity group
      */
-    constructor(protected title: Title,
-                protected route: ActivatedRoute,
-                protected store: Store<AppState>,
-                protected router: Router,
-                protected groupKeys: any,
-                protected groupParams: EntityParams[],
-                protected pageless: boolean = false) { }
+    constructor(public title: Title,
+                public route: ActivatedRoute,
+                public store: Store<AppState>,
+                public router: Router,
+                public groupKeys: any,
+                public groupParams: EntityParams[],
+                public pageless: boolean = false) { }
 
     ngOnInit() {
         //this.fragment$ = this.route.fragment;

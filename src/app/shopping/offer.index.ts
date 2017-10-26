@@ -38,11 +38,11 @@ export class OfferIndex extends GroupEntitiesBaseFixed
     public carouselConfig:  NgxCarousel;
     public displayCfg: any;
 
-    constructor(private helper: Helper,
-                private title: Title,
-                protected route: ActivatedRoute,
-                protected store: Store<AppState>,
-                protected router: Router) {
+    constructor(public helper: Helper,
+                public title: Title,
+                public route: ActivatedRoute,
+                public store: Store<AppState>,
+                public router: Router) {
         super(route, store, router, cfg.GROUP_KEYS, [
             cfg.FEATURED_OFFER,
             cfg.FEATURED_BEAUTY_OFFER,
