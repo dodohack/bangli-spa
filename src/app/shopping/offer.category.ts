@@ -2,7 +2,7 @@
  * Offer category page
  */
 
-import { HostListener, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title }             from '@angular/platform-browser';
 import { Store }             from '@ngrx/store';
@@ -72,19 +72,4 @@ export class OfferCategory extends GroupEntitiesBase
     ngOnInit() {
     }
      */
-
-
-    /**
-     * Pageless loading
-     * Load next page of entities when scroll to page bottom
-     */
-    @HostListener('window:scroll', [])
-    loadEntitiesOnScroll() {
-        if (this.pageless && !this.isLastGroupLoading &&
-            !this.isLastPage(cfg.GROUP_KEYS.CATEGORY_TOPIC_W_OFFER) &&
-            (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            // Navigate to next page to trigger the load
-            this.router.navigate(['/deal/cat', this.lastGroupCat, this.nextPage]);
-        }
-    }
 }

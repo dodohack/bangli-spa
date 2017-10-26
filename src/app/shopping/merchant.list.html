@@ -11,7 +11,7 @@
 
 <!-- Show search on merchant list 'all' page only -->
 <mat-form-field style="width: 100%" *ngIf="(fragment$ | async) === 'search'">
-    <input type="text" matInput [formControl]="searchControl"
+    <input type="text" matInput [formControl]="searchControl" id="search"
            [autofocus]="(fragment$ | async) === 'search'">
     <i matSuffix class="fa fa-lg fa-search" *ngIf="!isLoading"></i>
     <i matSuffix class="fa fa-lg fa-spinner fa-pulse fa-fw" *ngIf="isLoading"></i>
@@ -39,7 +39,7 @@
 <div style="width: 100%; height: 20vh">
     <mat-progress-bar color="primary" mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
     <div style="padding: 20px 0" *ngIf="!isLoading && pageless">
-        <a mat-raised-button class="load-more" [routerLink]="[nextPage]"
-           *ngIf="!isLastPage">加载更多...</a>
+        <button mat-raised-button class="load-more" (click)="loadEntitiesOnScroll()"
+           *ngIf="!isLastPage">加载更多...</button>
     </div>
 </div>

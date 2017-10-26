@@ -53,6 +53,8 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
         this.entities$   = this.store.select(getEntitiesCurPage(this.entityParams.etype));
         this.paginators$ = this.store.select(getPaginators(this.entityParams.etype));
 
+        this.fragment$ = this.route.fragment;
+
         this.subLoad   = this.isLoading$.subscribe(i => this.isLoading = i);
         this.subPager  = this.paginators$.subscribe(p => this.paginator =
             Object.assign({}, p[this.key]));
@@ -72,36 +74,34 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
      * TODO: ROUTER_NAVIGATION action
      */
     dispatchLoadEntities() {
-        this.fragment$ = this.route.fragment;
-
         this.subParams = this.route.params.subscribe(params => {
             // Check if elements of url params change
             if (JSON.stringify(this.params) != JSON.stringify(params)) {
                 this.updateEntityParams(params);
 
-                // For first page entity, always clean up the idsCurPage.
-
-                if (this.pageless && params['page'] > 1)
-                    this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
-                        {etype: this.entityParams.etype, data: this.entityParams}));
-                else
-
-                    this.store.dispatch(new EntityActions.LoadEntities(
-                        {etype: this.entityParams.etype, data: this.entityParams}));
+                // Dispatch paged load or first page load of pageless
+                this.store.dispatch(new EntityActions.LoadEntities(
+                    {etype: this.entityParams.etype, data: this.entityParams}));
             }
         });
     }
 
     /**
-     * Pageless loading
-     * Load next page of entities when scroll to page bottom
+     * Pageless load - load next group of entities when scroll to page bottom
+     * We do not update url for pageless load.
      */
     @HostListener('window:scroll', [])
     loadEntitiesOnScroll() {
         if (this.pageless && !this.isLoading && !this.isLastPage &&
             (window.innerHeight * 1.2 + window.scrollY) >= document.body.offsetHeight) {
-            // Navigate to next page to trigger the load
-            this.router.navigate([this.nextPage]);
+
+            // Update query parameter to next page
+            this.entityParams = Object.assign({}, this.entityParams,
+                {page: this.entityParams.page + 1});
+
+            // Display load action
+            this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
+                {etype: this.entityParams.etype, data: this.entityParams}));
         }
     }
 
@@ -113,9 +113,7 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
     get isLastPage() {
         if (!this.paginator) return true;
 
-        if (this.paginator.cur_page == this.paginator.last_page)
-            return true;
-        return false;
+        return this.paginator.cur_page === this.paginator.last_page;
     }
 
     updateEntityParams(params) {

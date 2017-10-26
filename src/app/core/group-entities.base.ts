@@ -3,7 +3,7 @@
  * of different type of entities, e.g channel, category page etc.
  * route.params is required to trigger the load.
  */
-import { OnInit, OnDestroy } from '@angular/core';
+import { OnInit, OnDestroy, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title }             from '@angular/platform-browser';
 import { Observable }        from 'rxjs/Rx';
@@ -29,7 +29,7 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
     sub3: any;
 
     // A copy of route.params
-    localParams: any;
+    params: any;
 
     // In page navigation, hash anchor
     //fragment$:   Observable<string>;
@@ -48,6 +48,7 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
 
     /**
      *
+     * @param title
      * @param route
      * @param store
      * @param router
@@ -92,33 +93,43 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
     batchLoadEntities() {
         this.sub1 = this.route.params.subscribe(params => {
             // Check if elements of url change
-            if (JSON.stringify(this.localParams) != JSON.stringify(params)) {
+            if (JSON.stringify(this.params) != JSON.stringify(params)) {
                 //this.cleanupCache(params);
 
                 // Update last group parameters and keep a copy of route.params
                 let gps = this.updateLastGroupParams(params);
 
-                let page = params['page'];
-
                 this.title.setTitle(CAT_NAMES[params['slug']] + ' - ' + SITE.NAME);
 
                 // Load all grouped entities when this is page number 1
-                if (typeof page === 'undefined' || page == 1) {
+                if (typeof params['page'] === 'undefined' || params['page'] == 1) {
                     this.store.dispatch(new EntityActions.LoadGroupEntities(gps));
                 }
 
-
-                // Do pageless load when we are not loading page number 1.
-                // For some pages, we support pageless load,say category page.
-                // When we doipageless load, only the last group of the entities
-                // will be loaded as pageless.
-                if (this.pageless && page && page > 1) {
-                    let lastGroup = gps[gps.length - 1];
-                    this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
-                        {etype: lastGroup.etype, data: lastGroup}));
-                }
             }
         });
+    }
+
+
+    /**
+     * Pageless loading
+     * Load next page of entities when scroll to page bottom
+     */
+    @HostListener('window:scroll', [])
+    loadEntitiesOnScroll() {
+        if (this.pageless && !this.isLastGroupLoading &&
+            !this.isLastGroupLastPage &&
+            (window.innerHeight *1.2 + window.scrollY) >= document.body.offsetHeight) {
+
+            // Update query parameter to next page for last group
+            let lastIdx = this.groupParams.length - 1;
+            this.groupParams[lastIdx] = Object.assign({}, this.groupParams[lastIdx],
+                {page: this.groupParams[lastIdx].page + 1});
+
+            // Dispatch load action
+            this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
+                {etype: this.groupParams[lastIdx].etype, data: this.groupParams[lastIdx]}));
+        }
     }
 
     /**
@@ -128,7 +139,7 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
      */
     updateLastGroupParams(params) {
         // Keep a copy of route.params
-        this.localParams = params;
+        this.params = params;
 
         //console.error("Updated localParams: ", this.localParams);
 
@@ -136,18 +147,18 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
         let idx = this.groupParams.length - 1;
 
         // Update category.slug of all group params
-        if (this.localParams['slug']) {
+        if (this.params['slug']) {
             for(let i = 0; i <= idx; i++)
                 newGPS[i] = Object.assign({}, this.groupParams[i], {
-                    category: this.localParams['slug']
+                    category: this.params['slug']
                 });
         }
 
         // FIXME: We always assume params['slug'] is category.slug
         // Add category of the query to groupParams
-        if (this.localParams['page']) {
+        if (this.params['page']) {
             newGPS[idx] = Object.assign({}, newGPS[idx], {
-                page: +this.localParams['page']
+                page: +this.params['page']
             });
         }
 
@@ -177,13 +188,21 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
         return this.paginators[key].cur_page == this.paginators[key].last_page;
     }
 
-    get nextPage() {
-        let next = 2;
-        if (this.localParams['page']) next = +this.localParams['page'] + 1;
-        return next;
+    get lastGroupKey() {
+        return this.groupParams[this.groupParams.length - 1].key;
     }
 
-    get lastGroupCat() {
-        return this.localParams['slug'];
+    /**
+     * If the last group of entities reaches last page
+     * @returns {boolean|boolean}
+     */
+    get isLastGroupLastPage () {
+        return this.isLastPage(this.lastGroupKey);
+    }
+
+    get nextPage() {
+        let next = 2;
+        if (this.params['page']) next = +this.params['page'] + 1;
+        return next;
     }
 }
