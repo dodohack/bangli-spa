@@ -9,7 +9,6 @@ import {
     ChangeDetectionStrategy,
 } from '@angular/core';
 
-
 import {
     trigger,
     state,
@@ -20,18 +19,17 @@ import {
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { Offer, Post, Entity } from '../../core/models';
-
-import { IMG_SERVER } from '../../../../.config';
-import { Helper }     from "../../core/helper";
+import { Entity } from '../../core/models';
+import { Helper } from "../../core/helper";
 
 @Component({
     selector: 'voucher-code-dialog',
     template: `
     <p *ngIf="data.vouchers">优惠码: {{ data.vouchers }}</p>
     <p *ngIf="data.title">{{ data.title }}</p>
-    <a mat-raised-button color="primary" href="{{data.tracking_url}}" target="_blank">购买链接</a>
-    <button mat-raised-button (click)="dialog.close()">关闭</button>    
+    <a mat-raised-button color="primary" href="{{data.tracking_url}}" target="_blank" 
+       rel="nofollow" ngxClipboard [cbContent]="data.vouchers">复制优惠码</a>
+    <a mat-raised-button href="{{data.tracking_url}}" target="_blank" rel="nofollow">购买链接</a>
     `
 })
 export class VoucherCodeDialog {

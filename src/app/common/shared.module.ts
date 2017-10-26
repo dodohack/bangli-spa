@@ -20,6 +20,7 @@ import {
 } from '@angular/material';
 
 import { NgxCarouselModule } from 'ngx-carousel';
+import { ClipboardModule }   from 'ngx-clipboard';
 
 import { AutofocusDirective } from './autofocus';
 import { Helper }      from '../core/helper';
@@ -72,6 +73,7 @@ export const COMPONENTS = [
         FormsModule,
         ReactiveFormsModule,
         NgxCarouselModule,
+        ClipboardModule,
         MD_MODULES,
     ],
     declarations: [
@@ -87,6 +89,7 @@ export const COMPONENTS = [
         FormsModule,
         ReactiveFormsModule,
         NgxCarouselModule,
+        ClipboardModule,
         MD_MODULES,
         COMPONENTS
     ],
