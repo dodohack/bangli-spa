@@ -27,15 +27,33 @@ import { Helper } from "../../core/helper";
     template: `
     <p *ngIf="data.vouchers">优惠码: {{ data.vouchers }}</p>
     <p *ngIf="data.title">{{ data.title }}</p>
-    <a mat-raised-button color="primary" *ngIf="data.vouchers" 
-       href="{{data.tracking_url}}" target="_blank" 
-       rel="nofollow" ngxClipboard [cbContent]="data.vouchers">复制优惠码</a>
-    <a mat-raised-button href="{{data.tracking_url}}" target="_blank" rel="nofollow">购买链接</a>
+    <button mat-raised-button color="primary" *ngIf="data.vouchers" 
+       ngxClipboard [cbContent]="data.vouchers" (click)="popupVoucher()">
+       {{ copySuccess ? '复制成功' : '复制优惠码' }}
+    </button>
+    <button mat-raised-button (click)="popup()">购买链接</button>
+    <mat-progress-bar color="primary" style="padding-top: 1rem" 
+        mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
     `
 })
 export class VoucherCodeDialog {
+    isLoading = false;
+    copySuccess = false;
+
     constructor(public dialog: MatDialogRef<VoucherCodeDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+    popupVoucher() {
+        this.copySuccess = true;
+        this.popup();
+    }
+
+    popup() {
+        this.isLoading = true;
+        setTimeout(function(data) {
+            window.open(data.tracking_url, '_blank');
+         }, 500, this.data);
+    }
 }
 
 @Component({
