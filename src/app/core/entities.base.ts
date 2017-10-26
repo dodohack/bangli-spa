@@ -113,7 +113,8 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
     get isLastPage() {
         if (!this.paginator) return true;
 
-        return this.paginator.cur_page === this.paginator.last_page;
+        // last_page can be 0 if empty entities is loaded
+        return this.paginator.cur_page >= this.paginator.last_page;
     }
 
     updateEntityParams(params) {

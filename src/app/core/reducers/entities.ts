@@ -158,14 +158,13 @@ function entitiesReducer(etype: string,
             let pager   = action.payload.data.paginator;
             let entities: Entity[] = action.payload.data.entities;
 
-            if (!entities || !entities.length)
-                return state;
-
             let idx: string = getIdx(etype);
 
             // Extract entity ids and form new group of entities
-            let ids         = entities.map(e => e[idx]);
-            let idsCurPage  = ids;
+            let ids = [];
+            if (entities && entities.length)
+                ids = entities.map(e => e[idx]);
+            let idsCurPage = ids;
 
             // Add new 'key' to keys
             let newKeys = state.keys.indexOf(key) == -1 ?

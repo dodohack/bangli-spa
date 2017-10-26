@@ -185,7 +185,8 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
         if (!this.paginators) return true;
         if (!this.paginators.hasOwnProperty(key)) return true;
 
-        return this.paginators[key].cur_page == this.paginators[key].last_page;
+        // last_page can be 0 if empty entities is loaded
+        return this.paginators[key].cur_page >= this.paginators[key].last_page;
     }
 
     get lastGroupKey() {
@@ -194,7 +195,7 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
 
     /**
      * If the last group of entities reaches last page
-     * @returns {boolean|boolean}
+     * @returns boolean
      */
     get isLastGroupLastPage () {
         return this.isLastPage(this.lastGroupKey);
