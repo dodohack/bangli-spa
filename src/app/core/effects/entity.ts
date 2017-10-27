@@ -75,7 +75,7 @@ export class EntityEffects {
                 for(i; i < ret.length; i++)
                     actions[i] = new EntityActions.LoadEntitiesSuccess({etype: ret[i].etype, data: ret[i]});
                 // This last action is just an indicator of the finish state
-                //actions[i] = AlertActions.loadCompleted();
+                // actions[i] = AlertActions.loadCompleted();
                 return actions;
             })
             .catch(() => Observable.of(new EntityActions.LoadEntitiesFail()))
@@ -87,19 +87,19 @@ export class EntityEffects {
     @Effect() loadEntity$: Observable<Action> =
         this.actions$.ofType(EntityActions.LOAD_ENTITY)
             .switchMap((action: EntityActions.LoadEntity) =>
-            this.getEntity(action.payload.etype, action.payload.data)
-                .filter(ret => ret.entity != null)
-                .map(ret => new EntityActions.LoadEntitySuccess({etype: ret.etype, data: ret.entity}))
-                /*
-                .mergeMap(ret => {
-                    let actions: Action[] = [];
-                    actions[0] = new EntityActions.LoadEntitySuccess({etype: ret.etype, data: ret.entity});
-                    // The second action is just an indicator of the finish status
-                    //action[1] = AlertActions.loadCompleted();
-                    return Observable.from(actions);
-                })
-                */
-                .catch(() => Observable.of(new EntityActions.LoadEntityFail()))
+                this.getEntity(action.payload.etype, action.payload.data)
+                    .filter(ret => ret.data != null)
+                    .map(ret => new EntityActions.LoadEntitySuccess({etype: ret.etype, data: ret.data}))
+                    /*
+                    .mergeMap(ret => {
+                        let actions: Action[] = [];
+                        actions[0] = new EntityActions.LoadEntitySuccess({etype: ret.etype, data: ret.entity});
+                        // The second action is just an indicator of the finish status
+                        //action[1] = AlertActions.loadCompleted();
+                        return Observable.from(actions);
+                    })
+                    */
+                    .catch(() => Observable.of(new EntityActions.LoadEntityFail()))
             );
 
 
@@ -201,6 +201,8 @@ export class EntityEffects {
      * Request a group of entities with the same entity type from API server
      */
     protected getEntities(etype: string, filters: any): Observable<any> {
+        // FIXME: We have double 'etype' in this api request for non grouped
+        // requested.
         let api = this.getApi(etype, false)
             + '?etype=' + etype + '&' + this.params2String(filters, '&');
 
