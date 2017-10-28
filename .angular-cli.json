@@ -23,6 +23,7 @@
         "styles.scss"
       ],
       "scripts": [],
+      "deployUrl": "http://deal-cdn.bangli.uk",
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -57,7 +58,7 @@
 	"defaults": {
 		"serve": {
 			"port": 8888
-		},
+        },
 		"styleExt": "scss",
 		"component": {}
   }
