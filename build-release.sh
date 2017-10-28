@@ -14,4 +14,5 @@ if [ $? -eq 0 ]; then
 
     rm -rf dist/*
     cp -r build/* dist/
+    cp build/.htaccess dist/
 fi
