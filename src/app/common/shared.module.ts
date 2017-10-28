@@ -22,6 +22,7 @@ import {
 import { NgxCarouselModule } from 'ngx-carousel';
 import { ClipboardModule }   from 'ngx-clipboard';
 
+import { ArraySortPipe }      from '../pipes/sort';
 import { AutofocusDirective } from './autofocus';
 import { Helper }      from '../core/helper';
 import { OfferCard }   from './offer-card';
@@ -50,6 +51,7 @@ export const MD_MODULES = [
 ];
 
 export const COMPONENTS = [
+    ArraySortPipe,
     AutofocusDirective,
     OfferCard,
     //Search,

@@ -129,6 +129,8 @@ mat-card.branded-deal-card {
   border-bottom: 1px solid #ddd;
   margin-bottom: 1rem;
   background-color: #f1f1f1;
+  overflow: hidden;
+  white-space: nowrap;
 
   a {
     text-decoration: none;
@@ -145,7 +147,6 @@ mat-card.branded-deal-card {
   // Link to category
   .more {
     float: right;
-    font-size: 0.9rem;
     color: rgba(70, 70, 70, 0.60);
   }
 }

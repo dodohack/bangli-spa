@@ -8,7 +8,7 @@
         </mat-tab>
         <mat-tab label="优惠{{ numOffers }}">
             <div *ngIf="hasOffer">
-                <mat-card *ngFor="let offer of offers" class="deal-card">
+                <mat-card *ngFor="let offer of offers | sort:'featured'" class="deal-card">
                     <div class="deal-card-content">
                         <img mat-card-image [src]="helper.topicLogoUrl(topic)">
 

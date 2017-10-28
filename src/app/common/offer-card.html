@@ -5,13 +5,12 @@
     <div class="card-group-title">
         <a [routerLink]="['/merchant/', topic.guid]" [fragment]="'deal'">
             <h2>{{ topic.title }}</h2>
-            <small>{{ topic.offers_count }}条优惠</small>
-            <span class="more">更多...</span>
+            <small class="more">{{ topic.offers_count }}条优惠</small>
         </a>
     </div>
 
     <div class="card-group-content">
-        <mat-card *ngFor="let offer of topic.offers | slice:0:2" class="deal-card">
+        <mat-card *ngFor="let offer of topic.offers | sort:'featured' | slice:0:2" class="deal-card">
             <a [routerLink]="['/merchant', topic.guid]" [fragment]="'deal'" class="brand-link"
                style="display: block; margin-bottom: -32px !important;">
                 <div class="deal-card-content">
@@ -33,7 +32,7 @@
     <div class="card-group-title">
         <a [routerLink]="['/deal/cat', category]">
             <h2>{{ title }}</h2>
-            <span class="more">更多...</span>
+            <small class="more">更多...</small>
         </a>
     </div>
 

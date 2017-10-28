@@ -18,6 +18,7 @@ import {
 
 
 
+
 @Component ({
     selector: 'offer-card',
     templateUrl: './offer-card.html',
