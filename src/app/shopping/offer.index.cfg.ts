@@ -56,7 +56,7 @@ export const FEATURED_OFFER: EntityParams = {
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
     per_page: 8,
     page: 1,
-    order_by: 'published_at',
+    order_by: 'updated_at',
     order: 'desc',
     // Query offers with their topic
     relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
@@ -74,7 +74,7 @@ export const FEATURED_BEAUTY_OFFER: EntityParams = {
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
     per_page: 8,
     page: 1,
-    order_by: 'published_at',
+    order_by: 'updated_at',
     order: 'desc',
     relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
@@ -90,7 +90,7 @@ export const FEATURED_CLOTHES_OFFER: EntityParams = {
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
     per_page: 8,
     page: 1,
-    order_by: 'published_at',
+    order_by: 'updated_at',
     order: 'desc',
     relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
@@ -107,7 +107,7 @@ export const FEATURED_JEWELLERY_OFFER: EntityParams = {
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
     per_page: 8,
     page: 1,
-    order_by: 'published_at',
+    order_by: 'updated_at',
     order: 'desc',
     relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
@@ -124,7 +124,7 @@ export const FEATURED_HOUSEHOLD_OFFER: EntityParams = {
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
     per_page: 8,
     page: 1,
-    order_by: 'published_at',
+    order_by: 'updated_at',
     order: 'desc',
     relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
@@ -142,7 +142,7 @@ export const FEATURED_BOOKING_OFFER: EntityParams = {
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
     per_page: 8,
     page: 1,
-    order_by: 'published_at',
+    order_by: 'updated_at',
     order: 'desc',
     relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };

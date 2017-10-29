@@ -27,7 +27,7 @@ export const FEATURED_TOPIC_PARAMS: EntityParams = {
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
     per_page: 6,
     page: 1,
-    order_by: 'published_at',
+    order_by: 'updated_at',
     order: 'desc',
     relations: [ENTITY.OFFER, ENTITY.ATTACHMENT]
 };
