@@ -8,8 +8,10 @@
         <!--<button mat-raised-button>订阅</button><br>-->
 
         <div class="flexbox">
-            <img class="topic-img" *ngIf="topic.logo != ''"
+            <a href="{{ topic.tracking_url }}" target="_blank">
+                <img class="topic-img" *ngIf="topic.logo != ''"
                  [src]="helper.topicLogoUrl(topic)">
+            </a>
 
             <div class="topic-caption">
                 <h2>{{ topic.title }}<span *ngIf="topic.title_cn" class="hidden-xs"> | {{ topic.title_cn }}</span></h2>
