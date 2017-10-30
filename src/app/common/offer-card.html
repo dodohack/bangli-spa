@@ -37,7 +37,7 @@
     </div>
 
     <div class="row card-group-content">
-        <div class="col-xs-24 col-sm-6 col-md-6" *ngFor="let t of topics">
+        <div class="col-xs-24 col-sm-6 col-md-6" *ngFor="let t of topics | slice:0:8">
             <!-- Responsive card style with featured image and logo -->
             <a class="offer-card-wrapper inset-logo" [routerLink]="['/merchant', t.guid]"
                [fragment]="'deal'">
