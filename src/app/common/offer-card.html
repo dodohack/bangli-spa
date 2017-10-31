@@ -1,7 +1,7 @@
 <!-- Grouped card style, each card take a whole row which is not good on desktop view -->
 
 <!-- Style for offer category page, show 1 or 2 cards for each offer -->
-<div class="box" *ngIf="topic" [@fadeIn]>
+<div class="box" *ngIf="topic && topic.offers" [@fadeIn]>
     <div class="card-group-title">
         <a [routerLink]="['/merchant/', topic.guid]" [fragment]="'deal'">
             <h2>{{ topic.title }}</h2>
