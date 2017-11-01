@@ -105,7 +105,7 @@ export const FEATURED_JEWELLERY_OFFER: EntityParams = {
 
     topic_has_offer: true,
     //topic_has_featured_offer: true, // Only query topic which at least has 1 featured offer
-    per_page: 8,
+    per_page: 4,
     page: 1,
     order_by: 'updated_at',
     order: 'desc',
