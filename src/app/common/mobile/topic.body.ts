@@ -32,8 +32,8 @@ import { Helper } from "../../core/helper";
        {{ copySuccess ? '复制成功' : '复制优惠码' }}
     </button>
     <button mat-raised-button (click)="popup()">购买链接</button>
-    <mat-progress-bar color="primary" style="padding-top: 1rem" 
-        mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+    <!--<mat-progress-bar color="primary" style="padding-top: 1rem" 
+        mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>-->
     `
 })
 export class VoucherCodeDialog {
@@ -53,6 +53,7 @@ export class VoucherCodeDialog {
         setTimeout(function(data) {
             window.open(data.tracking_url, '_blank');
          }, 500, this.data);
+        this.dialog.close();
     }
 }
 
