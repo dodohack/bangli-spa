@@ -25,15 +25,18 @@ import { Helper } from "../../core/helper";
 @Component({
     selector: 'voucher-code-dialog',
     template: `
-    <p *ngIf="data.vouchers">优惠码: {{ data.vouchers }}</p>
+    <p *ngIf="vouchers.length == 1">优惠码: {{ vouchers[0] }}</p>
+    <ng-template [ngIf]="vouchers.length > 1">
+        <p *ngFor="let v of vouchers let i=index">优惠码{{i+1}}: {{ v }}</p>
+    </ng-template>
     <p *ngIf="data.title">{{ data.title }}</p>
     <button mat-raised-button color="primary" *ngIf="data.vouchers" 
-       ngxClipboard [cbContent]="data.vouchers" (click)="popupVoucher()">
+       ngxClipboard [cbContent]="vouchers[0]" (click)="popupVoucher()">
        {{ copySuccess ? '复制成功' : '复制优惠码' }}
     </button>
     <button mat-raised-button (click)="popup()">购买链接</button>
-    <!--<mat-progress-bar color="primary" style="padding-top: 1rem" 
-        mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>-->
+    <mat-progress-bar color="primary" style="padding-top: 1rem" 
+        mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
     `
 })
 export class VoucherCodeDialog {
@@ -43,6 +46,14 @@ export class VoucherCodeDialog {
     constructor(public dialog: MatDialogRef<VoucherCodeDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) {}
 
+    // We may have multiple voucher codes
+    get vouchers() {
+        if (this.data.vouchers)
+            return this.data.vouchers.split(",");
+        else
+            return [];
+    }
+
     popupVoucher() {
         this.copySuccess = true;
         this.popup();
@@ -50,10 +61,10 @@ export class VoucherCodeDialog {
 
     popup() {
         this.isLoading = true;
-        setTimeout(function(data) {
+        setTimeout(function(data, dialog) {
             window.open(data.tracking_url, '_blank');
-         }, 500, this.data);
-        this.dialog.close();
+            dialog.close();
+         }, 500, this.data, this.dialog);
     }
 }
 
