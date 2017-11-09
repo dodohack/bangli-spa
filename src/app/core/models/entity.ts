@@ -53,6 +53,7 @@ export interface Entity {
     offers: any; // FIXME: Replace 'any' with proper type
     posts: any;
     logo: string;
+    image_idx: number; // Default featured image index, starts from 1
 
     // Attachment only
     path: string;

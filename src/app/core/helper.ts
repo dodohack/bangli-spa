@@ -113,6 +113,10 @@ export class Helper
      * @param idx - featured image index, normally 0
      */
     public thumb21Url(entity: Entity, idx: number) {
+        // Editor can set which image to show as default featured image.
+        if (!this.isUndefinedOrNull(entity.image_idx) && entity.image_idx > 1)
+            idx = entity.image_idx - 1;
+
         if (entity && entity.images && entity.images.length) {
             if (typeof idx === 'undefined' || idx === undefined)
                 idx = Math.floor(Math.random() * entity.images.length);
