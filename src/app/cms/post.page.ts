@@ -1,15 +1,22 @@
 /**
- * Post page component
- * TODO: Abstract the post body into a separate component, so it can be reused
+ * This is the single post component for all posts
  */
-import { Component, Input, AfterViewInit, ViewChild,
-    ComponentFactoryResolver, OnDestroy} from '@angular/core';
 
-import { PostDirective } from './post.directive';
+import { Component }         from '@angular/core';
+import { ActivatedRoute }    from '@angular/router';
+import { Store }             from '@ngrx/store';
+import { Title }             from '@angular/platform-browser';
 
-@Component({
-    templateUrl: './post.page.html'
-})
-export class PostPage implements AfterViewInit, OnDestroy {
+import { EntityBase }        from '../core';
+import { ENTITY }            from '../core/models';
+import { AppState }          from '../core/reducers';
 
+@Component({ templateUrl: './post.page.html' })
+export class PostPage extends EntityBase
+{
+    constructor(protected route: ActivatedRoute,
+                protected store: Store<AppState>,
+                protected title: Title) {
+        super(ENTITY.POST, route, store, title);
+    }
 }

@@ -1,0 +1,43 @@
+<!-- This is the template page for all posts -->
+<div class="post-wrapper content-wrapper" *ngIf="entity">
+
+    <div class="post post-{{ entity.channel ? entity.channel.slug : 'general' }}">
+        <article id="post" role="article" itemscope=""
+                 itemtype="http://schema.org/Article">
+
+            <div class="post-title">
+                <h1 itemprop="name">{{ entity.title }}</h1>
+            </div>
+
+
+            <div class="post-meta">
+                <span *ngIf="entity.author">
+                    <a [routerLink]="['/author', entity.author.name]" title="" rel="author">
+                        <img class="avatar" src="http://placehold.it/48x48"> {{ entity.author.display_name }} 作者
+                    </a>
+                </span>
+                <span *ngIf="entity.editor">
+                    <a [routerLink]="['/author', entity.editor.name]" title="" rel="author">
+                        <img class="avatar" src="http://placehold.it/48x48"> {{ entity.editor.display_name }} 编辑
+                    </a>
+                </span>
+                <span>
+                    <time itemprop="dateCreated" datetime="entity.fake_published_at">
+                        {{ entity.fake_published_at }}
+                    </time>
+                </span>
+
+                <span>
+                    <a routerLink="#comments">评论</a>
+                </span>
+            </div>
+
+
+            <!-- Post content that created as dynamic component -->
+            <div class="post-content">
+                <dynamic-content [contentId]="entity.id"
+                                 [content]="entity.content"></dynamic-content>
+            </div>
+        </article>
+    </div>
+</div>

@@ -22,6 +22,7 @@ import { Page404 }           from './404.page';
 import { HomeModule }        from './home/home.module';
 import { SharedModule }      from './common/shared.module';
 import { ShoppingModule }    from './shopping/shopping.module';
+import { CmsModule }         from './cms/cms.module';
 import { DynamicModule }     from "./core/dynamic/dynamic.module";
 
 import { AppRoutes }         from './routes';
@@ -49,6 +50,7 @@ export function createJitCompiler() {
         SharedModule,
         HomeModule,
         ShoppingModule,
+        CmsModule,
 
         DynamicModule.forRoot(), // singleton
         StoreModule.forRoot(reducers, { metaReducers }),
