@@ -8,6 +8,7 @@
     "start-aot": "ng serve --host 0.0.0.0 --disableHostCheck true --extract-css --env=dev --aot",
     "build-dev": "ng build --extract-css --env=dev",
     "build-release": "ng build --extract-css --prod --env=prod --aot --no-sourcemap",
+    "build-release-no-aot": "ng build --extract-css --prod --env=prod --no-sourcemap",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -2,7 +2,8 @@
 
 # Build release package and copy
 
-npm run build-release
+echo "FIXME: Enable aot build when https://github.com/angular/angular/issues/20125 is fixed"
+npm run build-release-no-aot
 
 # Replace files in folder when build success
 if [ $? -eq 0 ]; then
