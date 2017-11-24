@@ -3,10 +3,16 @@
  * of different type of entities, e.g channel, category page etc.
  * route.params is required to trigger the load.
  */
-import { OnInit, OnDestroy, HostListener } from '@angular/core';
+import {
+    Inject,
+    OnInit,
+    OnDestroy,
+    HostListener,
+    PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title }             from '@angular/platform-browser';
-import { Observable }        from 'rxjs/Rx';
+import { Observable }        from 'rxjs/Observable';
 import { Store }             from '@ngrx/store';
 
 //import { Channel }           from './models';
@@ -62,7 +68,8 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
                 public router: Router,
                 public groupKeys: any,
                 public groupParams: EntityParams[],
-                public pageless: boolean = false) { }
+                public pageless: boolean = false,
+                @Inject(PLATFORM_ID) public platformId: Object) { }
 
     ngOnInit() {
         //this.fragment$ = this.route.fragment;
@@ -117,18 +124,24 @@ export abstract class GroupEntitiesBase implements OnInit, OnDestroy
      */
     @HostListener('window:scroll', [])
     loadEntitiesOnScroll() {
-        if (this.pageless && !this.isLastGroupLoading &&
-            !this.isLastGroupLastPage &&
-            (window.innerHeight *1.2 + window.scrollY) >= document.body.offsetHeight) {
+        if (isPlatformBrowser(this.platformId)) {
+            if (this.pageless && !this.isLastGroupLoading && !this.isLastGroupLastPage &&
+                (window.innerHeight * 1.2 + window.scrollY) >= document.body.offsetHeight) {
 
-            // Update query parameter to next page for last group
-            let lastIdx = this.groupParams.length - 1;
-            this.groupParams[lastIdx] = Object.assign({}, this.groupParams[lastIdx],
-                {category: this.params['slug'], page: this.groupParams[lastIdx].page + 1});
+                // Update query parameter to next page for last group
+                let lastIdx = this.groupParams.length - 1;
+                this.groupParams[lastIdx] = Object.assign({},
+                    this.groupParams[lastIdx], {
+                        category: this.params['slug'],
+                        page: this.groupParams[lastIdx].page + 1
+                    });
 
-            // Dispatch load action
-            this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
-                {etype: this.groupParams[lastIdx].etype, data: this.groupParams[lastIdx]}));
+                // Dispatch load action
+                this.store.dispatch(new EntityActions.LoadEntitiesOnScroll({
+                    etype: this.groupParams[lastIdx].etype,
+                    data: this.groupParams[lastIdx]
+                }));
+            }
         }
     }
 

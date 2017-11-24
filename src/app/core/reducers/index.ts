@@ -10,7 +10,7 @@ import {
     MetaReducer,
 } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
-import { Observable }  from 'rxjs/Rx';
+import { Observable }  from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
 
 // Debug tools
@@ -37,7 +37,7 @@ export interface AppState {
     pages: EntitiesState;
     advertises: EntitiesState;
     routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
-};
+}
 
 export const reducers: ActionReducerMap<AppState> = {
     topics: topicReducer,

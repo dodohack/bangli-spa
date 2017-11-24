@@ -4,9 +4,9 @@
 
 import { Action }           from '@ngrx/store';
 import { Injectable }       from '@angular/core';
-import { Observable }       from 'rxjs/Rx';
+import { Observable }       from 'rxjs/Observable';
+import { HttpClient, HttpHeaders }     from '@angular/common/http'
 import { Effect, Actions, toPayload }  from '@ngrx/effects';
-import { Http, Headers, RequestOptions } from '@angular/http';
 import { ROUTER_NAVIGATION, RouterNavigationAction } from '@ngrx/router-store';
 
 import { API }                   from '../api';
@@ -17,10 +17,10 @@ import * as EntityActions        from '../actions/entity';
 export class EntityEffects {
 
     constructor (private actions$: Actions,
-                 private http: Http) {}
+                 private http: HttpClient) {}
 
     get headers() {
-        return new Headers({'Content-Type': 'application/json'});
+        return new HttpHeaders({'Content-Type': 'application/json'});
     }
 
     /************************************************************************
@@ -182,7 +182,7 @@ export class EntityEffects {
      */
     protected getEntity(etype: string, id: string): Observable<any> {
         let api = this.getApi(etype, false) + '/' + id + '?etype=' + etype;
-        return this.http.get(api).map(res => res.json());
+        return this.http.get(api);
     }
 
     /**
@@ -194,7 +194,7 @@ export class EntityEffects {
         let api = this.getApi(etype, false)
             + '?etype=' + etype + '&' + this.params2String(filters, '&');
 
-        return this.http.get(api).map(res => res.json());
+        return this.http.get(api);
     }
 
     /**
@@ -213,7 +213,7 @@ export class EntityEffects {
      */
     protected getGroupEntities(paramGroups: EntityParams[]): Observable<any> {
         let api = API('batch') + '?group=' + this.buildMultiGroupFilters(paramGroups);
-        return this.http.get(api).map(res => res.json());
+        return this.http.get(api);
     }
 
 }

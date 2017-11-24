@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-import { Observable } from "rxjs";
+import { Observable } from "rxjs/Observable";
 
 import * as EntityActions from '../core/actions/entity';
 import { Entity, Paginator } from "../core/models";

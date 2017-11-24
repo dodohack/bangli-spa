@@ -2,7 +2,7 @@
  * Offer category page
  */
 
-import { Component } from '@angular/core';
+import { Inject, Component, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title }             from '@angular/platform-browser';
 import { Store }             from '@ngrx/store';
@@ -45,12 +45,13 @@ export class OfferCategory extends GroupEntitiesBase
                 public title: Title,
                 public route: ActivatedRoute,
                 public store: Store<AppState>,
-                public router: Router) {
+                public router: Router,
+                @Inject(PLATFORM_ID) public platformId: Object) {
         // Only last group of entities will be pageless
         super(title, route, store, router, cfg.GROUP_KEYS, [
             cfg.FEATURED_TOPIC_PARAMS,
             cfg.TOPIC_PARAMS
-        ], true);
+        ], true, platformId);
 
 
         this.carouselConfig = {

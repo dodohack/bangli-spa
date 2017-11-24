@@ -2,7 +2,7 @@
  * Load menu configurations
  */
 import { Injectable }                    from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { HttpClient }                    from '@angular/common/http';
 import { Effect, Actions }               from '@ngrx/effects';
 import { Observable }                    from 'rxjs/Observable';
 
@@ -12,7 +12,7 @@ import * as menu         from '../actions/menu';
 @Injectable()
 export class MenuEffects {
     constructor(private actions$: Actions,
-                private http: Http) { }
+                private http: HttpClient) { }
 
     @Effect() loadAll$ = this.actions$.ofType(menu.LOAD_MENU)
         .switchMap(() => this.getAll()
@@ -24,6 +24,6 @@ export class MenuEffects {
     // Private helper functions
 
     private getAll() {
-        return this.http.get(API('desktop_menus')).map(res => res.json());
+        return this.http.get(API('desktop_menus'));
     }
 }

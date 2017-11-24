@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "build",
+      "outDir": "dist/browser",
       "assets": [
         "assets",
         ".htaccess",
@@ -24,6 +24,31 @@
       ],
       "scripts": [],
       "deployUrl": "http://deal-cdn.bangli.uk",
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
+      "platform": "server",
+      "root": "src",
+      "outDir": "dist/server",
+      "assets": [
+        "assets",
+        ".htaccess",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.server.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.server.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.scss"
+      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

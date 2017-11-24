@@ -3,12 +3,15 @@
  * in single group.
  */
 import {
+    Inject,
     HostListener,
-    OnInit, OnDestroy
+    OnInit, OnDestroy,
+    PLATFORM_ID,
 } from '@angular/core';
 
+import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router }  from '@angular/router';
-import { Observable }      from 'rxjs/Rx';
+import { Observable }      from 'rxjs/Observable';
 import { Store }           from '@ngrx/store';
 
 import { EntityParams, Paginator }  from './models';
@@ -46,7 +49,8 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
                 public baseUrl: string,
                 public store: Store<AppState>,
                 public entityParams: EntityParams,
-                public pageless: boolean = false) { }
+                public pageless: boolean = false,
+                @Inject(PLATFORM_ID) public platformId: Object) { }
 
     ngOnInit() {
         this.isLoading$  = this.store.select(getIsLoading(this.entityParams.etype));
@@ -92,16 +96,18 @@ export abstract class EntitiesBase implements OnInit, OnDestroy
      */
     @HostListener('window:scroll', [])
     loadEntitiesOnScroll() {
-        if (this.pageless && !this.isLoading && !this.isLastPage &&
-            (window.innerHeight * 1.2 + window.scrollY) >= document.body.offsetHeight) {
+        if (isPlatformBrowser(this.platformId)) {
+            if (this.pageless && !this.isLoading && !this.isLastPage &&
+                (window.innerHeight * 1.2 + window.scrollY) >= document.body.offsetHeight) {
 
-            // Update query parameter to next page
-            this.entityParams = Object.assign({}, this.entityParams,
-                {page: this.entityParams.page + 1});
+                // Update query parameter to next page
+                this.entityParams = Object.assign({}, this.entityParams,
+                    {page: this.entityParams.page + 1});
 
-            // Display load action
-            this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
-                {etype: this.entityParams.etype, data: this.entityParams}));
+                // Display load action
+                this.store.dispatch(new EntityActions.LoadEntitiesOnScroll(
+                    {etype: this.entityParams.etype, data: this.entityParams}));
+            }
         }
     }
 

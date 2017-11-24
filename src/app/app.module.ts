@@ -1,10 +1,9 @@
 import { NgModule, Compiler } from '@angular/core';
-import { CommonModule }      from '@angular/common';
-import { BrowserModule }     from '@angular/platform-browser';
-import { HttpModule }        from '@angular/http';
-import { RouterModule }      from '@angular/router';
-import { BrowserAnimationsModule }     from '@angular/platform-browser/animations';
-import { JitCompilerFactory } from '@angular/compiler';
+import { CommonModule }       from '@angular/common';
+import { HttpClientModule }   from '@angular/common/http';
+import { BrowserModule }      from '@angular/platform-browser';
+import { RouterModule }       from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StoreModule }       from '@ngrx/store';
 import { EffectsModule }     from '@ngrx/effects';
@@ -29,21 +28,14 @@ import { AppRoutes }         from './routes';
 import { DefaultRouterStateSerializer } from '@ngrx/router-store';
 import { CustomRouterStateSerializer } from "./core/utils";
 
-// This is a workaround to import JitCompiler with AOT compilation
-export function createJitCompiler() {
-    return new JitCompilerFactory([{
-        useDebug: false,
-        useJit: true
-    }]).createCompiler();
-}
 
 @NgModule({
     imports: [
         AppRoutes,
         CommonModule,
-        BrowserModule,
+        BrowserModule.withServerTransition({appId: 'bangli-app'}),
         RouterModule,
-        HttpModule,
+        HttpClientModule,
         BrowserAnimationsModule,
         AppMaterialModule,
 
@@ -63,7 +55,6 @@ export function createJitCompiler() {
         Page404,
     ],
     providers: [
-        {provide: Compiler, useFactory: createJitCompiler},
         /**
          * Thie 'RouterStateSnapshot' provided by the 'Router' is a large
          * complex structure. A custom RouterStateSerializer is used to parse

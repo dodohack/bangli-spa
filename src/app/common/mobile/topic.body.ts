@@ -7,7 +7,10 @@ import {
     Inject,
     Input,
     ChangeDetectionStrategy,
+    PLATFORM_ID,
 } from '@angular/core';
+
+import { isPlatformBrowser } from '@angular/common';
 
 import {
     trigger,
@@ -44,7 +47,8 @@ export class VoucherCodeDialog {
     copySuccess = false;
 
     constructor(public dialog: MatDialogRef<VoucherCodeDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {}
+                @Inject(MAT_DIALOG_DATA) public data: any,
+                @Inject(PLATFORM_ID) private platformId: Object) {}
 
     // We may have multiple voucher codes
     get vouchers() {
@@ -60,11 +64,14 @@ export class VoucherCodeDialog {
     }
 
     popup() {
-        this.isLoading = true;
-        setTimeout(function(data, dialog) {
-            window.open(data.tracking_url, '_blank');
-            dialog.close();
-         }, 500, this.data, this.dialog);
+        // window does not exist on server side
+        if (isPlatformBrowser(this.platformId)) {
+            this.isLoading = true;
+            setTimeout(function (data, dialog) {
+                window.open(data.tracking_url, '_blank');
+                dialog.close();
+            }, 500, this.data, this.dialog);
+        }
     }
 }
 

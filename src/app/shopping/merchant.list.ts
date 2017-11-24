@@ -1,7 +1,7 @@
 /**
  * List of merchants who has at least 1 offers.
  */
-import { Component }         from '@angular/core';
+import { Inject, Component, PLATFORM_ID } from '@angular/core';
 import { Title }             from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store }             from '@ngrx/store';
@@ -48,8 +48,10 @@ export class MerchantList extends EntitiesBase
                 public router: Router,
                 public store: Store<AppState>,
                 public title: Title,
-                public helper: Helper) {
-        super(route, router, '/deal/list/', store, SINGLE_PARAMS, true/*pageless*/);
+                public helper: Helper,
+                @Inject(PLATFORM_ID) public platformId: Object) {
+        super(route, router, '/deal/list/', store, SINGLE_PARAMS,
+            true/*pageless*/, platformId);
 
         this.title.setTitle('优惠导航 - ' + SITE.NAME);
 

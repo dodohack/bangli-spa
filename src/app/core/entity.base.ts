@@ -1,7 +1,7 @@
 import { OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
 import { Title }             from '@angular/platform-browser';
-import { Observable }        from 'rxjs/Rx';
+import { Observable }        from 'rxjs/Observable';
 import { Store }             from '@ngrx/store';
 
 import { ENTITY, Entity }    from './models';

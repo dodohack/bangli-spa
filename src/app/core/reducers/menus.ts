@@ -23,7 +23,7 @@ export interface MenusState {
     menus: { [pid: number]: {[gid: number]: Menu[]} };
     // Corresponding group ids in array for menus, used to index menus
     menuGids: { [pid: number]: number[] };
-};
+}
 
 const initialState: MenusState = {
     curTopMenuId:          0,

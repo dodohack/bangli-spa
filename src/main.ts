@@ -8,5 +8,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(BangliSpaModule)
+// Skip ngZone completely as we don't need to run stuff outside angular space.
+platformBrowserDynamic().bootstrapModule(BangliSpaModule, {ngZone: 'noop'})
   .catch(err => console.log(err));
